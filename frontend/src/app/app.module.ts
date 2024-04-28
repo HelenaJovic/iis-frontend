@@ -24,7 +24,8 @@ import { NavbarComponent } from './feature-moduls/layout/navbar/navbar.component
 import { FooterComponent } from './feature-moduls/layout/footer/footer.component';
 import { RegisterPsychologistComponent } from './feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from './feature-moduls/user-profile/user-profile/user-profile.component';
-
+import { OverviewForPsychologist } from './feature-moduls/workshop/overview-psychologist/overviewP.component';
+import { Attendances } from './feature-moduls/workshop/attendance/user-attendance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,8 @@ import { UserProfileComponent } from './feature-moduls/user-profile/user-profile
     SuccessfullRegistrationComponent,
     RegisterPsychologistComponent,
     UserProfileComponent,
+    OverviewForPsychologist,
+    Attendances,
 
 
     LoginComponent,

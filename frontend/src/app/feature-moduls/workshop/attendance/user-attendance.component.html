@@ -1,0 +1,32 @@
+<div class="workshops-view">
+
+    <div class="image-background">
+      <img src="assets/frame.png" alt="Descriptive text for the image">
+  
+    </div>
+    
+    
+    <div class="second">
+       <h2>These are the people that are going to be on your workshop</h2>
+    </div>
+    <div class="card-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.name }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+       
+      </div>

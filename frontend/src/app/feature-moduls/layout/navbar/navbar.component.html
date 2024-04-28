@@ -4,7 +4,7 @@
     <div class="spacer"></div>
     <a mat-button routerLink="/">Home</a> 
     <a mat-button routerLink="/sessions" *ngIf="userRole == 'ROLE_REGISTERED_USER'">| My sessions |</a>  
-    <a mat-button routerLink="/workshops" *ngIf="userRole == 'ROLE_REGISTERED_USER'">| My workshops |</a>
+    <a mat-button routerLink="/workshops" *ngIf="userRole == 'ROLE_PSYCHOLOG'">| Manage Workshops |</a>
     <a mat-button routerLink="/students" *ngIf="userRole == 'ROLE_STUDENT'">| Internship progress |</a>
     <a mat-button routerLink="/register-psychologist" *ngIf="userRole == 'ROLE_SYSTEM_ADMIN'">|Register new specialist|</a>
 

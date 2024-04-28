@@ -10,8 +10,8 @@ import { LoginComponent } from '../auth/login/login.component';
 import { HomeComponent } from 'src/app/feature-moduls/layout/home/home.component';
 import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
-
-
+import { OverviewForPsychologist } from 'src/app/feature-moduls/workshop/overview-psychologist/overviewP.component';
+import { Attendances } from 'src/app/feature-moduls/workshop/attendance/user-attendance.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -22,9 +22,14 @@ const routes: Routes = [
     path: 'successfullyRegistration',
     component: SuccessfullRegistrationComponent,
   },
+  { path: 'attendances/:workshopId', component: Attendances },
+
   {
     path: 'register-psychologist',
     component: RegisterPsychologistComponent
+  },{
+    path: 'workshops',
+    component: OverviewForPsychologist,
   }
 ];
 
