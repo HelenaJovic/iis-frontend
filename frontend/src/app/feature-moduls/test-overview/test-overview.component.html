@@ -1,0 +1,86 @@
+<div class="wrapper">
+  <div class="first-div">
+    <div class="f1">
+      <p class="main-text">THE BIG FIVE PERSONALITY TEST</p>
+      <p class="small-text">Accurately Measure Your Key Peronality Traits</p>
+    </div>
+
+    <div class="f2">
+      <img src="assets/test-overview.png" class="image-style" />
+    </div>
+  </div>
+  <div class="advertisment-style">
+    <div class="small-div">
+      <p class="advertisment-text">905,270 TESTS TAKEN IN THE LAST 30 DAYS</p>
+    </div>
+
+    <p class="small-text-1">
+      This personality test gives you accurate score for the Big Five
+      personality traits. See exactly how you score for Openness,
+      Conscietiousness, Extraversion, Agreeableness and Neuroticism
+    </p>
+  </div>
+  <div class="answers-div">
+    <div class="scale">
+      <p class="scale-text">STRONGLY DISAGREE</p>
+      <p class="scale-text">NEUTRAL</p>
+      <p class="scale-text">STRONGLY AGREE</p>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      "
+    >
+      <button class="button-style" (click)="startTest()">Start test</button>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card" *ngFor="let question of questions">
+        <div style="display: flex; flex-direction: row">
+          <p style="justify-content: center">{{ question.id }}.</p>
+          <p style="justify-content: center">{{ question.text }}</p>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            margin-top: 1%;
+            margin-bottom: 1%;
+          "
+        >
+          <mat-icon
+            class="star-icon"
+            *ngFor="let circle of [1, 2, 3, 4, 5]; let i = index"
+            (click)="createAnswer(question.id, circle, $event)"
+            [style.transform]="
+              i === 2
+                ? 'scale(1.7)'
+                : i === 1 || i === 3
+                ? 'scale(2.4)'
+                : 'scale(3.4)'
+            "
+            style="
+              color: rgb(170, 204, 243);
+              margin-right: 45px;
+              margin-left: 0.6%;
+            "
+            >lens
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      "
+    >
+      <button class="button-style" (click)="endTest()">End test</button>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,8 @@ import { LoginComponent } from '../auth/login/login.component';
 import { HomeComponent } from 'src/app/feature-moduls/layout/home/home.component';
 import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
-
+import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
+import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,8 +25,10 @@ const routes: Routes = [
   },
   {
     path: 'register-psychologist',
-    component: RegisterPsychologistComponent
-  }
+    component: RegisterPsychologistComponent,
+  },
+  { path: 'create-questions', component: CreateQuestionsComponent },
+  { path: 'test-overview', component: TestOverviewComponent },
 ];
 
 @NgModule({

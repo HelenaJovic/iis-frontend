@@ -1,0 +1,86 @@
+<div class="wrap">
+  <div class="first-div">
+    <div class="first-inner">
+      <div class="introduction-text">
+        <p class="main-text">IT ALL STARTS WITH CLIENTS</p>
+        <p class="small-text">
+          Create personality test to better understand your clients
+        </p>
+      </div>
+      <img class="img" src="assets/test.webp" />
+    </div>
+  </div>
+  <div class="second-div">
+    <div class="second-inner">
+      <div class="question-box">
+        <p class="title-text">Questions</p>
+        <div style="padding: 5%">
+          <div class="card-wrapper">
+            <div class="card" *ngFor="let question of questions">
+              <p>{{ question.id }}.</p>
+              <p>{{ question.text }}</p>
+              <button
+                (click)="delete(question.id, question)"
+                class="button-style"
+              >
+                <img
+                  src="assets/rec-bin.png"
+                  alt="Delete"
+                  style="width: 35px; height: 35px"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+          "
+        >
+          <button (click)="finish()" class="button-style-1">
+            Submit changes
+          </button>
+        </div>
+      </div>
+      <div class="create-box">
+        <p class="title-text">Add New Question</p>
+        <form [formGroup]="questionForm" class="form-wrap">
+          <div class="first-form">
+            <mat-form-field>
+              <mat-label>Text</mat-label>
+              <input matInput formControlName="text" type="text" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Question type</mat-label>
+              <mat-select formControlName="questionType">
+                <mat-option *ngFor="let type of questionTypes" [value]="type">{{
+                  type
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <button
+                class="button1"
+                type="submit"
+                color="primary"
+                (click)="createQuestion()"
+              >
+                Create question
+              </button>
+            </div>
+          </div>
+        </form>
+        <img src="assets/test.webp" style="width: 100%; height: auto" />
+      </div>
+    </div>
+  </div>
+</div>
