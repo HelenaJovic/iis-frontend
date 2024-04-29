@@ -12,6 +12,7 @@ import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admi
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
 import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
+import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   },
   { path: 'create-questions', component: CreateQuestionsComponent },
   { path: 'test-overview', component: TestOverviewComponent },
+  { path: 'test-results', component: TestResultsComponent },
 ];
 
 @NgModule({
