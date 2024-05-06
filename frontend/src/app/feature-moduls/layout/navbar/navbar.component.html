@@ -15,10 +15,28 @@
   >
   <a
     mat-button
+    routerLink="/create-questions"
+    *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+  >
+    Create Questions
+  </a>
+  <a
+    mat-button
+    routerLink="/test-overview"
+    *ngIf="userRole == 'ROLE_REGISTERED_USER'"
+  >
+    Big 5 test
+  </a>
+  <a mat-button routerLink="/test-results" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+    >| Test Results |</a
+  >
+  <a
+    mat-button
     routerLink="/workshops"
     *ngIf="userRole == 'ROLE_REGISTERED_USER'"
     >| My workshops |</a
   >
+
   <a mat-button routerLink="/students" *ngIf="userRole == 'ROLE_STUDENT'"
     >| Internship progress |</a
   >

@@ -24,6 +24,10 @@ import { NavbarComponent } from './feature-moduls/layout/navbar/navbar.component
 import { FooterComponent } from './feature-moduls/layout/footer/footer.component';
 import { RegisterPsychologistComponent } from './feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from './feature-moduls/user-profile/user-profile/user-profile.component';
+import { CreateQuestionsComponent } from './feature-moduls/create-questions/create-questions.component';
+import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
+import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
+import { Chart } from 'chart.js';
 
 @NgModule({
   declarations: [
@@ -34,11 +38,13 @@ import { UserProfileComponent } from './feature-moduls/user-profile/user-profile
     RegisterPsychologistComponent,
     UserProfileComponent,
 
-
     LoginComponent,
-      HomeComponent,
-      NavbarComponent,
-      FooterComponent,
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent,
+    CreateQuestionsComponent,
+    TestOverviewComponent,
+    TestResultsComponent,
   ],
 
   imports: [
