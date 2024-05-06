@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { FilledInTest } from '../model/filledInTest.model';
 import { Observable } from 'rxjs';
 import { Answer } from '../model/answer.model';
+import { TestResults } from '../model/testResults.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,12 @@ export class FilledInTestServiceService {
     return this.http.post<FilledInTest>(
       `http://localhost:8081/api/filledInTests/finishTest/${id}`,
       test
+    );
+  }
+
+  calculate(userId: number): Observable<TestResults> {
+    return this.http.get<TestResults>(
+      `http://localhost:8081/api/filledInTests/results/${userId}`
     );
   }
 }

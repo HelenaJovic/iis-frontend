@@ -60,7 +60,8 @@
   padding-top: 5%;
 }
 
-.graph {
-  width: 50%;
-  padding: 2%;
+.graph canvas {
+  width: 100%;
+  max-width: 600px;
+  padding-left: 20px;
 }

@@ -49,6 +49,12 @@ export class CreateQuestionsComponent implements OnInit {
         title: 'Questions',
         text: 'You have to create at least 10 questions.',
       });
+    } else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Test Created',
+        text: 'You have successfully created a test.',
+      });
     }
   }
 
@@ -62,7 +68,7 @@ export class CreateQuestionsComponent implements OnInit {
       psychologistId: this.loggedInUserId,
     };
 
-    if (this.questions.length < 10) {
+    if (this.questions.length > 30) {
       Swal.fire({
         icon: 'warning',
         title: 'Questions',
@@ -75,6 +81,12 @@ export class CreateQuestionsComponent implements OnInit {
           console.log(result);
           this.questionForm.reset();
           this.showCreatedQuestion(result);
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Question Created',
+            text: 'You have successfully created question.',
+          });
         },
       });
     }

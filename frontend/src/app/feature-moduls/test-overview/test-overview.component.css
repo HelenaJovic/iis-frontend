@@ -81,6 +81,7 @@
 .answers-div {
   padding-left: 10%;
   padding-right: 10%;
+  margin-top: -5px;
 }
 
 .scale {
@@ -101,10 +102,12 @@
 }
 
 .button-style {
-  background-color: rgb(117, 222, 157);
-  font-size: 22px;
+  background-color: rgb(117, 166, 222);
+  font-size: 25px;
   border-radius: 5px;
   padding: 6px;
+  width: 500px;
+  color: rgb(230, 230, 230);
 }
 
 .button-style:hover {

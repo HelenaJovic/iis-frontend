@@ -102,6 +102,11 @@ export class TestOverviewComponent implements OnInit {
       .subscribe({
         next: (result) => {
           console.log(result);
+          Swal.fire({
+            icon: 'success',
+            title: 'Test filled',
+            text: 'You have successfully filled the test.',
+          });
         },
       });
   }

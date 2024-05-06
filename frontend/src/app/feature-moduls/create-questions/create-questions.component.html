@@ -17,18 +17,22 @@
         <div style="padding: 5%">
           <div class="card-wrapper">
             <div class="card" *ngFor="let question of questions">
-              <p>{{ question.id }}.</p>
-              <p>{{ question.text }}</p>
-              <button
-                (click)="delete(question.id, question)"
-                class="button-style"
-              >
-                <img
-                  src="assets/rec-bin.png"
-                  alt="Delete"
-                  style="width: 35px; height: 35px"
-                />
-              </button>
+              <div style="display: flex; flex-direction: row">
+                <p>{{ question.id }}.</p>
+                <p>{{ question.text }}</p>
+              </div>
+              <div>
+                <button
+                  (click)="delete(question.id, question)"
+                  class="button-style"
+                >
+                  <img
+                    src="assets/rec-bin.png"
+                    alt="Delete"
+                    style="width: 35px; height: 35px"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
