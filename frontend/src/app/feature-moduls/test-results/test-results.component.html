@@ -13,18 +13,26 @@
       </div>
     </div>
   </div>
-
-  <div class="second-div">
-    <div>
-      <p style="padding-left: 5%; color: rgb(32, 95, 150); font-size: 22px">
-        Ana Boskovic
-      </p>
-      <p style="padding-left: 5%; color: rgb(32, 95, 150); font-size: 22px">
-        0.9% Openness
-      </p>
-    </div>
-    <div class="graph">
-      <canvas id="Chart"></canvas>
+  <div style="display: flex; flex-direction: row; gap: 100px">
+    <div class="second-div" *ngFor="let user of users">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          padding-bottom: 1%;
+        "
+      >
+        <p style="padding-left: 5%; color: rgb(32, 95, 150); font-size: 24px">
+          {{ user?.name }}
+        </p>
+        <p style="color: rgb(32, 95, 150); font-size: 24px">
+          {{ user.lastName }}
+        </p>
+      </div>
+      <div class="graph">
+        <canvas id="Chart-{{ user.id }}"></canvas>
+      </div>
     </div>
   </div>
 </div>

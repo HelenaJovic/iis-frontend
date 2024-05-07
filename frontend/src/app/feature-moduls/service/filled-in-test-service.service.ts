@@ -33,9 +33,15 @@ export class FilledInTestServiceService {
     );
   }
 
-  calculate(userId: number): Observable<TestResults> {
+  calculate(userId: number | undefined): Observable<TestResults> {
     return this.http.get<TestResults>(
       `http://localhost:8081/api/filledInTests/results/${userId}`
+    );
+  }
+
+  getAllFinished(): Observable<FilledInTest[]> {
+    return this.http.get<FilledInTest[]>(
+      `http://localhost:8081/api/filledInTests/allFinished`
     );
   }
 }
