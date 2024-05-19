@@ -34,6 +34,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ShowWorkshop } from './feature-moduls/workshop/one-workshop/one-workshop.component';
 import { ShowWorkshopPsychologist } from './feature-moduls/workshop/one-workshop-psychologist/one-workshop-psychologist.component';
 import { WorkshopsUser } from './feature-moduls/workshop/workshops-by-user/workshops-by-user.component';
+import { CreateQuestionsComponent } from './feature-moduls/create-questions/create-questions.component';
+import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
+import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
+import { Chart } from 'chart.js';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,10 +56,14 @@ import { WorkshopsUser } from './feature-moduls/workshop/workshops-by-user/works
     ShowWorkshopPsychologist,
     WorkshopsUser,
 
+
     LoginComponent,
-      HomeComponent,
-      NavbarComponent,
-      FooterComponent,
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent,
+    CreateQuestionsComponent,
+    TestOverviewComponent,
+    TestResultsComponent,
   ],
 
   imports: [

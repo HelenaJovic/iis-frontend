@@ -17,6 +17,10 @@ import { OverviewForUser } from 'src/app/feature-moduls/workshop/overview-user/o
 import { ShowWorkshop } from 'src/app/feature-moduls/workshop/one-workshop/one-workshop.component';
 import { ShowWorkshopPsychologist } from 'src/app/feature-moduls/workshop/one-workshop-psychologist/one-workshop-psychologist.component';
 import { WorkshopsUser } from 'src/app/feature-moduls/workshop/workshops-by-user/workshops-by-user.component';
+import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
+import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
+import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -52,10 +56,15 @@ const routes: Routes = [
   {
     path: 'register-psychologist',
     component: RegisterPsychologistComponent
-  },{
+  },
+  {
     path: 'workshops',
     component: OverviewForPsychologist,
   }
+   ,
+  { path: 'create-questions', component: CreateQuestionsComponent },
+  { path: 'test-overview', component: TestOverviewComponent },
+  { path: 'test-results', component: TestResultsComponent },
 ];
 
 @NgModule({
