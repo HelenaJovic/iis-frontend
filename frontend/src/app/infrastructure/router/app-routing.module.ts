@@ -13,6 +13,7 @@ import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-p
 import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
+import { CreateGroupSessionComponent } from 'src/app/feature-moduls/create-group-session/create-group-session.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'create-questions', component: CreateQuestionsComponent },
   { path: 'test-overview', component: TestOverviewComponent },
   { path: 'test-results', component: TestResultsComponent },
+  { path: 'create-group-session', component: CreateGroupSessionComponent },
 ];
 
 @NgModule({

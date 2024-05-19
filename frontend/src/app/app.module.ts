@@ -27,7 +27,10 @@ import { UserProfileComponent } from './feature-moduls/user-profile/user-profile
 import { CreateQuestionsComponent } from './feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Chart } from 'chart.js';
+import { CreateGroupSessionComponent } from './feature-moduls/create-group-session/create-group-session.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { Chart } from 'chart.js';
     CreateQuestionsComponent,
     TestOverviewComponent,
     TestResultsComponent,
+    CreateGroupSessionComponent,
   ],
 
   imports: [
@@ -53,7 +57,8 @@ import { Chart } from 'chart.js';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-
+    MatDatepickerModule,
+    MatNativeDateModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
