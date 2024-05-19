@@ -1,0 +1,95 @@
+<div class="create-workshop">
+  <div>
+    <div class="image-background">
+      <img src="assets/psiho.jpg" alt="Descriptive text for the image">
+  
+    </div>
+    
+    
+    <div class="creating">
+      <div class="part-one">
+        <div class="form-ps">
+        <form [formGroup]="workshopForm" class="form-wrap">
+              <div class="first-column">
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" type="text" />
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <mat-label>Description</mat-label>
+                  <input matInput formControlName="description" type="text" />
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    [formControl]="selectedDate"
+                    placeholder="Choose a date"
+                  />
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <mat-label>Start time</mat-label>
+                  <input matInput formControlName="startTime" type="time" />
+                </mat-form-field>
+        
+                <mat-form-field>
+                  <mat-label>End Time</mat-label>
+                  <input matInput formControlName="endTime" type="time" />
+                </mat-form-field>
+            </div>
+            <div class="second-column">
+                  <mat-form-field>
+                      <mat-label>Category</mat-label>
+                      <mat-select formControlName="category">
+                        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Price</mat-label>
+                      <input matInput formControlName="price" type="number" />
+                    </mat-form-field>
+                <mat-checkbox formControlName="online">ONLINE</mat-checkbox>
+                <input type="file" (change)="onImageSelected($event)">
+
+
+                
+        
+                <button
+                  class="button1"
+                  type="submit"
+                  color="primary"
+                  (click)="createWorkshop()"
+                >
+                  CREATE
+                </button>
+            </div>
+          </form>
+        </div>
+        <div class="preview-images">
+          <ul class="images">
+            <li *ngFor="let imageUrl of imagesWorkshop" class="image">
+              <img [src]="imageUrl" [alt]="imageUrl" style="width: 200px; height: auto;">
+            </li>
+          </ul>
+          
+        </div>
+        </div>
+          <div *ngIf="!isOnline" class="second-row">
+            <ul class="halls">
+              <li *ngFor="let hall of halls" class="hall">
+                <h3>{{ hall.name }}</h3>
+                <p>Kapacitet: {{ hall.capacity }}</p>
+                <button (click)="openAddHallModal(hall.id)">Rezervisi halu</button>
+              </li>
+            </ul>
+          </div>
+          
+
+          </div>
+</div>
+</div>

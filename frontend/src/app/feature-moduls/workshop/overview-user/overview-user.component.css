@@ -1,7 +1,9 @@
 .workshops-view{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 40px;
+
 }
 
 .image-background img {
@@ -87,9 +89,115 @@
     height: min-content;
 
   }
+
+  .mental-health{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+  }
+
+  .why-us {
+    display: flex;
+    justify-content: center;
+  }
+
+  .why-us h1 {
+    text-align: center; /* Centriranje teksta unutar h1 elementa */
+    position: relative; /* Pozicioniranje za pseudo-element */
+    padding-bottom: 10px; /* Prostor između teksta i linije */
+    font-size: 50px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #171077;
+
+  }
+
+  .last-one{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 40px;
+  }
+  .images-with-title{
+    background-color: #dee9f7;
+    height: 40%;
+    width: 20%;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center; /* Centrira sadržaj horizontalno */
+    align-items: center; /* Centrira sadržaj vertikalno */
+    text-align: center; /* Dodatno centrira tekst unutar svih unutrašnjih elemenata */
+    border-radius: 15px; /* Zaobljava uglove */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Dodaje blagu senku oko okvira */
+    border: 1px solid #ccc; /* Dodaje tanku liniju oko okvira */
+  }
+
+  .images-with-title h3{
+    text-align: center; /* Centriranje teksta unutar h1 elementa */
+    position: relative; /* Pozicioniranje za pseudo-element */
+    padding-bottom: 10px; /* Prostor između teksta i linije */
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: #171077;
+  }
+  
+  
+
+  
+
+  .images{
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+
+  }
+
+  .mental-conditions h1 {
+    text-align: center; /* Centriranje teksta unutar h1 elementa */
+    position: relative; /* Pozicioniranje za pseudo-element */
+    padding-bottom: 10px; /* Prostor između teksta i linije */
+    font-size: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: #171077;
+
+  }
+  
+  .mental-conditions h1::after {
+    content: ""; /* Neophodno za kreiranje pseudo-elementa */
+    position: absolute;
+    left: 50%; /* Pozicioniranje na sredinu */
+    bottom: 0; /* Postavljanje na dno h1 elementa */
+    transform: translateX(-50%); /* Precizno centriranje */
+    width: 90%; /* Širina linije */
+    height: 2px; /* Visina linije */
+    background-color: #000; /* Boja linije, crna u ovom slučaju */
+  }
+  
+
+  .image-with-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Dodato za horizontalno centriranje */
+  }
+  
+  .image-with-title h3 {
+    text-align: center; /* Centriranje teksta unutar h3 elementa */
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: #171077;
+    
+  }
+  
   
   .card {
-    min-width: 30%; /* Minimalna širina svake kartice */
+    min-width: 25%; /* Minimalna širina svake kartice */
     height: max-content;
     background: linear-gradient(145deg, #f7f7f9, #f6f5f7); /* A purple gradient background */
     color: #fff; /* White text color */
@@ -125,6 +233,19 @@
     justify-content: center;
     padding-top: 100px;
   }
+  .third-one{
+padding-right: 20px; 
+width: 100%; }
+
+
+  .third-one img{
+    
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    
+  }
 
   .createNO button {
     background-color: #171077; /* A vibrant green, common for 'create' or 'go' buttons */
@@ -139,6 +260,46 @@
     transition: background-color 0.3s, transform 0.2s; /* Smooth transition for color and transformation */
     cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
 }
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+
+}
+
+/* Stilizovanje okvira select elementa */
+.filter select {
+    width: 100%; /* Širina select-a da popuni kontejner */
+    height: 40px; /* Povećava visinu select-a za bolju vidljivost */
+    background-color: #2e3ca2; /* Plava boja pozadine */
+    color: white; /* Boja teksta */
+    border-radius: 20px; /* Zaobljeni uglovi */
+    border: 1px solid #0056b3; /* Tamnija plava boja za ivicu */
+    padding-left: 10px; /* Dodaje padding sa leve strane teksta */
+    font-size: 16px; /* Veća veličina fonta za lakše čitanje */
+    align-items: center;
+    cursor: pointer; /* Cursor pointer za bolji UX */
+  }
+  
+  /* Stilizovanje opcija unutar select-a */
+  .filter option {
+    color: black; /* Boja teksta za opcije */
+    background-color: white; /* Pozadina za opcije */
+    padding: 5px; /* Padding za opcije */
+  }
+  
+  /* Stilizovanje fokusa na select elementu */
+  .filter select:focus {
+    outline: none; /* Uklanja outline kada je element fokusiran */
+    border-color: #004085; /* Tamnija plava boja za fokusiranu ivicu */
+  }
+  
+  /* Stilizovanje kada je select element hoverovan */
+  .filter select:hover {
+    background-color: #0056b3; /* Svjetlija nijansa plave kada se pređe mišem */
+  }
+  
 
 .createNO button:hover {
     background-color: #12078c; /* A slightly darker green on hover for feedback */

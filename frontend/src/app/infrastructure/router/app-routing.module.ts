@@ -12,6 +12,11 @@ import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admi
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
 import { OverviewForPsychologist } from 'src/app/feature-moduls/workshop/overview-psychologist/overviewP.component';
 import { Attendances } from 'src/app/feature-moduls/workshop/attendance/user-attendance.component';
+import { CreateWorkshop } from 'src/app/feature-moduls/workshop/create-workshop/create-workshop.component';
+import { OverviewForUser } from 'src/app/feature-moduls/workshop/overview-user/overview-user.component';
+import { ShowWorkshop } from 'src/app/feature-moduls/workshop/one-workshop/one-workshop.component';
+import { ShowWorkshopPsychologist } from 'src/app/feature-moduls/workshop/one-workshop-psychologist/one-workshop-psychologist.component';
+import { WorkshopsUser } from 'src/app/feature-moduls/workshop/workshops-by-user/workshops-by-user.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -21,6 +26,26 @@ const routes: Routes = [
   {
     path: 'successfullyRegistration',
     component: SuccessfullRegistrationComponent,
+  },
+  {
+    path:'workshopUser',
+    component: WorkshopsUser,
+  },
+  {
+    path: 'oneWorkshop/:workshopId',
+    component: ShowWorkshop,
+  },
+  {
+    path: 'workshopPsychologist/:workshopId',
+    component: ShowWorkshopPsychologist,
+  },
+  {
+    path:'overviewUser',
+    component:OverviewForUser
+  },
+  {
+    path: 'createWorkshop',
+    component: CreateWorkshop
   },
   { path: 'attendances/:workshopId', component: Attendances },
 

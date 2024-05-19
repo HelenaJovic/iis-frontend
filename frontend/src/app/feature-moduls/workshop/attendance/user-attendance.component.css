@@ -11,7 +11,7 @@
   }
   
   .second{
-    background-color: #44738E;
+    background-color: #6586ab;
     color: #f2f2f2;
     text-align: center;
     padding: 20px;
@@ -34,7 +34,7 @@
 }
 
 .card-wrapper th {
-    background-color:#44738E; /* Lighter header background */
+    background-color:#164883; /* Lighter header background */
     color: #faf8f8; /* Darker text color for better contrast */
 }
 

@@ -79,7 +79,7 @@ getAllWorkshops(id:number) {
   }
 
   Manage(workshopId: number): void {
-    // Add your logic for managing the workshop here
+    this.router.navigate(['/workshopPsychologist/', workshopId]);
     console.log('Manage button clicked for workshop ID:', workshopId);
   }
   
@@ -88,6 +88,7 @@ getAllWorkshops(id:number) {
   console.log('Attendances button clicked for workshop ID:', workshopId);
   }
   CreateNewOne():void{
+    this.router.navigate(['/createWorkshop']);
 
   }
 

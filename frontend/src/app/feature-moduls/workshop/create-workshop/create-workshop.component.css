@@ -1,0 +1,157 @@
+.create-workshop{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+
+  .images::-webkit-scrollbar {
+    height: 10px; /* visina skrol bara */
+  }
+  
+  .images::-webkit-scrollbar-thumb {
+    background-color: darkgrey; /* boja skrol bara */
+    border-radius: 10px; /* zaobljenost skrol bara */
+  }
+  
+
+.preview-images {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5); /* Adds a soft blue shadow */
+    box-sizing: border-box;  
+    padding: 20px; /* Adds some padding around the content */
+    border-radius: 10px; /* Rounds the corners */
+    background: linear-gradient(to right, #fff0, #fff 10%, #fff 90%, #fff0); /* Fades edges */
+    overflow: hidden; /* Ensures the background gradient and shadows are contained within the borders */
+  }
+  
+
+  .images {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    white-space: nowrap; /* Keeps flex items in a single line */
+  }
+  
+  .form-wrap{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .form-ps{
+    display: flex;
+    width: 55%;
+    padding-right: 20px;
+    justify-content: flex-end;
+
+  }
+  
+.part-one{
+  display: flex;
+  flex-direction: row;
+  gap: 20 px;
+  padding: 20px;
+}
+
+.images{
+  padding-left: 30px;
+}
+  .first-column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second-column{
+    display: flex;
+    flex-direction: column;
+    gap:20px
+  }
+
+  /* Osnovni stil kontejnera */
+.second-row {
+    max-width: 800px; /* Ograničava širinu liste za bolji dizajn */
+    margin: auto; /* Centrira listu na stranici */
+    padding: 20px;
+    background-color: #d2ddf9; /* Svetla pozadinska boja za kontrast */
+    border-radius: 8px; /* Zaobljeni uglovi za moderniji izgled */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Blagi senki za dubinu */
+  }
+  
+  /* Stilizacija liste */
+  .halls {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  /* Stilizacija pojedinačne stavke liste */
+  .hall {
+    background-color: #ffffff; /* Bela pozadina za svaku halu */
+    border: 1px solid #dddddd; /* Diskretan okvir */
+    margin-bottom: 10px; /* Razmak između elemenata liste */
+    padding: 15px;
+    border-radius: 5px; /* Zaobljeni uglovi */
+  }
+  
+  .hall h3 {
+    color: #2c3e50; /* Promenjena je boja u tamno plavu za elegantniji izgled */
+    margin-top: 0;
+    margin-bottom: 5px; /* Dodat mali razmak između naslova i teksta ispod */
+    font-size: 18px; /* Nešto veći font za bolji fokus na naslov */
+    font-weight: 600; /* Povećana debljina slova za bolju vidljivost */
+  }
+  
+  /* Paragrafi (kapacitet) */
+  .hall p {
+    color: #34495e; /* Nešto tamnija siva boja za bolju usklađenost */
+    font-size: 16px; /* Povećana veličina fonta za čitljivost */
+    line-height: 1.5; /* Povećan prored za bolju čitljivost */
+    margin-bottom: 10px; /* Dodat razmak na dnu paragrafa za bolje odvajanje od drugih elemenata */
+  }
+  
+  /* Stil dugmeta za dodavanje nove hale */
+  .hall button {
+    background-color: #2d3678; /* Zelena boja dugmeta */
+    color: white; /* Bela boja teksta */
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase; /* Velika slova za tekst */
+    border-radius: 4px; /* Zaobljeni uglovi dugmeta */
+    cursor: pointer; /* Kursor pokazuje da je klikljivo */
+    transition: background-color 0.3s; /* Animacija za hover */
+  }
+  
+  .hall button:hover {
+    background-color: #8bc0dd; /* Tamnija nijansa zelene na hover */
+  }
+  
+
+  .second-column button{
+    background-color: #1f1a69; /* A vibrant green, common for 'create' or 'go' buttons */
+    color: white; /* White text to contrast the green background */
+    border: none; /* No border for a modern look */
+    padding: 10px 20px; /* Adequate padding for comfort */
+    font-size: 16px; /* Visible text size */
+    font-family: Arial, sans-serif; /* Simple and clean font */
+    text-transform: uppercase; /* Makes the button text more impactful */
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for color and transformation */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  }

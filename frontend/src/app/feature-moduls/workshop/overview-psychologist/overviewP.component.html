@@ -1,7 +1,7 @@
 <div class="workshops-view">
 
   <div class="image-background">
-    <img src="assets/frame.png" alt="Descriptive text for the image">
+    <img src="assets/psiho.jpg" alt="Descriptive text for the image">
 
   </div>
   
@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-first-column-2">
                   <img [src]="workshop.online ? 'assets/online-icon.png' : 'assets/offline-icon.png'" alt="{{workshop.online ? 'Online Workshop' : 'Offline Workshop'}}">
-                  <p>{{ workshop.online ? 'ONLINE' : 'IN-PERSON.' }}</p>
+                  <p>{{ workshop.online ? 'ONLINE' : 'IN-PERSON' }}</p>
                 </div>
               </div>
                 <div class="third-one">
@@ -40,7 +40,7 @@
                   <p class="about-ps">{{workshop.description}} </p>
                 </div>
                 <div class="buttons">
-                  <button type="button1" class="btn btn-primary" (click)="Manage(workshop.id)">Manage</button>
+                  <button type="button1" class="btn btn-primary" (click)="Manage(workshop.id)">See more</button>
                   <button type="button2" class="btn btn-secondary" (click)="Attendances(workshop.id)">Attendances</button>
                 </div>
                 

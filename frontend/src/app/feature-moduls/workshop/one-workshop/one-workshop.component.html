@@ -1,0 +1,86 @@
+<div class="workshops-view">
+
+    <div class="aboot-workshop">
+  <div class="first-column">
+    <h1 >{{workshop.name}}</h1>
+    <div class="first-column-row">
+        <img src="assets/date.png" alt="Descriptive text for the image">
+        <p class="description">{{workshop.date}} </p>
+    </div>
+    <div class="first-column-row2">
+        <img [src]="workshop.online ? 'assets/online-icon.png' : 'assets/offline-icon.png'" alt="{{workshop.online ? 'Online Workshop' : 'Offline Workshop'}}">
+        <p>{{ workshop.online ? 'ONLINE' : 'IN-PERSON' }}</p>
+    </div>
+  </div>
+  <div class="second-column">
+    <div class="second-column-column1">
+        <div class="price-class">
+            <img src="assets/price.png" alt="Descriptive text for the price">
+             <p class="price">{{workshop.price}} </p>
+        </div>
+        <button (click)="enrollNow(workshop.id)">ENROLL NOW</button>
+    </div>
+    <div class="second-column-column2">
+        <img [src]="psiholog.image" alt="{{ psiholog.name }} {{ psiholog.lastName }}">
+        <h3>{{ psiholog.name }} {{ psiholog.lastName }}</h3>
+    </div>
+    
+  </div>
+    </div>
+    
+    
+      <div class="about-psychologist">
+        <div class="psiho-one">
+            <img [src]="psiholog.image" alt="{{ psiholog.name }} {{ psiholog.lastName }}">
+        </div>
+        <div class="psiho-two">
+            <h1>About {{psiholog.name}}  {{psiholog.lastName}}</h1>
+            <p>Dr. Helena Jovic is a dedicated clinical psychologist<br><br>
+                 with over 15 years of experience specializing in<br><br>
+                cognitive-behavioral therapy (CBT) and mindfulness <br><br>
+                techniques.<br><br>
+            Based in Chicago, Dr. Smith earned her Doctorate in<br><br>
+             Psychology from the University of Illinois and is a<br><br>
+            licensed psychologist in the state of Illinois.<br><br>
+            Throughout her career, Dr. Smith has worked<br><br>
+             extensively with adults and adolescents dealing with<br><br>
+             anxiety disorders, depression, and stress management<br><br>
+            issues.
+            She is passionate about helping her clients<br><br> achieve personal growth and improve their mental <br><br>health through
+             evidence-based practices<br><br> and a compassionate approach.</p>
+            
+        </div>
+      </div>
+
+
+        <div class="about-workshop">
+           
+                <h1>What is the AGENDA of this workshop?</h1>
+                <p>{{workshop.description}}</p>
+
+                </div>
+  
+             
+               
+  
+            
+    
+                <div class="image-background">
+                    <img src="assets/attendeces.png" alt="Descriptive text for the image">
+                
+                  </div>
+                  <div class="preview-images1">
+                    <h1>Take a look at how our last workshop went !</h1>
+                  <div class="preview-images">
+                    <ul class="images">
+                      <li *ngFor="let imageUrl of workshop.images" class="image">
+                        <img [src]="imageUrl" [alt]="imageUrl" style="width: 350px; height: auto;">
+                      </li>
+                    </ul>
+                    
+                  </div>
+                </div>
+
+          
+          
+      </div>

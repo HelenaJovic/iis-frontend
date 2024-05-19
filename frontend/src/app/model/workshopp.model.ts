@@ -1,7 +1,6 @@
 import { Time } from "@angular/common";
 
 export interface Workshop {
-    id: number;
     name: string;
     description: string;
     date: Date;
@@ -13,7 +12,6 @@ export interface Workshop {
     images: string[];
     psychologistId: number;
     hallId?: number;
-    [key: string]: any;  
   }
 
   export enum WorkshopCategory {
