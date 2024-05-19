@@ -1,3 +1,4 @@
+
 <mat-toolbar color="primary">
   <img
     src="https://static.vecteezy.com/system/resources/previews/016/389/995/original/brain-and-mind-research-free-png.png"
@@ -30,12 +31,8 @@
   <a mat-button routerLink="/test-results" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
     >| Test Results |</a
   >
-  <a
-    mat-button
-    routerLink="/workshops"
-    *ngIf="userRole == 'ROLE_REGISTERED_USER'"
-    >| My workshops |</a
-  >
+     <a mat-button routerLink="/workshops" *ngIf="userRole == 'ROLE_PSYCHOLOG'">| Manage Workshops |</a>
+
 
   <a mat-button routerLink="/students" *ngIf="userRole == 'ROLE_STUDENT'"
     >| Internship progress |</a
@@ -46,7 +43,8 @@
     *ngIf="userRole == 'ROLE_SYSTEM_ADMIN'"
     >|Register new specialist|</a
   >
-
+    <a mat-button routerLink="/overviewUser" *ngIf="userRole == 'ROLE_REGISTERED_USER'">| Workshops |</a>
+    <a mat-button routerLink="/workshopUser" *ngIf="userRole == 'ROLE_REGISTERED_USER'">| Your Workshops |</a>
   <a mat-button routerLink="/about-us">About us</a>
   <div class="spacer"></div>
   <a mat-button routerLink="/login" *ngIf="userRole == ''">Log in</a>

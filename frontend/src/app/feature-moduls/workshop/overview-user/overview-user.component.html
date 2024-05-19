@@ -1,0 +1,115 @@
+<div class="workshops-view">
+
+    <div class="image-background">
+      <img src="assets/psiho.jpg" alt="Descriptive text for the image">
+  
+    </div>
+    
+    
+      <div class="slide-content">
+        <div class="card-wrapper" >
+  
+          <div class="card" *ngFor="let workshop of filteredWorkshops">
+            <div class="first">
+              <div class="card-first-row">
+                <h2 class="name">{{workshop.name}} </h2>
+              </div>
+  
+              <div class="card-second-row">
+                <div class="card-first-column">
+                  <div class="card-first-column-1">
+                    <img src="assets/date.png" alt="Descriptive text for the image">
+                    <p class="description">{{workshop.date}} </p>
+                  </div>
+                  <div class="card-first-column-2">
+                    <img [src]="workshop.online ? 'assets/online-icon.png' : 'assets/offline-icon.png'" alt="{{workshop.online ? 'Online Workshop' : 'Offline Workshop'}}">
+                    <p>{{ workshop.online ? 'ONLINE' : 'IN-PERSON.' }}</p>
+                  </div>
+                </div>
+                <div class="third-one">
+                    <img [src]="psychologistImageUrl" alt="Descriptive text for the price">
+                </div>
+                
+                
+              </div>
+                </div>
+  
+             
+                <div class="card-second-column">
+                  <div class="about">
+                    <p class="about-ps">{{workshop.description}} </p>
+                  </div>
+                  <div class="buttons">
+                    <button type="button2" class="btn btn-secondary" (click)="ShowMore(workshop.id)">See more</button>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="filter">
+            <div>
+                <select id="category" (change)="filterWorkshops($any($event.target).value)">
+                    <option value="all">FILTER</option>
+                  <option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                  </option>
+                </select>
+              </div>
+            </div>
+              
+    
+        </div>
+        <div class="mental-health">
+            <div class="mental-conditions">
+                <h1>MENTAL HEALTH CONDITIONS</h1>
+            </div>
+            <div class="images">
+            <div class="image-with-title">
+              <img src="assets/adhd.png" alt="Slika 1">
+              <h3>ADHD</h3>
+            </div>
+            <div class="image-with-title">
+              <img src="assets/anxiety.png" alt="Slika 2">
+              <h3>ANXIETY</h3>
+            </div>
+            <div class="image-with-title">
+              <img src="assets/bipolar.png" alt="Slika 3">
+              <h3>BIPOLAR DISORDER</h3>
+            </div>
+            <div class="image-with-title">
+              <img src="assets/depression.png" alt="Slika 4">
+              <h3>DEPRESSION</h3>
+            </div>
+            <div class="image-with-title">
+              <img src="assets/ptsd.png" alt="Slika 5">
+              <h3>PTSD</h3>
+            </div>
+        </div>
+          </div>
+          <div class="last-one">
+            <div class="why-us">
+                <h1>Why Your Next Course Will Be Different?</h1>
+            </div>
+            <div class="images">
+            <div class="images-with-title">
+              <img src="assets/certificate.png" alt="Slika 1">
+              <h3>Certificate</h3>
+            </div>
+            <div class="images-with-title">
+              <img src="assets/experts.png" alt="Slika 2">
+              <h3>Experts</h3>
+            </div>
+            <div class="images-with-title">
+              <img src="assets/peer.png" alt="Slika 3">
+              <h3>Peer assessments</h3>
+            </div>
+            <div class="images-with-title">
+              <img src="assets/community.png" alt="Slika 4">
+              <h3>Community</h3>
+            </div>
+        
+
+          </div>
+          
+      </div>

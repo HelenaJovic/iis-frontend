@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     lastName: '',
     username: '',
     roles: [],
+    image: ''
   };
   constructor(
     private authService: AuthServiceService,

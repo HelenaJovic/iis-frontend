@@ -1,0 +1,152 @@
+.workshops-view{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+  
+  
+
+.card-first-row h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern, readable font */
+    font-size: 24px; /* Suitable font size for headings */
+    color: #0a012d; /* Dark gray for high readability */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+    margin: 10px 0; /* Top and bottom margin */
+    padding: 0 10px; /* Padding to ensure text doesn't touch the card edges */
+    letter-spacing: 1.5px; /* Space out the letters slightly */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.card-first-row h2:hover {
+    color: #6e48aa; /* Change color on hover */
+    cursor: pointer; /* Indicates the title is interactive */
+}
+
+
+
+
+.card-wrapper {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto; /* Omogućava horizontalno skrolovanje ako kartice ne stanu */
+    align-items: center; /* Center cards vertically in the container */
+    padding: 20px; /* Add some padding around the flex container */
+    gap: 20px; /* Space between each card if you have multiple */
+  }
+
+  .first{
+    width: 100%; /* Set a fixed width for each card */
+    background: linear-gradient(145deg, #c2bedb, #5585d8); /* A purple gradient background */
+    color: #fff; /* White text color */
+    padding: 20px; /* Padding inside the card */
+    border-radius: 15px; /* Rounded corners */
+  }
+
+  .card-second-row{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .card-first-column{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .card-first-column-1{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .card-first-column-2{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .third-one{
+    display: flex;
+    gap: 20px;
+    border-radius: 15px; /* Rounded corners */
+    justify-content: center;
+    padding: 20px 20 px 20px 20px;
+
+
+  }
+
+  .third-one img{
+    height: min-content;
+
+  }
+  
+  .card {
+    min-width: 30%; /* Minimalna širina svake kartice */
+    height: max-content;
+    background: linear-gradient(145deg, #f7f7f9, #f6f5f7); /* A purple gradient background */
+    color: #fff; /* White text color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Shadow for 3D effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+  }
+  
+  .card:hover {
+    transform: translateY(-10px); /* Move the card up slightly on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.30); /* Slightly larger shadow on hover for more depth */
+  }
+  .card-second-column{
+    background: linear-gradient(145deg, #f7f8f9, #cac9cb); /* A purple gradient background */
+    color: #223390; /* White text color */
+    padding: 20px; /* Padding inside the card */
+  }
+
+  .buttons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .buttons button{
+    background-color: #2e3ca2; /* A vibrant green, common for 'create' or 'go' buttons */
+    color: white; /* White text to contrast the green background */
+    border: none; /* No border for a modern look */
+  }
+
+  .last{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+  }
+
+  .createNO button {
+    background-color: #171077; /* A vibrant green, common for 'create' or 'go' buttons */
+    color: white; /* White text to contrast the green background */
+    border: none; /* No border for a modern look */
+    padding: 10px 20px; /* Adequate padding for comfort */
+    font-size: 16px; /* Visible text size */
+    font-family: Arial, sans-serif; /* Simple and clean font */
+    text-transform: uppercase; /* Makes the button text more impactful */
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for color and transformation */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+}
+
+.createNO button:hover {
+    background-color: #12078c; /* A slightly darker green on hover for feedback */
+    transform: translateY(-2px); /* Slightly raises the button to give a 'pressing' feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhances the shadow to deepen the effect */
+}
+
+.createNO button:active {
+    transform: translateY(1px); /* Mimics the button being pressed down */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduces the shadow to simulate being pressed */
+}

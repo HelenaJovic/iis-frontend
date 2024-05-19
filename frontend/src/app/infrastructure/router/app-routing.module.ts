@@ -10,6 +10,13 @@ import { LoginComponent } from '../auth/login/login.component';
 import { HomeComponent } from 'src/app/feature-moduls/layout/home/home.component';
 import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
+import { OverviewForPsychologist } from 'src/app/feature-moduls/workshop/overview-psychologist/overviewP.component';
+import { Attendances } from 'src/app/feature-moduls/workshop/attendance/user-attendance.component';
+import { CreateWorkshop } from 'src/app/feature-moduls/workshop/create-workshop/create-workshop.component';
+import { OverviewForUser } from 'src/app/feature-moduls/workshop/overview-user/overview-user.component';
+import { ShowWorkshop } from 'src/app/feature-moduls/workshop/one-workshop/one-workshop.component';
+import { ShowWorkshopPsychologist } from 'src/app/feature-moduls/workshop/one-workshop-psychologist/one-workshop-psychologist.component';
+import { WorkshopsUser } from 'src/app/feature-moduls/workshop/workshops-by-user/workshops-by-user.component';
 import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
@@ -25,9 +32,36 @@ const routes: Routes = [
     component: SuccessfullRegistrationComponent,
   },
   {
-    path: 'register-psychologist',
-    component: RegisterPsychologistComponent,
+    path:'workshopUser',
+    component: WorkshopsUser,
   },
+  {
+    path: 'oneWorkshop/:workshopId',
+    component: ShowWorkshop,
+  },
+  {
+    path: 'workshopPsychologist/:workshopId',
+    component: ShowWorkshopPsychologist,
+  },
+  {
+    path:'overviewUser',
+    component:OverviewForUser
+  },
+  {
+    path: 'createWorkshop',
+    component: CreateWorkshop
+  },
+  { path: 'attendances/:workshopId', component: Attendances },
+
+  {
+    path: 'register-psychologist',
+    component: RegisterPsychologistComponent
+  },
+  {
+    path: 'workshops',
+    component: OverviewForPsychologist,
+  }
+   ,
   { path: 'create-questions', component: CreateQuestionsComponent },
   { path: 'test-overview', component: TestOverviewComponent },
   { path: 'test-results', component: TestResultsComponent },

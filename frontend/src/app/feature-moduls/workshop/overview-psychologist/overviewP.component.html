@@ -1,0 +1,60 @@
+<div class="workshops-view">
+
+  <div class="image-background">
+    <img src="assets/psiho.jpg" alt="Descriptive text for the image">
+
+  </div>
+  
+  
+    <div class="slide-content">
+      <div class="card-wrapper" >
+
+        <div class="card" *ngFor="let workshop of workshops">
+          <div class="first">
+            <div class="card-first-row">
+              <h2 class="name">{{workshop.name}} </h2>
+            </div>
+
+            <div class="card-second-row">
+              <div class="card-first-column">
+                <div class="card-first-column-1">
+                  <img src="assets/date.png" alt="Descriptive text for the image">
+                  <p class="description">{{workshop.date}} </p>
+                </div>
+                <div class="card-first-column-2">
+                  <img [src]="workshop.online ? 'assets/online-icon.png' : 'assets/offline-icon.png'" alt="{{workshop.online ? 'Online Workshop' : 'Offline Workshop'}}">
+                  <p>{{ workshop.online ? 'ONLINE' : 'IN-PERSON' }}</p>
+                </div>
+              </div>
+                <div class="third-one">
+                <img src="assets/price.png" alt="Descriptive text for the price">
+                <p class="price">{{workshop.price}} </p>
+              </div>
+              
+            </div>
+              </div>
+
+           
+              <div class="card-second-column">
+                <div class="about">
+                  <p class="about-ps">{{workshop.description}} </p>
+                </div>
+                <div class="buttons">
+                  <button type="button1" class="btn btn-primary" (click)="Manage(workshop.id)">See more</button>
+                  <button type="button2" class="btn btn-secondary" (click)="Attendances(workshop.id)">Attendances</button>
+                </div>
+                
+                
+              </div>
+            </div>
+          </div>
+
+          
+  
+      </div>
+      <div class="last">
+          <div class="createNO">
+            <button type="button" class="btn btn-primary" (click)="CreateNewOne()">Create new one</button>
+          </div>
+      </div>
+    </div>

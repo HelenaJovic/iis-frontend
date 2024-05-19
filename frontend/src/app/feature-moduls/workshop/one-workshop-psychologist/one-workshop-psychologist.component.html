@@ -1,0 +1,102 @@
+<div class="workshops-view">
+
+    <div class="aboot-workshop">
+  <div class="first-column">
+    <h1 *ngIf="!editMode">{{workshop.name}}</h1>
+    <input *ngIf="editMode" [(ngModel)]="workshop.name" name="name"> 
+    <div class="first-column-row">
+        <img src="assets/date.png" alt="Descriptive text for the image">
+        <p *ngIf="!editMode" class="description">{{workshop.date}} </p>
+        <p *ngIf="!editMode" class="description">{{workshop.startTime}} </p>
+        <p *ngIf="!editMode">-</p>
+        <p *ngIf="!editMode" class="description">{{workshop.endTime}} </p>
+        <input class="description" *ngIf="editMode" [(ngModel)]="workshop.date" name="date" type="date">
+        <input class="description" *ngIf="editMode" [(ngModel)]="workshop.startTime" name="startTime" type="time">
+        <p *ngIf="editMode">-</p>
+        <input class="description" *ngIf="editMode" [(ngModel)]="workshop.endTime" name="endTime" type="time">
+
+
+    </div>
+    <div class="first-column-row2">
+        <img [src]="workshop.online ? 'assets/online-icon.png' : 'assets/offline-icon.png'" alt="{{workshop.online ? 'Online Workshop' : 'Offline Workshop'}}">
+        <p *ngIf="!editMode">{{ workshop.online ? 'ONLINE' : 'IN-PERSON' }}</p>
+        <input *ngIf="editMode" [(ngModel)]="workshop.online" name="online" type="checkbox">
+    </div>
+  </div>
+  <div class="second-column">
+    <div class="second-column-column1">
+        <div class="price-class">
+            <img src="assets/price.png" alt="Descriptive text for the price">
+             <p  *ngIf="!editMode" class="price">{{workshop.price}} </p>
+             <input *ngIf="editMode" class="price" [(ngModel)]="workshop.price" name="price" type="number">
+        </div>
+        <button (click)="Manage(workshop.id)">MANAGE</button>
+        <div *ngIf="editMode">
+          <button (click)="saveChanges(workshop.id)">Save Changes</button>
+        </div>        
+
+    </div>
+    <div class="second-column-column2">
+        <img [src]="psiholog.image" alt="{{ psiholog.name }} {{ psiholog.lastName }}">
+        <h3>{{ psiholog.name }} {{ psiholog.lastName }}</h3>
+    </div>
+    
+  </div>
+    </div>
+    
+    
+      <div class="about-psychologist">
+        <div class="psiho-one">
+            <img [src]="psiholog.image" alt="{{ psiholog.name }} {{ psiholog.lastName }}">
+        </div>
+        <div class="psiho-two">
+            <h1>About {{psiholog.name}}  {{psiholog.lastName}}</h1>
+            <p>Dr. Helena Jovic is a dedicated clinical psychologist<br><br>
+                 with over 15 years of experience specializing in<br><br>
+                cognitive-behavioral therapy (CBT) and mindfulness <br><br>
+                techniques.<br><br>
+            Based in Chicago, Dr. Smith earned her Doctorate in<br><br>
+             Psychology from the University of Illinois and is a<br><br>
+            licensed psychologist in the state of Illinois.<br><br>
+            Throughout her career, Dr. Smith has worked<br><br>
+             extensively with adults and adolescents dealing with<br><br>
+             anxiety disorders, depression, and stress management<br><br>
+            issues.
+            She is passionate about helping her clients<br><br> achieve personal growth and improve their mental <br><br>health through
+             evidence-based practices<br><br> and a compassionate approach.</p>
+            
+        </div>
+      </div>
+
+
+        <div class="about-workshop">
+           
+                <h1>What is the AGENDA of this workshop?</h1>
+                <div *ngIf="!editMode" class="formatted-text">{{workshop.description}}</div>
+                <textarea *ngIf="editMode" [(ngModel)]="workshop.description" name="description" rows="5" cols="33" class="form-control"></textarea>
+              </div>
+  
+             
+               
+  
+            
+    
+                <div class="image-background">
+                    <img src="assets/attendeces.png" alt="Descriptive text for the image">
+                
+                  </div>
+                  <div class="preview-images1">
+                    <h1>Take a look at how our last workshop went !</h1>
+                  <div class="preview-images">
+                    <ul class="images">
+                      <li *ngFor="let imageUrl of workshop.images" class="image">
+                        <img [src]="imageUrl" [alt]="imageUrl" style="width: 350px; height: auto;">
+                      </li>
+                    </ul>
+                    
+                  </div>
+                </div>
+
+          
+          
+      </div>

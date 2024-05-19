@@ -7,6 +7,7 @@ export interface User {
   password: String;
   name: String;
   lastName: String;
-  username : String
-  roles: Role[]
+  username : String;
+  roles: Role[];
+  image: string;
 }
