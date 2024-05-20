@@ -27,6 +27,20 @@
   >
     Big 5 test
   </a>
+  <a
+    mat-button
+    routerLink="/schedule-session"
+    *ngIf="userRole == 'ROLE_REGISTERED_USER'"
+  >
+    | Schedule session
+  </a>
+  <a
+    mat-button
+    routerLink="/create-group-session"
+    *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+  >
+    | Create group session
+  </a>
   <a mat-button routerLink="/test-results" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
     >| Test Results |</a
   >

@@ -14,6 +14,7 @@ import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-question
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
 import { CreateGroupSessionComponent } from 'src/app/feature-moduls/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from 'src/app/feature-moduls/schedule-session/schedule-session.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'test-overview', component: TestOverviewComponent },
   { path: 'test-results', component: TestResultsComponent },
   { path: 'create-group-session', component: CreateGroupSessionComponent },
+  { path: 'schedule-session', component: ScheduleSessionComponent },
 ];
 
 @NgModule({

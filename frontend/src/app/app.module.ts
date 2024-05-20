@@ -31,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Chart } from 'chart.js';
 import { CreateGroupSessionComponent } from './feature-moduls/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from './feature-moduls/schedule-session/schedule-session.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CreateGroupSessionComponent } from './feature-moduls/create-group-sessi
     TestOverviewComponent,
     TestResultsComponent,
     CreateGroupSessionComponent,
+    ScheduleSessionComponent,
   ],
 
   imports: [
