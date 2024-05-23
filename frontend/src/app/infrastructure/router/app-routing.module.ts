@@ -17,6 +17,7 @@ import { OverviewForUser } from 'src/app/feature-moduls/workshop/overview-user/o
 import { ShowWorkshop } from 'src/app/feature-moduls/workshop/one-workshop/one-workshop.component';
 import { ShowWorkshopPsychologist } from 'src/app/feature-moduls/workshop/one-workshop-psychologist/one-workshop-psychologist.component';
 import { WorkshopsUser } from 'src/app/feature-moduls/workshop/workshops-by-user/workshops-by-user.component';
+import { TestForUser } from 'src/app/feature-moduls/workshop/workshop-test/workshop-test.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'successfullyRegistration',
     component: SuccessfullRegistrationComponent,
+  },
+  {
+    path: 'takingTest/:workshopId',
+    component: TestForUser,
   },
   {
     path:'workshopUser',

@@ -7,6 +7,7 @@ import { AuthServiceService } from 'src/app/infrastructure/auth/register/auth-se
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../model/User';
 import { RegisteredUser } from 'src/app/model/registeredUser.model';
+import { TestResultDto } from 'src/app/model/testResult.model';
 @Component({
   selector: 'app-user',
   templateUrl: './user-attendance.component.html',
@@ -16,6 +17,7 @@ export class Attendances {
 
   users: RegisteredUser[]=[];
   workshopId: number=0;
+  tests:TestResultDto[]=[];
 
   constructor(private workshopService: WorkshopService, private router: Router,private activedRoute: ActivatedRoute,
     private authService: AuthServiceService,
@@ -31,10 +33,36 @@ export class Attendances {
         console.log('I am here')
       });
     
-      this.getAllUsers();
+      this.getResultsByWorkshop();
     
     }
+
+    scrollLeft() {
+      const cardWrapper = document.querySelector('.card-wrapper');
+      if (cardWrapper) {
+        cardWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+      }
+    }
   
+    scrollRight() {
+      const cardWrapper = document.querySelector('.card-wrapper');
+      if (cardWrapper) {
+        cardWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    }
+    
+
+    getResultsByWorkshop() {
+      this.workshopService.getTestResultByWorkshop(this.workshopId).subscribe({
+        next: (results) => {
+          this.tests = results;
+          console.log('Workshop results:', this.tests);
+        },
+        error: (error) => {
+          console.error('Error fetching workshop results:', error);
+        }
+      });
+    }
 
 
 getAllUsers() {

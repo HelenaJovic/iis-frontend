@@ -1,4 +1,5 @@
 import { Time } from "@angular/common";
+import { WorkshopTest } from "./workshopTest.model";
 
 export interface Workshop {
     id: number;
@@ -14,6 +15,7 @@ export interface Workshop {
     psychologistId: number;
     hallId?: number;
     [key: string]: any;  
+    tests:WorkshopTest[];
   }
 
   export enum WorkshopCategory {

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './infrastructure/router/app-routing.module';
 import { RegisterComponent } from './infrastructure/auth/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TestForUser } from './feature-moduls/workshop/workshop-test/workshop-test.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +51,7 @@ import { WorkshopsUser } from './feature-moduls/workshop/workshops-by-user/works
     // MatDatepickerModule,
     ShowWorkshopPsychologist,
     WorkshopsUser,
-
+    TestForUser,
     LoginComponent,
       HomeComponent,
       NavbarComponent,

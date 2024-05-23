@@ -37,18 +37,19 @@ export class ShowWorkshopPsychologist {
         roles: []
       }
   workshop:Workshop={
-      id:0,
-      name: 'Mindfulness for Beginners',
-      description: '',
-      date: new Date(),
-      startTime: '',
-      endTime: '',
-      category: null,
-      online: false,
-      price: 50,
-      images: [],
-      psychologistId: 0,
-      hallId: 0
+    id: 0,
+    name: 'Mindfulness for Beginners',
+    description: '',
+    date: new Date(),
+    startTime: '',
+    endTime: '',
+    category: null,
+    online: false,
+    price: 50,
+    images: [],
+    psychologistId: 0,
+    hallId: 0,
+    tests: []
   };
   workshopId: number=0;
   loggedInUser:number=0;
@@ -67,31 +68,7 @@ export class ShowWorkshopPsychologist {
         console.log('I am here')
       });
 
-      const token = localStorage.getItem('token'); // Retrieving the token from local storage
-      if (token) {
-        const decodedToken = this.jwtHelper.decodeToken(token);
-        console.log("Token: ", decodedToken);
       
-        const email = decodedToken.sub;
-        // Call the function that fetches the user based on the email address
-        this.workshopService.getUserByEmail(email).subscribe({
-          next: (user: User) => {
-            this.ulogovaniUser = user; // Setting the found user
-            console.log("User: ", user);
-  
-            // Check if user.id exists before setting this.loggedInUser
-            if (user.id !== undefined) {
-              this.loggedInUser = user.id;
-            } else {
-              // Handle the case where user.id is undefined
-              console.error('User ID is undefined');
-              // You might want to redirect the user or show an error message
-            }
-          },
-          error: (err: any) => {
-            console.error('Error fetching user:', err);
-          }
-        });}
       
 
 

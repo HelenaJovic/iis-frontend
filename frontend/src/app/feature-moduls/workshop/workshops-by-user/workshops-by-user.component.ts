@@ -96,6 +96,11 @@ export class WorkshopsUser {
       });
   }
 
+  takeATest(id:number):void{
+   this.router.navigate(['/takingTest/', id]);
+ 
+  }
+
   Cancel(id:number) {
     this.workshopService.cancelWorkshop(id).subscribe({
       next: (response) => {

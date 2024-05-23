@@ -32,37 +32,21 @@ export class OverviewForPsychologist {
   }
 
   ngOnInit(): void {
-   
-    const token = localStorage.getItem('token'); // Retrieving the token from local storage
+    const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      console.log("Token: ", decodedToken);
-    
-      const email = decodedToken.sub;
-      // Call the function that fetches the user based on the email address
-      this.workshopService.getUserByEmail(email).subscribe({
-        next: (user: User) => {
-          this.ulogovaniUser = user; // Setting the found user
-          console.log("User: ", user);
-          this.getAllWorkshops(user.id);
-
-          // Check if user.id exists before setting this.loggedInUser
-          if (user.id !== undefined) {
-            this.loggedInUser = user.id;
-          } else {
-            // Handle the case where user.id is undefined
-            console.error('User ID is undefined');
-            // You might want to redirect the user or show an error message
-          }
-        },
-        error: (err: any) => {
-          console.error('Error fetching user:', err);
-        }
-      });
-    
-    
+      const userId = decodedToken.id; // Pretpostavljam da se 'id' nalazi ovde
+  
+      if (userId) {
+        this.getAllWorkshops(userId);
+      } else {
+        console.error('User ID not found in token');
+      }
+    } else {
+      console.error('No token found');
     }
   }
+  
 
 
 getAllWorkshops(id:number) {

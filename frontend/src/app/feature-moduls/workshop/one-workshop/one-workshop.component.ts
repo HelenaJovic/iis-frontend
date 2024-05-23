@@ -38,18 +38,19 @@ export class ShowWorkshop {
         roles: []
       }
   workshop:Workshop={
-      id:0,
-      name: 'Mindfulness for Beginners',
-      description: '',
-      date: new Date(),
-      startTime: '',
-      endTime: '',
-      category: null,
-      online: false,
-      price: 50,
-      images: [],
-      psychologistId: 0,
-      hallId: 0
+    id: 0,
+    name: 'Mindfulness for Beginners',
+    description: '',
+    date: new Date(),
+    startTime: '',
+    endTime: '',
+    category: null,
+    online: false,
+    price: 50,
+    images: [],
+    psychologistId: 0,
+    hallId: 0,
+    tests: []
   };
   workshopId: number=0;
   loggedInUser:number=0;

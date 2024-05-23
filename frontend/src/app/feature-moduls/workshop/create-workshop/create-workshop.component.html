@@ -1,13 +1,13 @@
 <div class="create-workshop">
-  <div>
     <div class="image-background">
       <img src="assets/psiho.jpg" alt="Descriptive text for the image">
   
     </div>
     
-    
-    <div class="creating">
-      <div class="part-one">
+    <div class="creating2" >
+    <div class="creating" >
+
+      <div class="part-one" *ngIf="!workshopIsClicked">
         <div class="form-ps">
         <form [formGroup]="workshopForm" class="form-wrap">
               <div class="first-column">
@@ -53,7 +53,7 @@
                       <mat-label>Price</mat-label>
                       <input matInput formControlName="price" type="number" />
                     </mat-form-field>
-                <mat-checkbox formControlName="online">ONLINE</mat-checkbox>
+                <mat-checkbox formControlName="isOnline">ONLINE</mat-checkbox>
                 <input type="file" (change)="onImageSelected($event)">
 
 
@@ -79,7 +79,7 @@
           
         </div>
         </div>
-          <div *ngIf="!isOnline" class="second-row">
+          <div *ngIf="!isOnline && !workshopIsClicked" class="second-row">
             <ul class="halls">
               <li *ngFor="let hall of halls" class="hall">
                 <h3>{{ hall.name }}</h3>
@@ -89,7 +89,75 @@
             </ul>
           </div>
           
+          <div class="test-creation" *ngIf="workshopIsClicked">
+            <!-- Forma za kreiranje testa -->
+            <form *ngIf="!isClicked"[formGroup]="testForm" (ngSubmit)="onCreateTest()">
+              <mat-form-field>
+                <mat-label>Test Name</mat-label>
+                <input matInput formControlName="testName">
+              </mat-form-field>
+              <button mat-raised-button color="primary">Start creating test</button>
+            </form>
+          
+           <!-- Forma za dodavanje pitanja -->
+<form *ngIf="isClicked" [formGroup]="questionForm" (ngSubmit)="onAddQuestion()">
+  <mat-form-field>
+    <mat-label>Question</mat-label>
+    <input matInput formControlName="questionText">
+  </mat-form-field>
 
+  <!-- Novo polje za unos broja poena po pitanju -->
+  <mat-form-field>
+    <mat-label>Points</mat-label>
+    <input matInput formControlName="points" type="number">
+  </mat-form-field>
+
+  <button mat-raised-button color="accent">Add Question</button>
+</form>
+
+          
+            <!-- Forma za dodavanje odgovora -->
+            <form *ngIf="isClicked" [formGroup]="answerForm" (ngSubmit)="onAddAnswer()">
+              <mat-form-field>
+                <mat-label>Answer</mat-label>
+                <input matInput formControlName="answerText">
+              </mat-form-field>
+              <mat-checkbox formControlName="isCorrect">Correct Answer</mat-checkbox>
+              <button mat-raised-button color="warn">Add Answer</button>
+            </form>
+
+            
+           
+          
+          
           </div>
+          
+          
+          
+          
+
+          
+
+</div >
+ <!-- Preview Panel -->
+ <div class="test-overr" *ngIf="isClicked">
+ <div class="test-preview" >
+  <h1>{{ testForm.value.testName }}</h1>
+  <div *ngFor="let question of questions; let qIndex = index">
+      <h2>{{ qIndex + 1 }}. {{ question.text }} ({{ question.pointsPerQuestion }} points)</h2>
+      <ol>
+        <div *ngFor="let answer of question.answers">
+          <mat-radio-group [value]="answer.true ? 'selected' : ''">
+              <mat-radio-button class="small-radio" [checked]="answer.true">
+                  {{ answer.text }}
+              </mat-radio-button>
+          </mat-radio-group>
+      </div>
+      
+      
+      </ol>
+  </div>
+</div>
+</div>
 </div>
 </div>

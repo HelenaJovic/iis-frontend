@@ -15,6 +15,10 @@ import { WorkshopService } from '../workshop.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Hall } from 'src/app/model/hall.model';
+import { WorkshopTest } from 'src/app/model/workshopTest.model';
+import { WorkshopQuestion } from 'src/app/model/workshopQuestion.model';
+import { WorkshopAnswer } from 'src/app/model/workshopAnswer.model';
+import { MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS_FACTORY } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-create',
   templateUrl: './create-workshop.component.html',
@@ -22,12 +26,23 @@ import { Hall } from 'src/app/model/hall.model';
 })
 export class CreateWorkshop implements OnChanges {
     categories = Object.values(WorkshopCategory);
+    test:WorkshopTest={
+      id: 0,
+      name: '',
+      testQuestions: []
+    };
+    questions: any[] = []; 
     psychologistId=0;
+    isClicked: boolean = false;
+    workshopIsClicked:boolean=false;
+    testCreationForm: FormGroup | undefined;
     selectedDate = new FormControl();
     halls:Hall[]=[];
+    workshopId=0;
     images: File[] = [];  
     imagesWorkshop:String[]=[];
     reservedHall=0;
+    isLoading = false;
     isOnline:boolean=false;
     ulogovaniUser:User={
         id: 0,
@@ -47,7 +62,6 @@ export class CreateWorkshop implements OnChanges {
   ) {}
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
-    this.isOnline=this.workshopForm.value.online || false;
     console.log(this.isOnline)
     
     this.getAllFreeHalls();
@@ -71,8 +85,13 @@ export class CreateWorkshop implements OnChanges {
         }
       });
       }  
+      this.testCreationForm = this.formBuilder.group({
+        testName: ['', Validators.required],
+        questions: this.formBuilder.array([])
+      });
      
   }
+  
 
   workshopForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -82,9 +101,78 @@ export class CreateWorkshop implements OnChanges {
     endTime: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
     price: new FormControl(null, [Validators.required, Validators.min(0)]),
-    online: new FormControl(false),
+    isOnline: new FormControl(false),
   });
 
+  testForm = new FormGroup({
+    testName: new FormControl('', [Validators.required]),
+  });
+
+  questionForm = new FormGroup({
+    questionText: new FormControl('', [Validators.required]),
+    points: new FormControl(null, [Validators.required, Validators.min(0)]),
+
+  });
+
+  answerForm = new FormGroup({
+    answerText: new FormControl('', [Validators.required]),
+    isCorrect: new FormControl()  
+  });
+
+  onCreateTest() {
+    console.log('Test Created:', this.testForm.value);
+    this.isClicked=true;
+    const test: WorkshopTest = {
+      id: 0,
+      name: this.testForm.value.testName || '',
+      testQuestions: []
+    }; 
+
+this.workshopService.createTest(test).subscribe({
+  next: () => console.log('Test je'+test),
+  error: (error:any) => console.error('Error creating workshop', error)
+});
+}
+
+  onAddQuestion() {
+    const question: WorkshopQuestion = {
+      id: 0,
+      text: this.questionForm.value.questionText || '',
+      pointsPerQuestion: this.questionForm.value.points || 0,
+      testAnswers: []
+    }; 
+
+this.workshopService.createQuestion(question).subscribe({
+  next: () => console.log('Pitanjeeeeeeeee je'+question),
+  error: (error:any) => console.error('Error creating workshop', error)
+});
+this.questions.push(question);
+        this.questionForm.reset();
+  }
+
+  onAddAnswer() {
+    const lastQuestion = this.questions[this.questions.length - 1];
+    console.log('False?'+this.answerForm.value.isCorrect)
+    const answer: WorkshopAnswer = {
+      id: 0,
+      text: this.answerForm.value.answerText || '',
+      true: this.answerForm.value.isCorrect!,
+      isSelected: false,
+      workshopQId: lastQuestion.id
+    }; 
+
+    console.log('id je'+answer.workshopQId)
+
+this.workshopService.createAnswer(answer).subscribe({
+  next: () => console.log('Test je'+answer),
+  error: (error:any) => console.error('Error creating answer', error)
+});
+if (!lastQuestion.answers) {
+  lastQuestion.answers = [];  // Inicijalizacija niza ako još nije definisan
+}
+lastQuestion.answers.push(answer);
+this.answerForm.reset();
+  }
 
   getAllFreeHalls() {
     this.workshopService.getAllHalls().subscribe({
@@ -125,8 +213,10 @@ export class CreateWorkshop implements OnChanges {
   createWorkshop(): void {
     const formValues = this.workshopForm.value;
     console.log("Kliknuto")
+    this.workshopIsClicked=true;
     let category: WorkshopCategory = WorkshopCategory.FAMILY_THERAPY;  
-   
+    alert('You have successfully created the workshop!');
+
 
     if (formValues.category && Object.values(WorkshopCategory).includes(formValues.category as WorkshopCategory)) {
       category = formValues.category as WorkshopCategory;
@@ -135,19 +225,19 @@ export class CreateWorkshop implements OnChanges {
     const selectedWorkshopDate: Date | null | undefined =
       formValues.date;
     const workshop: Workshop = {
-      id:0,
+      id: 0,
       name: this.workshopForm.value.name || '',
       description: this.workshopForm.value.description || '',
-      date:selectedWorkshopDate ?? new Date(),
+      date: selectedWorkshopDate ?? new Date(),
       startTime: this.workshopForm.value.startTime || '',
       endTime: this.workshopForm.value.endTime || '',
-      category:category,
+      category: category,
       price: formValues.price || 0,
-      online: this.workshopForm.value.online || false,
-      psychologistId:this.psychologistId,
+      online: this.workshopForm.value.isOnline || false,
+      psychologistId: this.psychologistId,
       images: this.images.map(file => `assets/${file.name}`),
-      hallId:this.reservedHall || undefined
-
+      hallId: this.reservedHall || undefined,
+      tests: []
     };
 
    
@@ -168,8 +258,7 @@ export class CreateWorkshop implements OnChanges {
   
 
     this.workshopService.createWorkshop(workshop).subscribe({
-        next: () => 
-        this.router.navigate(['/workshops']),
+        next: () => this.workshopId=workshop.id,
         error: (error) => console.error('Error creating workshop', error)
     });
 

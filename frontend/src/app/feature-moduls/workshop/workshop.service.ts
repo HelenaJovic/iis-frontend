@@ -9,6 +9,10 @@ import { User } from '../model/User';
 import { RegisteredUser } from 'src/app/model/registeredUser.model';
 import { Hall } from 'src/app/model/hall.model';
 import { Psychologist } from 'src/app/model/psychologist.model';
+import { WorkshopTest } from 'src/app/model/workshopTest.model';
+import { WorkshopQuestion } from 'src/app/model/workshopQuestion.model';
+import { WorkshopAnswer } from 'src/app/model/workshopAnswer.model';
+import { TestResultDto } from 'src/app/model/testResult.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +26,38 @@ export class WorkshopService {
     return this.http.get<User>(environment.apiHost + 'users/email/' + email);
 }
 
+getTestResultByUser(userId: number):Observable<TestResultDto> {
+  return this.http.get<TestResultDto>(environment.apiHost + 'test_results/user/' + userId);
+}
+
+getTestResultByWorkshop(workshopId: number):Observable<TestResultDto[]> {
+  return this.http.get<TestResultDto[]>(environment.apiHost + 'test_results/resultsByWorkshopId/' + workshopId);
+}
+
+evaluateTest(testId: number, userId: number, answers: any[]): Observable<TestResultDto> {
+  return this.http.post<TestResultDto>(environment.apiHost+`test_results/evaluate/${testId}/${userId}`, answers);
+}
+
+
+getTestByWorkshop(id: number): Observable<WorkshopTest> {
+  return this.http.get<WorkshopTest>(environment.apiHost + 'workshop_tests/' + id);
+}
+
 createWorkshop(workshop: Workshop): Observable<Workshop> {
   console.log("ne ide")
   return this.http.post<Workshop>(environment.apiHost + 'workshops/create', workshop);
+}
+
+createTest(test: WorkshopTest): Observable<WorkshopTest> {
+  return this.http.post<WorkshopTest>(environment.apiHost + 'workshop_tests/create', test);
+}
+
+createQuestion(question: WorkshopQuestion): Observable<WorkshopQuestion> {
+  return this.http.post<WorkshopQuestion>(environment.apiHost + 'test_questions/create', question);
+}
+
+createAnswer(answer: WorkshopAnswer): Observable<WorkshopAnswer> {
+  return this.http.post<WorkshopAnswer>(environment.apiHost + 'test_answers/create', answer);
 }
 
 getAllWorkshops(id: number): Observable<Workshop[]> {
