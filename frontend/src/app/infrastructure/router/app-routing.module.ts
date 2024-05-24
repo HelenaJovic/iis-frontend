@@ -21,7 +21,7 @@ import { TestForUser } from 'src/app/feature-moduls/workshop/workshop-test/works
 import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
-
+import { RateWorkshop } from 'src/app/feature-moduls/workshop/rating/rate-workshop.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'takingTest/:workshopId',
     component: TestForUser,
+  },
+  {
+    path: 'ratingWorkshop/:workshopId',
+    component: RateWorkshop,
   },
   {
     path:'workshopUser',

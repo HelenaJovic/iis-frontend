@@ -1,0 +1,160 @@
+.overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrira sadržaj horizontalno */
+    align-items: center; /* Centrira sadržaj vertikalno */
+    margin: auto; /* Dodato za centriranje cijelog .overview bloka ako je potrebno */
+    min-width: 100%; /* Osigurava da .overview uzima punu dostupnu širinu */
+    gap: 15px;
+}
+
+.image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:cover; /* Cover the container, image will be cropped if necessary */
+  }
+  .feedback-form {
+    background: url('/assets/bekg.png') no-repeat center center;
+    background-size: cover; /* Ensures the whole image fits inside the element */
+    width: 50%;
+    min-height: 80vh; /* Adjust based on your layout needs */
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff; /* Adjust based on your background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center contents */
+    align-items: center; /* Horizontally center contents */
+    margin: auto; /* Center the form in the middle of the page horizontally */
+}
+
+
+.form-class {
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+    padding: 30px; /* Add padding around the form content */
+    border-radius: 10px; /* Optional: rounds the corners of the form background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds subtle shadow for depth */
+    width: auto; /* Adjust based on your layout needs */
+    margin: auto; /* Center the form horizontally */
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically if needed */
+    align-items: center; /* Centers content horizontally */
+}
+
+  
+  .feedback-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback-form .question {
+    margin-bottom: 20px;
+  }
+  
+  .feedback-form .question label {
+    margin-bottom: 10px;
+    color: #202f5b; /* A nicer shade of blue */
+    font-size: 18px; /* Larger font size for better readability */
+    font-weight: 500; /* Medium weight for better visibility */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1); /* Subtle text shadow for depth */
+    display: block; /* Ensures the label takes up the full width available */
+    padding-bottom: 5px; /* Adds some space below the text */
+}
+.feedback-list {
+    display: flex; /* Enables flexbox layout */
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    flex-direction: row;
+    justify-content: space-around; /* Spaces out the cards evenly */
+    padding: 20px; /* Padding around the container */
+    gap: 20px; /* Space between each card */
+    background-color: rgba(51, 137, 181, 0.4); /* Semi-transparent white */
+  }
+  
+  .feedback-list ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    list-style: none; /* Removes default list styling */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width to accommodate flex child settings */
+  }
+  
+  .feedback-list li {
+    background-color: #ffffff; /* Card background color */
+    border: 1px solid #ddd; /* Border for the card */
+    border-radius: 8px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow for 3D effect */
+    padding: 15px; /* Padding inside each card */
+    width: calc(33.333% - 20px); /* Adjust width as needed, minus gap */
+    display: flex; /* Makes the card a flex container */
+    flex-direction: column; /* Stacks the card content vertically */
+    align-items: flex-start; /* Aligns content to the start */
+  }
+  
+  .feedback-list .comment {
+    margin-top: 10px; /* Space above the comment section */
+    padding: 10px;
+    background-color: #f9f9f9; /* Slightly off-white background for the comment */
+    border-left: 5px solid #007bff; /* Blue left border for emphasis */
+    width: 100%; /* Ensures the comment section fills the card */
+    font-style: italic; /* Italic font for the comment */
+  }
+  
+  
+  /* Styling headings within the feedback */
+  .feedback-list h3 {
+    color: #0056b3;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0056b3;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+  
+  /* Rating and details styling */
+  .feedback-list li p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  /* Emphasize important elements */
+  .feedback-list li p strong {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  
+
+.feedback-form button {
+    padding: 10px 20px;  /* Adjust padding for better fit of text */
+    width: auto;  /* Set width to auto to fit the text, or specify a fixed width */
+    background-color: #3498db;  /* A pleasant shade of blue */
+    color: #fff;  /* White text color for contrast */
+    border: none;
+    border-radius: 5px;
+    width: 40%;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;  /* Add bottom margin for spacing */
+    transition: background-color 0.3s;  /* Smooth transition for hover effect */
+    font-weight: bold;  /* Makes the text bold */
+    text-transform: uppercase;  /* Optional: transforms text to uppercase */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);  /* Subtle shadow for depth */
+}
+
+.feedback-form button:hover {
+    background-color: #2186c7;  /* Darker blue on hover for interactive effect */
+}
+
+  
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  

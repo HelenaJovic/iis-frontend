@@ -13,6 +13,8 @@ import { WorkshopTest } from 'src/app/model/workshopTest.model';
 import { WorkshopQuestion } from 'src/app/model/workshopQuestion.model';
 import { WorkshopAnswer } from 'src/app/model/workshopAnswer.model';
 import { TestResultDto } from 'src/app/model/testResult.model';
+import { WorkshopEvaluationDto } from 'src/app/model/testEvaluation.model';
+import { FeedbackWorkshopDto } from 'src/app/model/feedback.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +32,16 @@ getTestResultByUser(userId: number):Observable<TestResultDto> {
   return this.http.get<TestResultDto>(environment.apiHost + 'test_results/user/' + userId);
 }
 
+getTestEvaluationByWorkshopId(workshopId: number):Observable<WorkshopEvaluationDto> {
+  return this.http.get<WorkshopEvaluationDto>(environment.apiHost + 'feedbacksWorkshop/evaluation/' + workshopId);
+}
+
 getTestResultByWorkshop(workshopId: number):Observable<TestResultDto[]> {
   return this.http.get<TestResultDto[]>(environment.apiHost + 'test_results/resultsByWorkshopId/' + workshopId);
+}
+
+getFeedbacksByWorkshop(workshopId: number):Observable<FeedbackWorkshopDto[]> {
+  return this.http.get<FeedbackWorkshopDto[]>(environment.apiHost + 'feedbacksWorkshop/' + workshopId);
 }
 
 evaluateTest(testId: number, userId: number, answers: any[]): Observable<TestResultDto> {
@@ -46,6 +56,11 @@ getTestByWorkshop(id: number): Observable<WorkshopTest> {
 createWorkshop(workshop: Workshop): Observable<Workshop> {
   console.log("ne ide")
   return this.http.post<Workshop>(environment.apiHost + 'workshops/create', workshop);
+}
+
+createFeedback(feedback: FeedbackWorkshopDto): Observable<FeedbackWorkshopDto> {
+  console.log("ne ide")
+  return this.http.post<FeedbackWorkshopDto>(environment.apiHost + 'feedbacksWorkshop', feedback);
 }
 
 createTest(test: WorkshopTest): Observable<WorkshopTest> {
