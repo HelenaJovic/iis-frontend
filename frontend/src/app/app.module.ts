@@ -25,6 +25,7 @@ import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { HomeComponent } from './feature-moduls/layout/home/home.component';
 import { NavbarComponent } from './feature-moduls/layout/navbar/navbar.component';
+import { RateWorkshop } from './feature-moduls/workshop/rating/rate-workshop.component';
 import { FooterComponent } from './feature-moduls/layout/footer/footer.component';
 import { RegisterPsychologistComponent } from './feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from './feature-moduls/user-profile/user-profile/user-profile.component';
@@ -39,11 +40,13 @@ import { CreateQuestionsComponent } from './feature-moduls/create-questions/crea
 import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
 import { Chart } from 'chart.js';
+import { StarRatingComponent } from './feature-moduls/workshop/star-component/star-rating.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    StarRatingComponent,
     FailRegistrationComponent,
     SuccessfullRegistrationComponent,
     RegisterPsychologistComponent,
@@ -57,7 +60,7 @@ import { Chart } from 'chart.js';
     ShowWorkshopPsychologist,
     WorkshopsUser,
     TestForUser,
-
+    RateWorkshop,
 
     LoginComponent,
     HomeComponent,

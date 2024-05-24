@@ -152,3 +152,11 @@ justify-content: center;}
   .test-preview li {
     margin-bottom: 5px;
   }
+  .image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+  

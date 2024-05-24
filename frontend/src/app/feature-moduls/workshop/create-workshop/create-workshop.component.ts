@@ -19,6 +19,7 @@ import { WorkshopTest } from 'src/app/model/workshopTest.model';
 import { WorkshopQuestion } from 'src/app/model/workshopQuestion.model';
 import { WorkshopAnswer } from 'src/app/model/workshopAnswer.model';
 import { MAT_PROGRESS_SPINNER_DEFAULT_OPTIONS_FACTORY } from '@angular/material/progress-spinner';
+import { WorkshopEvaluationDto } from 'src/app/model/testEvaluation.model';
 @Component({
   selector: 'app-create',
   templateUrl: './create-workshop.component.html',
@@ -44,6 +45,22 @@ export class CreateWorkshop implements OnChanges {
     reservedHall=0;
     isLoading = false;
     isOnline:boolean=false;
+    evaluation :WorkshopEvaluationDto={
+      workshopName: '',
+      femaleParticipation: 0,
+      maleParticipation: 0,
+      finalGrade: 0,
+      totalNumberOfFeedback: 0,
+      totalNumberOfParticipants: 0,
+      gradeByFemale: 0,
+      gradeByMale: 0,
+      totalContentGrade: 0,
+      totalPsychologicalGrade: 0,
+      totalOrgGrade: 0,
+      totalPriceGrade: 0,
+      numberRecommended: 0,
+      numberNotRecommended: 0
+    }
     ulogovaniUser:User={
         id: 0,
         email: '',
@@ -239,6 +256,16 @@ this.answerForm.reset();
       hallId: this.reservedHall || undefined,
       tests: []
     };
+
+    this.workshopService.getTestEvaluationByWorkshopId(1).subscribe({
+      next: (response: any) => {
+        console.log('evaluation', response);
+        // Assuming response is an array of workshop objects:
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
 
    
 

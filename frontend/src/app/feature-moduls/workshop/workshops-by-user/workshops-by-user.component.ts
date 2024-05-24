@@ -100,6 +100,9 @@ export class WorkshopsUser {
    this.router.navigate(['/takingTest/', id]);
  
   }
+  rateWorkshop(id:number):void{
+    this.router.navigate(['/ratingWorkshop/',id])
+  }
 
   Cancel(id:number) {
     this.workshopService.cancelWorkshop(id).subscribe({

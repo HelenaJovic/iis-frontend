@@ -31,6 +31,7 @@
              <input *ngIf="editMode" class="price" [(ngModel)]="workshop.price" name="price" type="number">
         </div>
         <button (click)="Manage(workshop.id)">MANAGE</button>
+        <button (click)="GetReport(workshop.id)">REPORT</button>
         <div *ngIf="editMode">
           <button (click)="saveChanges(workshop.id)">Save Changes</button>
         </div>        
@@ -81,10 +82,18 @@
   
             
     
-                <div class="image-background">
-                    <img src="assets/attendeces.png" alt="Descriptive text for the image">
-                
-                  </div>
+              <div class="feedback-list">
+                <h3>What others said about this workshop </h3>
+                <ul>
+                  <li *ngFor="let fb of feedbacks">
+                    <p><strong>Rating:</strong> {{ fb.finalGrade }}</p>
+                    <p><strong>Recommended:</strong> {{ fb.isRecommended ? 'Yes' : 'No' }}</p>
+                    <div class="comment">
+                      <p>{{ fb.comment }}</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
                   <div class="preview-images1">
                     <h1>Take a look at how our last workshop went !</h1>
                   <div class="preview-images">
