@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <div class="first-inner">
+    <img src="assets/naslovna.png" style="width: 100%; height: 300px" />
+  </div>
+
+  <div class="second-inner">
+    <div class="text-content">
+      <p class="title">Tips to run a successful group therapy session</p>
+      <p class="small-text">
+        The courses don't have to be extensive and can provide essential
+        background information on how to navigate group settings, how to
+        facilitate cohesion, as well as how to address and repair conflict. 
+      </p>
+      <img
+        src="assets/conversation.png"
+        style="align-self: center; width: 100%; padding-top: 2%"
+      />
+    </div>
+    <div class="form-container">
+      <p class="title">Add new group session</p>
+      <form [formGroup]="sessionForm" class="form-wrap">
+        <mat-form-field>
+          <mat-label>Topic</mat-label>
+          <input matInput formControlName="topic" type="text" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Participants number</mat-label>
+          <input matInput formControlName="participantsNumber" type="number" />
+        </mat-form-field>
+        <mat-calendar
+          [selected]="selectedDate"
+          (selectedChange)="onDateSelected($event)"
+          style="width: 80%; height: 80%; align-self: center"
+        ></mat-calendar>
+        <div class="card-wrapper">
+          <div
+            class="card"
+            *ngFor="let slot of timeSlots"
+            (click)="saveTime(slot, $event)"
+          >
+            <div style="display: flex; flex-direction: row; text-align: center">
+              <p>{{ slot.startTime }}</p>
+              <p>-</p>
+              <p>{{ slot.endTime }}</p>
+            </div>
+          </div>
+        </div>
+        <button (click)="finish()" class="button-style-1">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

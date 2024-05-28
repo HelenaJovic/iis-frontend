@@ -1,0 +1,97 @@
+<div class="wrapper">
+  <div class="first-inner">
+    <img src="assets/naslovna.png" style="width: 100%; height: 300px" />
+  </div>
+  <div class="second-inner">
+    <p class="title">Available group sessions</p>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding-bottom: 2%;
+        justify-content: center;
+      "
+    >
+      <div class="card" *ngFor="let session of groupSessions">
+        <div style="width: 22rem">
+          <img
+            class="card-img-top"
+            src="assets/conversation1.png"
+            alt="Card image cap"
+          />
+          <div class="body-card">
+            <p class="text-card">{{ session.topic }}</p>
+            <div style="display: flex; flex-direction: row; gap: 20px">
+              <p class="text1-card">📆 {{ session.date }}</p>
+              <div style="display: flex; flex-direction: row; gap: 10px">
+                <p class="text1-card">{{ session.startTime }}</p>
+                <p>-</p>
+                <p class="text1-card">{{ session.endTime }}</p>
+              </div>
+            </div>
+            <button (click)="reserve(session)" class="button-style-1">
+              Reserve session
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 30px">
+    <p class="title">Create individual session</p>
+    <div class="third-inner">
+      <div class="form-wrapper">
+        <form [formGroup]="sessionForm">
+          <div style="display: flex; flex-direction: row; gap: 30px">
+            <div style="padding-top: 10%">
+              <mat-form-field style="width: 300px">
+                <mat-label>SessionGoal</mat-label>
+                <input matInput formControlName="sessionGoal" type="text" />
+              </mat-form-field>
+              <mat-form-field style="width: 300px">
+                <mat-label>Psychologist</mat-label>
+                <mat-select formControlName="Psychologist">
+                  <mat-option *ngFor="let p of psychologists" [value]="p.id"
+                    >{{ p.name }} {{ p.lastName }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <button class="button-style-1" (click)="finish()">Create</button>
+            </div>
+
+            <mat-calendar
+              [selected]="selectedDate"
+              (selectedChange)="onDateSelected($event)"
+              style="width: 80%; height: 80%; align-self: center"
+            ></mat-calendar>
+
+            <div
+              class="card-wrapper"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 10%;
+              "
+            >
+              <div
+                class="card1"
+                *ngFor="let slot of timeSlots"
+                (click)="saveTime(slot, $event)"
+              >
+                <div
+                  style="display: flex; flex-direction: row; text-align: center"
+                >
+                  <p>{{ slot.startTime }}</p>
+                  <p>-</p>
+                  <p>{{ slot.endTime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

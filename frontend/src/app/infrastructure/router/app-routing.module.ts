@@ -21,7 +21,13 @@ import { TestForUser } from 'src/app/feature-moduls/workshop/workshop-test/works
 import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
+
+import { CreateGroupSessionComponent } from 'src/app/feature-moduls/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from 'src/app/feature-moduls/schedule-session/schedule-session.component';
+
+
 import { RateWorkshop } from 'src/app/feature-moduls/workshop/rating/rate-workshop.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -74,6 +80,8 @@ const routes: Routes = [
   { path: 'create-questions', component: CreateQuestionsComponent },
   { path: 'test-overview', component: TestOverviewComponent },
   { path: 'test-results', component: TestResultsComponent },
+  { path: 'create-group-session', component: CreateGroupSessionComponent },
+  { path: 'schedule-session', component: ScheduleSessionComponent },
 ];
 
 @NgModule({

@@ -39,8 +39,13 @@ import { WorkshopsUser } from './feature-moduls/workshop/workshops-by-user/works
 import { CreateQuestionsComponent } from './feature-moduls/create-questions/create-questions.component';
 import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
 import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Chart } from 'chart.js';
+import { CreateGroupSessionComponent } from './feature-moduls/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from './feature-moduls/schedule-session/schedule-session.component';
 import { StarRatingComponent } from './feature-moduls/workshop/star-component/star-rating.component';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +74,8 @@ import { StarRatingComponent } from './feature-moduls/workshop/star-component/st
     CreateQuestionsComponent,
     TestOverviewComponent,
     TestResultsComponent,
+    CreateGroupSessionComponent,
+    ScheduleSessionComponent,
   ],
 
   imports: [
@@ -77,12 +84,14 @@ import { StarRatingComponent } from './feature-moduls/workshop/star-component/st
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule.forRoot({
       timeOut: 5000, // Default timeOut for messages
       positionClass: 'toast-bottom-right', // Default position of toasts
       preventDuplicates: true, // Prevent duplicate toasts
     }), 
-    MatDatepickerModule,
+
     BrowserAnimationsModule,
     HttpClientModule,
     MatNativeDateModule,
