@@ -1,0 +1,51 @@
+<div >
+    <div class="overview">
+    <div class="image-background">
+        <img src="assets/psiho.jpg" alt="Descriptive text for the image">
+    
+      </div>
+<div class="picture">
+<div class="test-preview">
+    <h1>{{ test.name }}</h1>
+    <div *ngFor="let question of test.testQuestions; let qIndex = index">
+      <h2>{{ qIndex + 1 }}. {{ question.text }} ({{ question.pointsPerQuestion }} points)</h2>
+      <ol>
+        <mat-radio-group (change)="selectAnswer(question.id, $event.value)">
+          <li *ngFor="let answer of question.testAnswers">
+            <mat-radio-button [value]="answer">
+              {{ answer.text }}
+            </mat-radio-button>
+          </li>
+        </mat-radio-group>
+      </ol>
+      
+    </div>
+    <button (click)="onSubmit()">Submit</button>
+  </div>
+ 
+  <div *ngIf="showResult" class="result-display">
+    <div *ngIf="result.passed" class="result-success">
+      <h2>Test Completed</h2>
+      <div class="middle">
+      <p>Dear {{ result.registeredUser?.name }} {{ result.registeredUser?.lastName }}, you passed!</p>
+      <div class="circle"><div class="score-circle">{{ result.achievedPoints }} </div></div>
+      <p>Status: <strong>Passed</strong></p>
+      <canvas id="myCanvas"></canvas>
+      <button (click)="generateCertificate()">Download Certificate</button>
+    </div>
+    </div>
+    <div *ngIf="!result.passed" class="result-failure">
+      <h2>Test Failed</h2>
+      <div class="middle">
+      <p>Dear {{ result.registeredUser?.name }} {{ result.registeredUser?.lastName }}, you may try again!</p>
+      <div class="circle"></div><div class="score-circle">{{ result.achievedPoints }}</div></div>
+      <button (click)="retryTest()">Retry Test</button>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+  
+
+
+  

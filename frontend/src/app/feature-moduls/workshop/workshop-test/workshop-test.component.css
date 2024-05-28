@@ -1,0 +1,162 @@
+.overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrira sadržaj horizontalno */
+    align-items: center; /* Centrira sadržaj vertikalno */
+    margin: auto; /* Dodato za centriranje cijelog .overview bloka ako je potrebno */
+    min-width: 100%; /* Osigurava da .overview uzima punu dostupnu širinu */
+}
+
+.picture {
+  background-image: url('/assets/psiholog.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto; /* Adjust this to the desired height */
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-display{
+  min-width: 25%;
+    padding: 20px;
+    border: 1px solid #b3c6ff;
+    border-radius: 8px;
+    background-color: rgba(245, 249, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 60%;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Dodato za eksplicitno centriranje unutar svog Flexbox kontejnera */
+}
+
+.circle{
+display: flex;
+justify-content: center;}
+
+.score-circle {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  color: #fff;
+  line-height: 80px;
+  font-size: 24px;
+  margin: 20px 0;
+  text-align: center;
+}
+ button {
+    background-color: #171077; /* A vibrant green, common for 'create' or 'go' buttons */
+    color: white; /* White text to contrast the green background */
+    border: none; /* No border for a modern look */
+    padding: 10px 20px; /* Adequate padding for comfort */
+    font-size: 16px; /* Visible text size */
+    font-family: Arial, sans-serif; /* Simple and clean font */
+    text-transform: uppercase; /* Makes the button text more impactful */
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for color and transformation */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    text-align: center;
+}
+.result-success .score-circle {
+  background-color: #4CAF50;
+}
+
+.result-failure .score-circle {
+  background-color: #f44336;
+}
+
+.result-success button, .result-failure button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #7bade7;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+}
+
+.middle{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.result-success button:hover, .result-failure button:hover {
+  background-color: #1b2c7f;
+}
+
+.image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+.test-preview {
+   
+    min-width: 35%;
+    padding: 20px;
+    border: 1px solid #b3c6ff;
+    border-radius: 8px;
+    background-color: rgba(245, 249, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 60%;
+    color: #333;
+    align-items: center;
+    margin: auto; /* Dodato za eksplicitno centriranje unutar svog Flexbox kontejnera */
+}
+
+
+  .test-overr{
+    display: flex;
+    justify-content: center;
+    min-width: 80%;
+  }
+  
+  .test-preview h1 {
+    color: #3a8fd1;
+    border-bottom: 2px solid #3a8fd1;
+    padding-bottom: 5px;
+    text-align: center; /* Centers text horizontally */
+  }
+  
+  
+  
+  .test-preview h2 {
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .test-preview ol {
+    list-style: none; /* Removes default list numbering */
+    padding-left: 20px;
+  }
+  
+  .test-preview li {
+    margin-bottom: 5px;
+  }
+  .image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+  

@@ -1,0 +1,15 @@
+/* star-rating.component.css */
+.star-rating {
+    font-size: 55px;
+    color: #ccc; /* Default star color */
+    align-items: center;
+  }
+  
+  .star-rating .selected {
+    color: gold; /* Selected star color */
+  }
+  
+  .star-rating span {
+    cursor: pointer;
+  }
+  

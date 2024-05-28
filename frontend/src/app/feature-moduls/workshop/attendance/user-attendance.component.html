@@ -1,0 +1,26 @@
+<div class="workshops-view">
+  <div class="image-background">
+    <img src="assets/psiho.jpg" alt="Descriptive text for the image">
+  </div>
+
+  <div class="second">
+    <h2>These are the people that have attended your workshop and their scores</h2>
+  </div>
+
+  <div class="card-container">
+    <button class="scroll-button left" (click)="scrollLeft()">&#10094;</button>
+    <div class="card-wrapper">
+      <div class="card" *ngFor="let user of tests">
+        <div class="card-image">
+          <img [src]="user.registeredUser?.image || 'assets/default-avatar.png'" alt="{{ user.registeredUser?.name }}">
+        </div>
+        <div class="card-content">
+          <h3>{{ user.registeredUser?.name }} {{ user.registeredUser?.lastName }}</h3>
+          <p><strong>Score:</strong> {{ user.achievedPoints }} points</p>
+          <p><strong>Status:</strong> <span [ngClass]="{'passed': user.passed, 'failed': !user.passed}">{{ user.passed ? 'Passed' : 'Failed' }}</span></p>
+        </div>
+      </div>
+    </div>
+    <button class="scroll-button right" (click)="scrollRight()">&#10095;</button>
+  </div>
+</div>

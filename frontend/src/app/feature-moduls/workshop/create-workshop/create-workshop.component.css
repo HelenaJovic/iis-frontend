@@ -1,0 +1,364 @@
+.create-workshop{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(to right, #fff0, #fff 10%, #fff 90%, #fff0); /* Fades edges */
+
+}
+
+.image-background img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    object-fit:contain; /* Cover the container, image will be cropped if necessary */
+  }
+
+  .creating2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+  .creating{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('/assets/psiholog.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    border-radius: 10px;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .images::-webkit-scrollbar {
+    height: 10px; /* visina skrol bara */
+  }
+  
+  .images::-webkit-scrollbar-thumb {
+    background-color: darkgrey; /* boja skrol bara */
+    border-radius: 10px; /* zaobljenost skrol bara */
+  }
+  
+
+.preview-images {
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5); /* Adds a soft blue shadow */
+    box-sizing: border-box;  
+    padding: 20px; /* Adds some padding around the content */
+    border-radius: 10px; /* Rounds the corners */
+    background: linear-gradient(to right, #fff0, #fff 10%, #fff 90%, #fff0); /* Fades edges */
+    overflow: hidden; /* Ensures the background gradient and shadows are contained within the borders */
+  }
+  
+
+  .images {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    white-space: nowrap; /* Keeps flex items in a single line */
+  }
+  
+  .form-wrap{
+    background: linear-gradient(to right, #fff0, #fff 10%, #fff 90%, #fff0); /* Fades edges */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .form-ps{
+    display: flex;
+    width: 65%;
+    padding-right: 20px;
+    justify-content: flex-end;
+
+
+  }
+
+  .creating{
+    max-width: 100%;
+  }
+  
+.part-one{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 20 px;
+  padding: 20px;
+}
+
+/* Overall styling for the test creation area */
+.test-creation {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #d1d1d1; /* Lighter border for a softer look */
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  background: linear-gradient(to top right, #ffffff, #f1f1f1); /* Subtle gradient for depth */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for interactive shadow response */
+}
+
+.test-creation:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Increased shadow on hover for a "lifting" effect */
+}
+
+
+.test-creation form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensure content is aligned to the center horizontally */
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  background: linear-gradient(to right, #fff0, #fff 10%, #fff 90%, #fff0); /* Fades edges */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow for more depth */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for shadow and scale */
+}
+
+.test-creation form:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover for a "lifted" effect */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.test-creation mat-form-field {
+  width: 100%; /* Full width for each form field */
+  margin-top: 10px; /* Space between form fields */
+}
+
+.test-creation button {
+  margin-top: 20px; /* Space above the button */
+  padding: 10px 15px;
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Slightly larger font size for readability */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background and scale */
+}
+
+.test-creation button:hover {
+  background-color: #0056b3; /* Darker blue on hover for interactive feedback */
+  transform: scale(1.05); /* Slightly enlarging button on hover */
+}
+
+
+.test-creation-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.test-creation {
+  width: 50%;
+  overflow-y: auto; /* Enables scrolling within the form area if content exceeds the viewport height */
+}
+
+.test-preview {
+  min-width: 35%;
+  padding: 20px;
+  border: 1px solid #b3c6ff;  /* Light blue border for a subtle color accent */
+  border-radius: 8px;
+  background-color: rgba(245, 249, 255, 0.9); /* Translucent light blue-white background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  overflow-y: auto;
+  max-height: 60%;
+  color: #333; /* Dark gray text for readability */
+  align-items: center;
+}
+.correct-answer .mat-radio-button {
+  background-color: #e8f5e9; /* Light green background for correct answers */
+}
+
+
+.test-overr{
+  display: flex;
+  justify-content: center;
+  min-width: 80%;
+}
+
+.test-preview h1 {
+  color: #3a8fd1;
+  border-bottom: 2px solid #3a8fd1;
+  padding-bottom: 5px;
+  text-align: center; /* Centers text horizontally */
+}
+
+
+
+.test-preview h2 {
+  color: #333;
+  margin-top: 20px;
+}
+
+.test-preview ol {
+  list-style: none; /* Removes default list numbering */
+  padding-left: 20px;
+}
+
+.test-preview li {
+  margin-bottom: 5px;
+}
+
+/* Specific styles for radio buttons */
+:host ::ng-deep .small-radio .mat-radio-outer-circle {
+  width: 16px;
+  height: 16px;
+}
+
+:host ::ng-deep .small-radio .mat-radio-inner-circle {
+  width: 8px;
+  height: 8px;
+}
+
+:host ::ng-deep .correct-answer .mat-radio-label-content {
+  font-weight: bold;
+  color: #4CAF50; 
+}
+
+.test-over{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+  width: 60%;
+  align-items: center;
+}
+
+
+
+/* Specific colors for different buttons */
+.test-creation button[color="primary"] {
+  background-color: #4d6b8b;
+  color: white;
+  align-items: center;
+
+}
+
+.test-creation button[color="accent"] {
+  background-color: #4d6b8b;
+  width: 50%;
+  color: white;
+}
+
+.test-creation button[color="warn"] {
+  background-color: #4d6b8b;
+  color: white;
+}
+
+/* Style for checkbox */
+.test-creation mat-checkbox {
+  margin-top: 10px;  /* Adds space above the checkbox */
+}
+
+/* Focus and hover effects for better user interaction feedback */
+.test-creation button:hover,
+.test-creation button:focus {
+  opacity: 0.9;
+}
+
+
+.images{
+  padding-left: 30px;
+}
+  .first-column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second-column{
+    display: flex;
+    flex-direction: column;
+    gap:20px
+  }
+
+  /* Osnovni stil kontejnera */
+.second-row {
+    max-width: 800px; /* Ograničava širinu liste za bolji dizajn */
+    margin: auto; /* Centrira listu na stranici */
+    padding: 20px;
+    background-color: #d2ddf9; /* Svetla pozadinska boja za kontrast */
+    border-radius: 8px; /* Zaobljeni uglovi za moderniji izgled */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Blagi senki za dubinu */
+  }
+  
+  /* Stilizacija liste */
+  .halls {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  /* Stilizacija pojedinačne stavke liste */
+  .hall {
+    background-color: #ffffff; /* Bela pozadina za svaku halu */
+    border: 1px solid #dddddd; /* Diskretan okvir */
+    margin-bottom: 10px; /* Razmak između elemenata liste */
+    padding: 15px;
+    border-radius: 5px; /* Zaobljeni uglovi */
+  }
+  
+  .hall h3 {
+    color: #2c3e50; /* Promenjena je boja u tamno plavu za elegantniji izgled */
+    margin-top: 0;
+    margin-bottom: 5px; /* Dodat mali razmak između naslova i teksta ispod */
+    font-size: 18px; /* Nešto veći font za bolji fokus na naslov */
+    font-weight: 600; /* Povećana debljina slova za bolju vidljivost */
+  }
+  
+  /* Paragrafi (kapacitet) */
+  .hall p {
+    color: #34495e; /* Nešto tamnija siva boja za bolju usklađenost */
+    font-size: 16px; /* Povećana veličina fonta za čitljivost */
+    line-height: 1.5; /* Povećan prored za bolju čitljivost */
+    margin-bottom: 10px; /* Dodat razmak na dnu paragrafa za bolje odvajanje od drugih elemenata */
+  }
+  
+  /* Stil dugmeta za dodavanje nove hale */
+  .hall button {
+    background-color: #2d3678; /* Zelena boja dugmeta */
+    color: white; /* Bela boja teksta */
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase; /* Velika slova za tekst */
+    border-radius: 4px; /* Zaobljeni uglovi dugmeta */
+    cursor: pointer; /* Kursor pokazuje da je klikljivo */
+    transition: background-color 0.3s; /* Animacija za hover */
+  }
+  
+  .hall button:hover {
+    background-color: #8bc0dd; /* Tamnija nijansa zelene na hover */
+  }
+  
+
+  .second-column button{
+    background-color: #1f1a69; /* A vibrant green, common for 'create' or 'go' buttons */
+    color: white; /* White text to contrast the green background */
+    border: none; /* No border for a modern look */
+    padding: 10px 20px; /* Adequate padding for comfort */
+    font-size: 16px; /* Visible text size */
+    font-family: Arial, sans-serif; /* Simple and clean font */
+    text-transform: uppercase; /* Makes the button text more impactful */
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for color and transformation */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  }
