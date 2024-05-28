@@ -139,6 +139,37 @@ handleCheckboxChange(event: any, task: any) {
   }
 }
 
+confirmReview(event: Event, task: any) {
+  const isConfirmed = confirm('Are you sure you want to review this task?');
+  if (isConfirmed) {
+    this.review(event, task);
+  } else {
+    (event.target as HTMLInputElement).checked = false;
+  }
+}
+
+review(event: any, task: any) {
+  task.status = StudentInternshipStatus.DONE;
+  this.service.updateTask(task).subscribe({
+    next: () => {
+      if(this.userRole ==  'ROLE_PSYCHOLOG'){
+        this.service.getByPsychologistId(1).subscribe({
+            next: (studentInternship : StudentInternship) => {
+                this.studentInternship = studentInternship;
+            }
+        })
+      }
+      else if (this.userRole == 'ROLE_STUDENT'){
+        this.service.getByStudentId(2).subscribe({
+          next: (studentInternship : StudentInternship) => {
+            this.studentInternship = studentInternship;
+          }
+        })
+      }
+    }
+  });
+}
+
 openFilePicker(task: any) {
   const inputElement: HTMLInputElement = document.createElement('input');
   inputElement.type = 'file';

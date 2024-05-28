@@ -9,10 +9,17 @@
                                     <button class="btn btn-info">✉️ Inbox (9)</button>
                                     <button class="btn btn-info">🔒 Reset password</button>
                                     <div  *ngIf="userRole == 'ROLE_STUDENT'" >
-                                    <button class="btn btn-info">💯 My test results</button>
-                                    <h3>TEST FOR INTERNSHIP: EMOTIONAL INTELIGENCE</h3>
+                                    <button class="btn btn-info">💯 My internship results</button>
+                               
+                                      <button *ngIf ="isThereFinishedIntern" class="buttonStyle" (click)="getReport()">
+                                          SEE REPORT ABOUT INTERNSHIP
+                                      </button>
+                                      <div *ngIf ="!isThereFinishedIntern">
+                                          THERE IS NO DONE INTERNSHIP
+                                      </div>
+                                    <!--h3>TEST FOR INTERNSHIP: EMOTIONAL INTELIGENCE</h3>
                                     <h3>POINTS: 82</h3>
-                                    <h3 id="green">ACCEPTED</h3>
+                                    <h3 id="green">ACCEPTED</h3-->
                                      </div>
                                     <button class="btn btn-info">👋 Logout</button>
                                 </div>

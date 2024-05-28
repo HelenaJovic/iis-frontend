@@ -7,6 +7,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { StudentsOverviewComponent } from '../../internship-test/students-overview/students-overview.component';
 import { StudentTest } from 'src/app/model/studentTest.model';
 import { InternshipTestService } from '../../internship-test/internship-test.service';
+import { CurrentInternshipService } from '../../current-internship/current-internship.service';
+import { StudentInternship, StudentInternshipPriority, StudentInternshipStatus } from 'src/app/model/studentInternship.model';
+import jsPDF from 'jspdf';
+import { ReportDto } from 'src/app/model/report.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,9 +23,10 @@ export class UserProfileComponent implements OnInit {
   isEditing: boolean = false;
   userRole: string = '';
   userClaims: any = null;
-  studentTest!: StudentTest;
+  isThereFinishedIntern : boolean = false;
+  studentInternship!: ReportDto;
 
-  constructor(private fb: FormBuilder, private testService: InternshipTestService, private service: UserProfileService, private authService: AuthServiceService, private jwtHelper: JwtHelperService) {}
+  constructor(private fb: FormBuilder, private internshipService: CurrentInternshipService, private service: UserProfileService, private authService: AuthServiceService, private jwtHelper: JwtHelperService) {}
 
   ngOnInit(): void {
     this.authService.loginStatus$.subscribe(loggedIn => {
@@ -33,12 +38,8 @@ export class UserProfileComponent implements OnInit {
         this.userRole = '';
       }
     });
-
       
-    this.studentTest.points = 82;
-    this.studentTest.reviewed = true;
-      
-    
+    this.isThereFinishedInternship();
 
     this.profileForm = this.fb.group({ // Inicijalizacija profileForm
       id: [''],
@@ -92,7 +93,107 @@ export class UserProfileComponent implements OnInit {
       this.profileForm.disable();
     }
   }
-  
+
+  isThereFinishedInternship() : void {
+      this.internshipService.getFinishedInternshipByStudent(2).subscribe({
+        next: (report: ReportDto) =>{
+          this.isThereFinishedIntern = true;
+          this.studentInternship = report;
+        },
+        error: (err: any) => {
+            this.isThereFinishedIntern = false;
+        } 
+      })
+  }
+
+  getReport(): void {
+    const doc = new jsPDF();
+    const imgData = '/assets/psiho.jpg';
+
+    doc.addImage(imgData, 'JPEG', 10, 10, 190, 30);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.setTextColor(31, 78, 121);
+    doc.text(this.studentInternship.internshipTitle, 105, 50, { align: 'center' });
+
+    const endDate = new Date(this.studentInternship.endDate);
+    const formattedEndDate = `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`;
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`End Date: ${formattedEndDate}`, 180, 20, { align: 'right' });
+
+    doc.setFontSize(14);
+    doc.setTextColor(40, 64, 94);
+    doc.text('Student Information:', 20, 70);
+
+    doc.setFontSize(11);
+    doc.setTextColor(70, 70, 70);
+    doc.text(`Name: ${this.studentInternship.studentName} ${this.studentInternship.studentLastName}`, 20, 80);
+    doc.text(`Points: ${this.studentInternship.studentInternshipPoints}`, 20, 90);
+
+    doc.text(' ', 20, 100); // Empty row
+
+    doc.setFontSize(14);
+    doc.setTextColor(40, 64, 94);
+    doc.text('Mentor Information:', 20, 110);
+
+    doc.setFontSize(11);
+    doc.setTextColor(70, 70, 70);
+    doc.text(`Name: ${this.studentInternship.psychologistName} ${this.studentInternship.psychologistLastName}`, 20, 120);
+
+    doc.text(' ', 20, 130); // Empty row
+
+    doc.setFontSize(14);
+    doc.setTextColor(40, 64, 94);
+    doc.text('Done Tasks:', 20, 140);
+
+    let yOffset = 150;
+    this.studentInternship.tasks.filter(task => task.status === StudentInternshipStatus.DONE).forEach((task, index) => {
+      doc.setFontSize(11);
+      doc.setTextColor(70, 70, 70);
+      doc.text(`${index + 1}. ${task.title}`, 20, yOffset);
+      doc.setFontSize(10);
+      const splitDescription = doc.splitTextToSize(task.description, 160); 
+      doc.text(splitDescription, 20, yOffset + 5);
+      yOffset += 15 + splitDescription.length * 5;
+    });
+    const totalTasks = this.studentInternship.tasks.length;
+    const statusCounts = {
+      [StudentInternshipStatus.IN_PROGRESS]: 0,
+      [StudentInternshipStatus.DONE]: 0,
+      [StudentInternshipStatus.NOT_REVIEWED]: 0,
+      [StudentInternshipStatus.STUCK]: 0
+    };
+
+    this.studentInternship.tasks.forEach(task => {
+      statusCounts[task.status]++;
+    });
+
+    const statusPercentages = {
+      [StudentInternshipStatus.IN_PROGRESS]: (statusCounts[StudentInternshipStatus.IN_PROGRESS] / totalTasks) * 100,
+      [StudentInternshipStatus.DONE]: (statusCounts[StudentInternshipStatus.DONE] / totalTasks) * 100,
+      [StudentInternshipStatus.NOT_REVIEWED]: (statusCounts[StudentInternshipStatus.NOT_REVIEWED] / totalTasks) * 100,
+      [StudentInternshipStatus.STUCK]: (statusCounts[StudentInternshipStatus.STUCK] / totalTasks) * 100
+    };
+
+    doc.setFontSize(14);
+    doc.setTextColor(40, 64, 94);
+    doc.text('Task Achievement Analytics:', 20, yOffset + 20);
+
+    yOffset += 30;
+    Object.keys(statusPercentages).forEach((status, index) => {
+      doc.setFontSize(11);
+      doc.setTextColor(70, 70, 70);
+      doc.text(`${status}: ${statusPercentages[status as StudentInternshipStatus].toFixed(2)}%`, 20, yOffset + (index * 10));
+    });
+
+    doc.setTextColor(150, 150, 150);
+    doc.setFontSize(10);
+    doc.text('This report was generated automatically.', 105, 285, { align: 'center' });
+
+    doc.save('Student_Internship_Report.pdf');
+  }
 
   saveChanges() {
     console.log('Form value:', this.profileForm.value);

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ReportDto } from 'src/app/model/report.model';
 import { StudentInternship, Task } from 'src/app/model/studentInternship.model';
 import { environment } from 'src/env/environment';
 
@@ -29,5 +30,13 @@ export class CurrentInternshipService {
     formData.append('file', file, fileName);
 
     return this.http.post(environment.apiHost + 'student-internships/pdf', formData);
+  }
+
+  updateTask(task: Task): Observable<void>{
+    return this.http.put<void>(environment.apiHost + 'student-internships', task);
+  }
+
+  getFinishedInternshipByStudent(studentId: number): Observable<ReportDto>{
+    return this.http.get<ReportDto>(environment.apiHost + 'student-internships/finishedInternship/' + studentId);
   }
 }
