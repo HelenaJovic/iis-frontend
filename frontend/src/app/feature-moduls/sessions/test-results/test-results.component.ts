@@ -5,7 +5,7 @@ import { FilledInTestServiceService } from '../service/filled-in-test-service.se
 import { AuthServiceService } from 'src/app/infrastructure/auth/register/auth-service.service';
 import { TestResults } from '../model/testResults.model';
 import { User } from '../model/User';
-import { UserProfileService } from '../user-profile/user-profile.service';
+import { UserProfileService } from '../../user-profile/user-profile.service';
 import { FilledInTest } from '../model/filledInTest.model';
 Chart.register(...registerables);
 

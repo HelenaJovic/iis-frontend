@@ -10,11 +10,12 @@ import { LoginComponent } from '../auth/login/login.component';
 import { HomeComponent } from 'src/app/feature-moduls/layout/home/home.component';
 import { RegisterPsychologistComponent } from 'src/app/feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from 'src/app/feature-moduls/user-profile/user-profile/user-profile.component';
-import { CreateQuestionsComponent } from 'src/app/feature-moduls/create-questions/create-questions.component';
-import { TestOverviewComponent } from 'src/app/feature-moduls/test-overview/test-overview.component';
-import { TestResultsComponent } from 'src/app/feature-moduls/test-results/test-results.component';
-import { CreateGroupSessionComponent } from 'src/app/feature-moduls/create-group-session/create-group-session.component';
-import { ScheduleSessionComponent } from 'src/app/feature-moduls/schedule-session/schedule-session.component';
+import { CreateQuestionsComponent } from 'src/app/feature-moduls/sessions/create-questions/create-questions.component';
+import { TestOverviewComponent } from 'src/app/feature-moduls/sessions/test-overview/test-overview.component';
+import { TestResultsComponent } from 'src/app/feature-moduls/sessions/test-results/test-results.component';
+import { CreateGroupSessionComponent } from 'src/app/feature-moduls/sessions/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from 'src/app/feature-moduls/sessions/schedule-session/schedule-session.component';
+import { SessionOverviewComponent } from 'src/app/feature-moduls/sessions/session-overview/session-overview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'test-results', component: TestResultsComponent },
   { path: 'create-group-session', component: CreateGroupSessionComponent },
   { path: 'schedule-session', component: ScheduleSessionComponent },
+  { path: 'session-overview', component: SessionOverviewComponent },
 ];
 
 @NgModule({

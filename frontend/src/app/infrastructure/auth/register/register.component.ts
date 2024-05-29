@@ -6,10 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { User } from 'src/app/feature-moduls/model/User';
+import { User } from 'src/app/feature-moduls/sessions/model/User';
 import { AuthServiceService } from './auth-service.service';
 import { Router } from '@angular/router';
-import { Register } from 'src/app/feature-moduls/model/register.model';
+import { Register } from 'src/app/feature-moduls/sessions/model/register.model';
 
 @Component({
   selector: 'app-register',
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnChanges {
       lastname: this.userForm.value.lastName || '',
       registerAsStudent: this.userForm.value.registerAsStudent === true,
       registerAsPsychologist: false,
-      registerAsManager:false
+      registerAsManager: false,
     };
 
     if (!this.userForm.valid) {

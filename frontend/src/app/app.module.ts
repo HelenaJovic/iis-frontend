@@ -24,14 +24,15 @@ import { NavbarComponent } from './feature-moduls/layout/navbar/navbar.component
 import { FooterComponent } from './feature-moduls/layout/footer/footer.component';
 import { RegisterPsychologistComponent } from './feature-moduls/sysem-admin/register-psychologist/register-psychologist.component';
 import { UserProfileComponent } from './feature-moduls/user-profile/user-profile/user-profile.component';
-import { CreateQuestionsComponent } from './feature-moduls/create-questions/create-questions.component';
-import { TestOverviewComponent } from './feature-moduls/test-overview/test-overview.component';
-import { TestResultsComponent } from './feature-moduls/test-results/test-results.component';
+import { CreateQuestionsComponent } from './feature-moduls/sessions/create-questions/create-questions.component';
+import { TestOverviewComponent } from './feature-moduls/sessions/test-overview/test-overview.component';
+import { TestResultsComponent } from './feature-moduls/sessions/test-results/test-results.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Chart } from 'chart.js';
-import { CreateGroupSessionComponent } from './feature-moduls/create-group-session/create-group-session.component';
-import { ScheduleSessionComponent } from './feature-moduls/schedule-session/schedule-session.component';
+import { CreateGroupSessionComponent } from './feature-moduls/sessions/create-group-session/create-group-session.component';
+import { ScheduleSessionComponent } from './feature-moduls/sessions/schedule-session/schedule-session.component';
+import { SessionOverviewComponent } from './feature-moduls/sessions/session-overview/session-overview.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ScheduleSessionComponent } from './feature-moduls/schedule-session/sche
     TestResultsComponent,
     CreateGroupSessionComponent,
     ScheduleSessionComponent,
+    SessionOverviewComponent,
   ],
 
   imports: [

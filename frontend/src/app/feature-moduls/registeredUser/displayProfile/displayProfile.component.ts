@@ -1,9 +1,9 @@
 // // displayProfile.component.ts
 
-import { ChangeDetectorRef, Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { User } from "../../model/User";
-import { ToastrService } from "ngx-toastr";
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { User } from '../../sessions/model/User';
+import { ToastrService } from 'ngx-toastr';
 
 // import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,13 +11,12 @@ import { ToastrService } from "ngx-toastr";
 // import { RegisteredUserService } from '../registeredUser.service';
 // import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-display-profile', // Adjust the selector as needed
   templateUrl: './displayProfile.component.html',
   styleUrls: ['./displayProfile.component.css'],
 })
-export class DisplayProfile  {
+export class DisplayProfile {
   user: User = {} as User;
   profileForm: FormGroup;
   isEditing: boolean = false;
@@ -29,48 +28,46 @@ export class DisplayProfile  {
     private toastr: ToastrService
   ) {
     this.profileForm = this.fb.group({
-      id:[''],
+      id: [''],
       name: [''],
       password: [''],
       email: [''],
-      username: ['']
+      username: [''],
     });
   }
 
+  //   ngOnInit(): void {
+  //     this.loadProfileData();
+  //   }
 
-//   ngOnInit(): void {
-//     this.loadProfileData();
-//   }
+  //   loadProfileData() {
+  //     console.log('Loading profile data...');
 
-//   loadProfileData() {
-//     console.log('Loading profile data...');
+  //     this.service.getProfile(1).subscribe({
+  //       next: (data: User) => {
+  //         console.log('data je' + data);
+  //         this.user.id = data.id;
+  //         this.user.name = data.name;
+  //         this.user.email = data.email;
+  //         this.user.password = data.password;
 
-//     this.service.getProfile(1).subscribe({
-//       next: (data: User) => {
-//         console.log('data je' + data);
-//         this.user.id = data.id;
-//         this.user.name = data.name;
-//         this.user.email = data.email;
-//         this.user.password = data.password;
+  //           this.profileForm.setValue({
+  //             id: this.user.id,
+  //             name: this.user.name,
+  //             password: '',
+  //             email: this.user.email
+  //           });
+  //         },
 
-
-//           this.profileForm.setValue({
-//             id: this.user.id,
-//             name: this.user.name,
-//             password: '', 
-//             email: this.user.email
-//           });
-//         },
-      
-//       error: (err: any) => {
-//         console.log(err);
-//       },
-//     });
-  }
+  //       error: (err: any) => {
+  //         console.log(err);
+  //       },
+  //     });
+}
 
 //   editProfile() {
 //     this.isEditing = !this.isEditing;
-  
+
 //     if (this.isEditing) {
 //       this.profileForm.enable();
 //     } else {
@@ -86,7 +83,7 @@ export class DisplayProfile  {
 //       password: this.profileForm.value.password,
 //       firstname: this.profileForm.value.firstname,
 //       lastname: this.profileForm.value.lastname,
-//       email: this.registeredUser.email, 
+//       email: this.registeredUser.email,
 //       occupation: this.profileForm.value.occupation,
 //       address: {
 //         country: this.profileForm.value.country,
@@ -101,10 +98,8 @@ export class DisplayProfile  {
 //     };
 //     console.log("tu sam")
 
-
 //     console.log("Ovo je", JSON.stringify(updatedData, null, 2));
-    
-  
+
 //     this.service.updateProfile(updatedData, 1).subscribe({
 //       next: (data: any) => {
 //         console.log('Profile updated successfully:', data);
@@ -122,6 +117,3 @@ export class DisplayProfile  {
 //       titleClass: 'toast-custom-title', // Dodajte svoj CSS stil za prilagođavanje izgleda
 //     });
 //   }
-  
-  
-  

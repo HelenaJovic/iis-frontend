@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/env/environment';
 import { Observable } from 'rxjs';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
-import { User } from '../model/User';
+import { User } from '../sessions/model/User';
 
 @Injectable({
   providedIn: 'root',

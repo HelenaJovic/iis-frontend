@@ -1,13 +1,18 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/infrastructure/auth/register/auth-service.service';
-import { Register } from '../../model/register.model';
+import { Register } from '../../sessions/model/register.model';
 
 @Component({
   selector: 'app-register-psychologist',
   templateUrl: './register-psychologist.component.html',
-  styleUrls: ['./register-psychologist.component.css']
+  styleUrls: ['./register-psychologist.component.css'],
 })
 export class RegisterPsychologistComponent implements OnChanges {
   passwordsMatch: boolean = true;
@@ -26,8 +31,8 @@ export class RegisterPsychologistComponent implements OnChanges {
     password: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    registerAsPsychologist : new FormControl(false),
-    registerAsManager : new FormControl(false)
+    registerAsPsychologist: new FormControl(false),
+    registerAsManager: new FormControl(false),
   });
 
   registerUser(): void {
@@ -38,10 +43,11 @@ export class RegisterPsychologistComponent implements OnChanges {
       password: this.userForm.value.password || '',
       lastname: this.userForm.value.lastName || '',
       registerAsStudent: false,
-      registerAsPsychologist: this.userForm.value.registerAsPsychologist === true,
-      registerAsManager: this.userForm.value.registerAsManager=== true
+      registerAsPsychologist:
+        this.userForm.value.registerAsPsychologist === true,
+      registerAsManager: this.userForm.value.registerAsManager === true,
     };
-   
+
     if (!this.userForm.valid) {
       return;
     }
@@ -59,5 +65,4 @@ export class RegisterPsychologistComponent implements OnChanges {
       },
     });
   }
-
 }

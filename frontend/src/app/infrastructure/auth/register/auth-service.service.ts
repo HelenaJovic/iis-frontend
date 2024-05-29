@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
-import { User } from 'src/app/feature-moduls/model/User';
-import { Register } from 'src/app/feature-moduls/model/register.model';
+import { User } from 'src/app/feature-moduls/sessions/model/User';
+import { Register } from 'src/app/feature-moduls/sessions/model/register.model';
 
 @Injectable({
   providedIn: 'root',

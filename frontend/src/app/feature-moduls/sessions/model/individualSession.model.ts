@@ -1,4 +1,5 @@
 import { Time } from '@angular/common';
+import { Register } from './register.model';
 
 export interface IndividualSession {
   id?: number;

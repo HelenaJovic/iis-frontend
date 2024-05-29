@@ -1,0 +1,96 @@
+<div class="wrapper">
+  <div clas="first-inner">
+    <img src="assets/naslovna.png" style="width: 100%; height: 300px" />
+  </div>
+  <div class="second-inner">
+    <p class="title">Upcoming individual sessions</p>
+    <div
+      class="card-wrapper"
+      style="
+        display: flex;
+        flex-direction: row;
+        gap: 100px;
+        padding-left: 10%;
+        padding-top: 5%;
+        padding-right: 10%;
+        padding-bottom: 5%;
+      "
+    >
+      <div class="card1" *ngFor="let session of Sessions">
+        <!-- <div *ngIf="getUser(session.registeredUserId) | async as user">
+          <p>{{ user.name }} {{ user.lastName }}</p>
+        </div> -->
+        <p class="firstName">Ime i Prezime</p>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            color: rgb(201, 197, 197);
+            font-size: 18px;
+          "
+        >
+          <p>Goal:</p>
+          <p>{{ session.sessionGoal }}</p>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            font-size: 18px;
+            gap: 15px;
+            font-weight: 500;
+          "
+        >
+          <p>{{ session.date }}</p>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              text-align: center;
+              font-size: 18px;
+            "
+          >
+            <p>{{ session.startTime }}</p>
+            <p>-</p>
+            <p>{{ session.endTime }}</p>
+          </div>
+        </div>
+        <button (click)="StartSession(session.id)" class="button-style-1">
+          Start session
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="displayForm" class="third-inner">
+    <p class="title">Add documentation for session</p>
+    <form [formGroup]="documentationForm" class="form-wrap">
+      <div style="display: flex; flex: row; gap: 40px; margin-top: 20px">
+        <mat-form-field class="wide-input">
+          <mat-label>Topic summary:</mat-label>
+          <input matInput formControlName="topicSummary" type="text" />
+        </mat-form-field>
+        <div style="display: flex; flex-direction: column; gap: 30px">
+          <mat-form-field class="wide-input1">
+            <mat-label>Emotional reactions</mat-label>
+            <input matInput formControlName="emotionalReactions" type="text" />
+          </mat-form-field>
+          <mat-form-field class="wide-input1">
+            <mat-label>Plans and notes</mat-label>
+            <input matInput formControlName="plans" type="text" />
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 50px">
+          <button (click)="CreateDoc()" class="button-style-2">
+            Create Documentation
+          </button>
+          <button (click)="GenerateReport()" class="button-style-2">
+            Download PDF Report📄
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

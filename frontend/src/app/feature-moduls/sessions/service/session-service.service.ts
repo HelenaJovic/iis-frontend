@@ -6,6 +6,7 @@ import { TimeSlot } from '../model/timeSlot.model';
 import { GroupSession } from '../model/groupSession.model';
 import { Psychologist } from '../model/psychologist.model';
 import { IndividualSession } from '../model/individualSession.model';
+import { SessionDocumentation } from '../model/sessionDocumentaton.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +55,23 @@ export class SessionServiceService {
   getAllPsychologist(): Observable<Psychologist[]> {
     return this.http.get<Psychologist[]>(
       'http://localhost:8081/api/psychologist'
+    );
+  }
+
+  getIndividualSessionsByPsychologist(
+    psychologistId: number
+  ): Observable<IndividualSession[]> {
+    return this.http.get<IndividualSession[]>(
+      `http://localhost:8081/api/individualSessions/getByPsychologist/${psychologistId}`
+    );
+  }
+
+  createDoc(
+    documentation: SessionDocumentation
+  ): Observable<SessionDocumentation> {
+    return this.http.post<SessionDocumentation>(
+      `http://localhost:8081/api/sessionDocumentations`,
+      documentation
     );
   }
 }
