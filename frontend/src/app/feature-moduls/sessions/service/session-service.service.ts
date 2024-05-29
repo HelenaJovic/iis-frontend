@@ -74,4 +74,11 @@ export class SessionServiceService {
       documentation
     );
   }
+
+  generateReport(documentId: number | undefined): Observable<Blob> {
+    return this.http.get(
+      `http://localhost:8081/api/sessions/pdf/${documentId}`,
+      { responseType: 'blob' }
+    );
+  }
 }

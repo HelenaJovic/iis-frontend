@@ -56,7 +56,18 @@ export class SessionOverviewComponent implements OnInit {
     this.displayForm = true;
   }
 
-  GenerateReport() {}
+  GenerateReport() {
+    this.sessionService
+      .generateReport(this.savedDoc!.id)
+      .subscribe((response: Blob) => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `session_report_${this.savedDoc!.id}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+  }
 
   CreateDoc() {
     const doc: SessionDocumentation = {
