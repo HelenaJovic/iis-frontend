@@ -59,7 +59,8 @@ export class CreateWorkshop implements OnChanges {
       totalOrgGrade: 0,
       totalPriceGrade: 0,
       numberRecommended: 0,
-      numberNotRecommended: 0
+      numberNotRecommended: 0,
+      feedbackWorkshopDtoList: []
     }
     ulogovaniUser:User={
         id: 0,

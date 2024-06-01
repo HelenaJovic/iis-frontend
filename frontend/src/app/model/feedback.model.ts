@@ -10,7 +10,7 @@ export interface FeedbackWorkshopDto {
     organizationGrade: number;
     priceGrade: number;
   
-    isRecommended: boolean;
+    recommended: boolean;
   
     comment: string;
     registeredUserId: number;

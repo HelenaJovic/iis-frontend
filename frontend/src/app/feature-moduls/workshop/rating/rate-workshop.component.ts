@@ -32,7 +32,7 @@ export class RateWorkshop {
       finalGrade: 0,
       organizationGrade: 0,
       priceGrade: 0,
-      isRecommended: false,
+      recommended: false,
       comment: '',
       registeredUserId: 0,
       workshopId: 0
@@ -97,7 +97,6 @@ export class RateWorkshop {
       next: (response) => {
         console.log('Feedback submitted successfully', response);
         this.openSnackBar("Feedback submitted successfully!", "OK");
-        window.location.reload();
       },
       error: (error) => {
         console.error('Failed to submit feedback', error);

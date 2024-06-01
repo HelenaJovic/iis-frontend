@@ -15,6 +15,7 @@ import { WorkshopAnswer } from 'src/app/model/workshopAnswer.model';
 import { TestResultDto } from 'src/app/model/testResult.model';
 import { WorkshopEvaluationDto } from 'src/app/model/testEvaluation.model';
 import { FeedbackWorkshopDto } from 'src/app/model/feedback.model';
+import { TestJournal } from 'src/app/model/testJournal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +38,10 @@ getTestEvaluationByWorkshopId(workshopId: number):Observable<WorkshopEvaluationD
 }
 
 getTestResultByWorkshop(workshopId: number):Observable<TestResultDto[]> {
-  return this.http.get<TestResultDto[]>(environment.apiHost + 'test_results/resultsByWorkshopId/' + workshopId);
+  return this.http.get<TestResultDto[]>(environment.apiHost + 'feedbacksWorkshop/evaluation/' + workshopId);
+}
+getTestJournal(id: number):Observable<TestJournal> {
+  return this.http.get<TestJournal>(environment.apiHost + 'journals/' + id);
 }
 
 getFeedbacksByWorkshop(workshopId: number):Observable<FeedbackWorkshopDto[]> {

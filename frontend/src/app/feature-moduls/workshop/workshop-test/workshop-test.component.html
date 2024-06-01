@@ -30,18 +30,30 @@
       <p>Dear {{ result.registeredUser?.name }} {{ result.registeredUser?.lastName }}, you passed!</p>
       <div class="circle"><div class="score-circle">{{ result.achievedPoints }} </div></div>
       <p>Status: <strong>Passed</strong></p>
+      <p>Number of Attempts: {{ journalData.attempt_count }}</p>
+
       <canvas id="myCanvas"></canvas>
       <button (click)="generateCertificate()">Download Certificate</button>
     </div>
     </div>
-    <div *ngIf="!result.passed" class="result-failure">
-      <h2>Test Failed</h2>
-      <div class="middle">
-      <p>Dear {{ result.registeredUser?.name }} {{ result.registeredUser?.lastName }}, you may try again!</p>
-      <div class="circle"></div><div class="score-circle">{{ result.achievedPoints }}</div></div>
-      <button (click)="retryTest()">Retry Test</button>
-    </div>
-    </div>
+<div *ngIf="!result.passed" class="result-failure">
+  <h2>Test Failed</h2>
+  <div class="middle">
+    <p>Dear {{ result.registeredUser?.name }} {{ result.registeredUser?.lastName }}, you may try again!</p>
+    <div class="circle"></div>
+    <div class="score-circle">{{ result.achievedPoints }}</div>
+  </div>
+  <div class="additional-info">
+    <p>Here are some statistics to help you improve:</p>
+    <ul>
+      <li>Average Score: {{ journalData.average_score }}</li>
+      <li>Pass Rate: {{ journalData.pass_rate }}%</li>
+      <li>Number of Attempts: {{ journalData.attempt_count }}</li>
+    </ul>
+  </div>
+  <button (click)="retryTest()">Retry Test</button>
+</div>
+
   </div>
 </div>
 </div>

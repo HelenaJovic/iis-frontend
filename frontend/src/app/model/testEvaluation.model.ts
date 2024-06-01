@@ -1,3 +1,4 @@
+import { FeedbackWorkshopDto } from "./feedback.model";
 import { RegisteredUser } from "./registeredUser.model";
 import { WorkshopTest } from "./workshopTest.model";
 
@@ -16,6 +17,7 @@ import { WorkshopTest } from "./workshopTest.model";
         totalPriceGrade: number;
         numberRecommended: number;
         numberNotRecommended: number;
+        feedbackWorkshopDtoList : Array<FeedbackWorkshopDto>;
     }
 
 

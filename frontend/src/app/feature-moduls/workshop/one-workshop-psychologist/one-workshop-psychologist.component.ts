@@ -32,7 +32,8 @@ export class ShowWorkshopPsychologist {
     totalOrgGrade: 0,
     totalPriceGrade: 0,
     numberRecommended: 0,
-    numberNotRecommended: 0
+    numberNotRecommended: 0,
+    feedbackWorkshopDtoList: []
   }
     psiholog:Psychologist={
         id: 0,
@@ -127,20 +128,19 @@ export class ShowWorkshopPsychologist {
         error: (error) => console.error('Failed to update workshop', error)
       });
     }
-  
     GetReport(id: number): void {
       const doc = new jsPDF();
       const imgData = '/assets/psiho.jpg'; // Base64 encoded image
-
+    
       // Add image to the PDF
       doc.addImage(imgData, 'JPEG', 10, 10, 190, 30); // Adjust dimensions as needed
+    
       // Document Title
       doc.setFont("helvetica", "bold");
       doc.setFontSize(18); // Larger size for the title
       doc.setTextColor(31, 78, 121); // Dark blue color for the title
       doc.text('Workshop Evaluation Report', 105, 50, { align: 'center' }); // Centered title
     
-      // Subtitle with Workshop Name
       doc.setFontSize(14); // Smaller than title but larger than normal text
       doc.setTextColor(40, 64, 94); // Slightly lighter shade of blue for the subtitle
       doc.text(`Workshop Name: ${this.workshopEvaluation.workshopName}`, 105, 60, { align: 'center' }); // Centered subtitle
@@ -150,26 +150,112 @@ export class ShowWorkshopPsychologist {
       doc.setFontSize(11);
       doc.setTextColor(70, 70, 70); // Dark grey color for body text
     
-      // Array of details to include in the report
-      const details = [
-        `Female Participation: ${this.workshopEvaluation.femaleParticipation}`,
-        `Male Participation: ${this.workshopEvaluation.maleParticipation}`,
-        `Final Grade: ${this.workshopEvaluation.finalGrade.toFixed(2)}`,
+      // Add a section for feedback details
+      let yPosition = 70;
+      doc.setFontSize(14);
+      doc.setTextColor(40, 64, 94);
+      doc.text('Feedback Details:', 20, yPosition);
+      yPosition += 10;
+    
+      // Loop through feedbackWorkshopDtoList and add details to the PDF
+      this.workshopEvaluation.feedbackWorkshopDtoList.forEach((feedback, index) => {
+        if (yPosition > 280) { // Check if we're nearing the bottom of the page
+          doc.addPage();
+          yPosition = 20; // Reset yPosition for the new page
+        }
+    
+        doc.setFontSize(12);
+        doc.setTextColor(31, 78, 121); // Dark blue color for feedback titles
+        doc.text(`Feedback #${index + 1}`, 20, yPosition);
+        yPosition += 7;
+    
+        doc.setFontSize(11);
+        doc.setTextColor(70, 70, 70); // Dark grey color for feedback content
+        const feedbackDetails = [
+          `Content Grade: ${feedback.contentGrade.toFixed(2)}`,
+          `Psychologist Grade: ${feedback.psychologistGrade.toFixed(2)}`,
+          `Final Grade: ${feedback.finalGrade.toFixed(2)}`,
+          `Organization Grade: ${feedback.organizationGrade.toFixed(2)}`,
+          `Price Grade: ${feedback.priceGrade.toFixed(2)}`,
+          `Recommended: ${feedback.recommended ? 'Yes' : 'No'}`,
+          `Comment: ${feedback.comment || 'No comment'}`
+        ];
+    
+        feedbackDetails.forEach((line) => {
+          doc.text(line, 20, yPosition);
+          yPosition += 7;
+          if (yPosition > 280) { // Check if we're nearing the bottom of the page
+            doc.addPage();
+            yPosition = 20; // Reset yPosition for the new page
+          }
+        });
+    
+        yPosition += 5; // Add some space before the next feedback
+      });
+    
+      // Add a summary section
+      if (yPosition > 280) { // Check if we're nearing the bottom of the page
+        doc.addPage();
+        yPosition = 20; // Reset yPosition for the new page
+      }
+      doc.setFontSize(14);
+      doc.setTextColor(40, 64, 94);
+      doc.text('Summary:', 20, yPosition);
+      yPosition += 10;
+    
+      const summaryDetails = [
         `Total Number of Feedbacks: ${this.workshopEvaluation.totalNumberOfFeedback}`,
+        `Number Recommended: ${this.workshopEvaluation.numberRecommended}`,
+        `Number Not Recommended: ${this.workshopEvaluation.numberNotRecommended}`
+      ];
+    
+      summaryDetails.forEach((line) => {
+        doc.setFontSize(11);
+        doc.setTextColor(70, 70, 70); // Dark grey color for body text
+        doc.text(line, 20, yPosition);
+        yPosition += 7;
+        if (yPosition > 280) { // Check if we're nearing the bottom of the page
+          doc.addPage();
+          yPosition = 20; // Reset yPosition for the new page
+        }
+      });
+    
+      // Add general evaluation scores section with a border
+      if (yPosition > 230) { // Check if we're nearing the bottom of the page
+        doc.addPage();
+        yPosition = 20; // Reset yPosition for the new page
+      }
+    
+      doc.setDrawColor(0); // Black border
+      doc.setLineWidth(0.5);
+      const boxX = 15, boxY = yPosition, boxWidth = 180, boxHeight = 90; // Adjust box dimensions
+      doc.rect(boxX, boxY, boxWidth, boxHeight); // x, y, width, height
+    
+      yPosition += 10;
+      doc.setFontSize(14);
+      doc.setTextColor(40, 64, 94);
+      doc.text('Overall Evaluation Scores:', boxX + 5, yPosition);
+      yPosition += 10;
+    
+      const details = [
+        `Female Participants: ${this.workshopEvaluation.femaleParticipation}`,
+        `Male Participants: ${this.workshopEvaluation.maleParticipation}`,
+        `Final Grade: ${this.workshopEvaluation.finalGrade.toFixed(2)}`,
         `Total Number of Participants: ${this.workshopEvaluation.totalNumberOfParticipants}`,
         `Average Grade by Females: ${this.workshopEvaluation.gradeByFemale.toFixed(2)}`,
         `Average Grade by Males: ${this.workshopEvaluation.gradeByMale.toFixed(2)}`,
         `Total Content Grade: ${this.workshopEvaluation.totalContentGrade.toFixed(2)}`,
         `Total Psychological Grade: ${this.workshopEvaluation.totalPsychologicalGrade.toFixed(2)}`,
         `Total Organization Grade: ${this.workshopEvaluation.totalOrgGrade.toFixed(2)}`,
-        `Total Price Grade: ${this.workshopEvaluation.totalPriceGrade.toFixed(2)}`,
-        `Number Recommended: ${this.workshopEvaluation.numberRecommended}`,
-        `Number Not Recommended: ${this.workshopEvaluation.numberNotRecommended}`
+        `Total Price Grade: ${this.workshopEvaluation.totalPriceGrade.toFixed(2)}`
       ];
     
-      // Print each detail on the PDF
-      details.forEach((line, index) => {
-        doc.text(line, 20, 70 + (index * 7)); // Start text 45mm from top, 7mm between lines
+      // Print each detail within the bordered section
+      details.forEach((line) => {
+        doc.setFontSize(11);
+        doc.setTextColor(70, 70, 70); // Dark grey color for body text
+        doc.text(line, boxX + 5, yPosition);
+        yPosition += 7;
       });
     
       // Adding a footer
@@ -180,6 +266,9 @@ export class ShowWorkshopPsychologist {
       // Save the PDF
       doc.save('Workshop_Evaluation_Report.pdf');
     }
+    
+    
+    
     
     
 

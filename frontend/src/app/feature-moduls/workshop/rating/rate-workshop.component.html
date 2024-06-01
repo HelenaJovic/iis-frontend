@@ -57,7 +57,7 @@
         </div>
         <div class="question">
             <label>Would you recommend this workshop?</label>
-            <input type="checkbox" [(ngModel)]="feedback.isRecommended"> Yes
+            <input type="checkbox" [(ngModel)]="feedback.recommended"> Yes
         </div>
         <div class="question">
             <label>Please leave an overall impression :</label>
@@ -73,7 +73,7 @@
     <ul>
       <li *ngFor="let fb of feedbacks">
         <p><strong>Rating:</strong> {{ fb.finalGrade }}</p>
-        <p><strong>Recommended:</strong> {{ fb.isRecommended ? 'Yes' : 'No' }}</p>
+        <p><strong>Recommended:</strong> {{ fb.recommended ? 'Yes' : 'No' }}</p>
         <div class="comment">
           <p>{{ fb.comment }}</p>
         </div>

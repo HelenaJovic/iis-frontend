@@ -87,7 +87,7 @@
                 <ul>
                   <li *ngFor="let fb of feedbacks">
                     <p><strong>Rating:</strong> {{ fb.finalGrade }}</p>
-                    <p><strong>Recommended:</strong> {{ fb.isRecommended ? 'Yes' : 'No' }}</p>
+                    <p><strong>Recommended:</strong> {{ fb.recommended ? 'Yes' : 'No' }}</p>
                     <div class="comment">
                       <p>{{ fb.comment }}</p>
                     </div>

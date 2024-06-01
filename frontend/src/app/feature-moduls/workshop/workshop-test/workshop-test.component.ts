@@ -13,6 +13,7 @@ import { TestResultDto } from 'src/app/model/testResult.model';
 import confetti from 'canvas-confetti';
 import { switchMap } from 'rxjs';
 import { jsPDF } from 'jspdf';
+import { TestJournal } from 'src/app/model/testJournal.model';
 
 @Component({
   selector: 'app-workshop-test',
@@ -25,6 +26,15 @@ export class TestForUser {
   selectedAnswers: { [questionId: number]: number } = {};
   answers:WorkshopAnswer[]=[];
   workshopId:number=0;
+  journalData:TestJournal={
+    id: 0,
+    achievedPoints: 0,
+    average_score: 0,
+    pass_rate: 0,
+    attempt_count: 0,
+    dateFilled: new Date(),
+    passed: false
+  }
   result:TestResultDto={
     id: 0,
     achievedPoints: 0,
@@ -71,15 +81,15 @@ export class TestForUser {
     this.workshopService.evaluateTest(this.test.id, this.userId, this.answers).pipe(
       switchMap((result: TestResultDto) => {
         console.log('Test result:', result);
-        // Proceed to get the test result by user only after the evaluation is done
+        this.getJournal(1);
         return this.workshopService.getTestResultByUser(this.userId);
       })
     ).subscribe({
       next: (result) => {
-        this.showResult = true; // Set flag to show result
-        this.result = result; // Set the result
+        this.showResult = true; 
+        this.result = result; 
         if (this.result.passed) {
-          this.runConfetti(); // Run confetti if the test is passed
+          this.runConfetti(); 
         }
       },
       error: (error) => {
@@ -99,7 +109,16 @@ export class TestForUser {
     this.answers.push(selectedAnswer);
   }
 
-
+getJournal(id:number):void{
+  this.workshopService.getTestJournal(id).subscribe({
+    next: (journalData: TestJournal) => {
+      this.journalData = journalData;
+    },
+    error: (error: any) => {
+      console.error(error);
+    }
+  });
+}
   
   
  getTest(id:number):void{
