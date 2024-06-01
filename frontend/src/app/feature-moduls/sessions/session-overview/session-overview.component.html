@@ -82,12 +82,15 @@
             <input matInput formControlName="plans" type="text" />
           </mat-form-field>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 50px">
+        <div style="display: flex; flex-direction: column; gap: 30px">
           <button (click)="CreateDoc()" class="button-style-2">
             Create Documentation
           </button>
           <button (click)="GenerateReport()" class="button-style-2">
             Download PDF Report📄
+          </button>
+          <button (click)="viewJournal()" class="button-style-2">
+            View change history
           </button>
         </div>
       </div>

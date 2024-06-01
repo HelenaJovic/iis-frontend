@@ -7,6 +7,7 @@ import { GroupSession } from '../model/groupSession.model';
 import { Psychologist } from '../model/psychologist.model';
 import { IndividualSession } from '../model/individualSession.model';
 import { SessionDocumentation } from '../model/sessionDocumentaton.model';
+import { DocumentationJournal } from '../model/documentationJournal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -79,6 +80,26 @@ export class SessionServiceService {
     return this.http.get(
       `http://localhost:8081/api/sessions/pdf/${documentId}`,
       { responseType: 'blob' }
+    );
+  }
+
+  getAllDocumentations(): Observable<SessionDocumentation[]> {
+    return this.http.get<SessionDocumentation[]>(
+      'http://localhost:8081/api/sessionDocumentations'
+    );
+  }
+
+  getAllJournal(): Observable<DocumentationJournal[]> {
+    return this.http.get<DocumentationJournal[]>(
+      'http://localhost:8081/api/documentationJournal'
+    );
+  }
+
+  deleteDocumentation(
+    documentationId: number | undefined
+  ): Observable<SessionDocumentation> {
+    return this.http.delete<SessionDocumentation>(
+      `http://localhost:8081/api/sessionDocumentations/delete/${documentationId}`
     );
   }
 }

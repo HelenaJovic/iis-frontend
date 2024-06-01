@@ -33,6 +33,7 @@ import { Chart } from 'chart.js';
 import { CreateGroupSessionComponent } from './feature-moduls/sessions/create-group-session/create-group-session.component';
 import { ScheduleSessionComponent } from './feature-moduls/sessions/schedule-session/schedule-session.component';
 import { SessionOverviewComponent } from './feature-moduls/sessions/session-overview/session-overview.component';
+import { DocumentationJournalComponent } from './feature-moduls/sessions/documentation-journal/documentation-journal.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SessionOverviewComponent } from './feature-moduls/sessions/session-over
     CreateGroupSessionComponent,
     ScheduleSessionComponent,
     SessionOverviewComponent,
+    DocumentationJournalComponent,
   ],
 
   imports: [

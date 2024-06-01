@@ -8,6 +8,7 @@ import { User } from '../model/User';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SessionDocumentation } from '../model/sessionDocumentaton.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-session-overview',
@@ -30,7 +31,8 @@ export class SessionOverviewComponent implements OnInit {
   constructor(
     private sessionService: SessionServiceService,
     private authService: AuthServiceService,
-    private userService: UserProfileService
+    private userService: UserProfileService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +91,9 @@ export class SessionOverviewComponent implements OnInit {
         });
       },
     });
+  }
+
+  viewJournal() {
+    this.router.navigate(['/documentation-journal']);
   }
 }

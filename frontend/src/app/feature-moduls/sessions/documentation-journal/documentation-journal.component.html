@@ -1,0 +1,61 @@
+<div class="wrapper">
+  <div clas="first-inner">
+    <img src="assets/naslovna.png" style="width: 100%; height: 300px" />
+  </div>
+  <div class="second-inner">
+    <div class="table-container">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Documentation id</th>
+            <th>Topic summary</th>
+            <th>Emotional reactions</th>
+            <th>Plan</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let row of documentations">
+          <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.topicSummary }}</td>
+            <td>{{ row.emotionalReactions }}</td>
+            <td>{{ row.plan }}</td>
+            <td>
+              <button (click)="delete(row.id)" class="button-style">
+                <img
+                  src="assets/recycle-bin1.png"
+                  alt="Delete"
+                  style="width: 35px; height: 35px"
+                />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-container1">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Documentation id</th>
+            <th>Topic summary</th>
+            <th>Emotional reactions</th>
+            <th>Plan</th>
+            <th>Operation</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let row of journals">
+          <tr>
+            <td>{{ row.documentationId }}</td>
+            <td>{{ row.topicSummary }}</td>
+            <td>{{ row.emotionalReactions }}</td>
+            <td>{{ row.plan }}</td>
+            <td>{{ row.operation }}</td>
+            <td>{{ row.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

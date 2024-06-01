@@ -16,6 +16,7 @@ import { TestResultsComponent } from 'src/app/feature-moduls/sessions/test-resul
 import { CreateGroupSessionComponent } from 'src/app/feature-moduls/sessions/create-group-session/create-group-session.component';
 import { ScheduleSessionComponent } from 'src/app/feature-moduls/sessions/schedule-session/schedule-session.component';
 import { SessionOverviewComponent } from 'src/app/feature-moduls/sessions/session-overview/session-overview.component';
+import { DocumentationJournalComponent } from 'src/app/feature-moduls/sessions/documentation-journal/documentation-journal.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'create-group-session', component: CreateGroupSessionComponent },
   { path: 'schedule-session', component: ScheduleSessionComponent },
   { path: 'session-overview', component: SessionOverviewComponent },
+  { path: 'documentation-journal', component: DocumentationJournalComponent },
 ];
 
 @NgModule({
