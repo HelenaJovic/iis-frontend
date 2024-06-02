@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JournalingTasks } from 'src/app/model/journalingTasks.model';
 import { ReportDto } from 'src/app/model/report.model';
 import { StudentInternship, Task } from 'src/app/model/studentInternship.model';
 import { environment } from 'src/env/environment';
@@ -22,6 +23,10 @@ export class CurrentInternshipService {
 
   createNewTask(task: Task): Observable<void>{
     return this.http.post<void>(environment.apiHost + 'student-internships', task);
+  }
+
+  getJournaling(id: number): Observable<JournalingTasks>{
+    return this.http.get<JournalingTasks>(environment.apiHost + 'tasks-journals');
   }
   
 

@@ -7,6 +7,9 @@ import { User } from 'src/app/model/User';
 import { Student } from 'src/app/model/student.model';
 import { StudentInternship, StudentInternshipPriority, StudentInternshipStatus, Task } from 'src/app/model/studentInternship.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { JournalingTasks } from 'src/app/model/journalingTasks.model';
+import { MatDialog } from '@angular/material/dialog';
+import { JournalingComponent } from '../journaling/journaling.component';
 
 @Component({
   selector: 'app-internship-tasks',
@@ -20,14 +23,15 @@ export class InternshipTasksComponent implements OnInit {
   studentInternship: StudentInternship | undefined;
   showNewTaskForm: boolean = false;
   pdfUrl: SafeResourceUrl | null = null;
-
+  journaling: JournalingTasks | undefined;
 
   constructor(
     private service: CurrentInternshipService, 
     private router: Router,
     private authService: AuthServiceService,
     private userService: UserProfileService,
-    private sanitizer: DomSanitizer){}
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog){}
 
     ngOnInit(): void {
       this.authService.loginStatus$.subscribe(loggedIn => {
@@ -111,6 +115,13 @@ handleTaskCreated(task: any) {
 
   this.service.createNewTask(newTask).subscribe({
     next: () => {
+      this.service.getJournaling(1).subscribe({
+          next: (jour: JournalingTasks) => {
+            this.journaling = jour;
+            this.openDialog(this.journaling);
+          }
+      })
+
       if(this.userRole ==  'ROLE_PSYCHOLOG'){
         this.service.getByPsychologistId(1).subscribe({
             next: (studentInternship : StudentInternship) => {
@@ -126,6 +137,13 @@ handleTaskCreated(task: any) {
         })
       }
     }
+  });
+}
+
+openDialog(journaling: JournalingTasks): void {
+  this.dialog.open(JournalingComponent, {
+    width: '400px',
+    data: journaling
   });
 }
 
