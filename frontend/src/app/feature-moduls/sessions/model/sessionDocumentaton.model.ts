@@ -1,7 +1,7 @@
 export interface SessionDocumentation {
   id?: number;
-  topicSummary: String;
-  emotionalReactions: String;
-  plan: String;
+  topicSummary: string;
+  emotionalReactions: string;
+  plan: string;
   individualSessionId: number;
 }

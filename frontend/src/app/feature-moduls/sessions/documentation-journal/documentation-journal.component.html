@@ -12,6 +12,7 @@
             <th>Emotional reactions</th>
             <th>Plan</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody *ngFor="let row of documentations">
@@ -20,6 +21,15 @@
             <td>{{ row.topicSummary }}</td>
             <td>{{ row.emotionalReactions }}</td>
             <td>{{ row.plan }}</td>
+            <td>
+              <button (click)="update(row)" class="button-style">
+                <img
+                  src="assets/pencil.png"
+                  alt="Update"
+                  style="width: 35px; height: 35px"
+                />
+              </button>
+            </td>
             <td>
               <button (click)="delete(row.id)" class="button-style">
                 <img
@@ -57,5 +67,32 @@
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div class="third-inner" *ngIf="show">
+    <form [formGroup]="docForm" class="form-wrap">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
+        "
+      >
+        <mat-form-field>
+          <mat-label>Emotional reactions</mat-label>
+          <input matInput formControlName="emotionalReactions" type="text" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Topic summary</mat-label>
+          <input matInput formControlName="topicSummary" type="text" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Plan</mat-label>
+          <input matInput formControlName="plan" type="text" />
+        </mat-form-field>
+        <button (click)="save()" class="button-style-1">Update</button>
+      </div>
+    </form>
   </div>
 </div>

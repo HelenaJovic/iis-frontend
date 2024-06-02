@@ -102,4 +102,14 @@ export class SessionServiceService {
       `http://localhost:8081/api/sessionDocumentations/delete/${documentationId}`
     );
   }
+
+  updateDocumentation(
+    doc: SessionDocumentation,
+    id: number
+  ): Observable<SessionDocumentation> {
+    return this.http.put<SessionDocumentation>(
+      `http://localhost:8081/api/sessionDocumentations/update/${id}`,
+      doc
+    );
+  }
 }
