@@ -1,0 +1,45 @@
+/* Stilizacija za celu dialog komponentu */
+:host {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+/* Naslov dialoga */
+h2 {
+  color: #064355;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* Sadržaj dialoga */
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Dugme za zatvaranje dialoga */
+button {
+  background-color: #649bdf;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Dugme za zatvaranje dialoga - hover stanje */
+button:hover {
+  background-color: #6da8e0;
+}
+
+/* Dugme za zatvaranje dialoga - focus stanje */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(17, 141, 213, 0.5);
+}

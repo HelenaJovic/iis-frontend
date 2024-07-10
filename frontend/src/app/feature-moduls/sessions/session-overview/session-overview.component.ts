@@ -9,6 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SessionDocumentation } from '../model/sessionDocumentaton.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SessionDescriptionDialogComponent } from '../session-description-dialog/session-description-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SessionHistoryComponent } from '../session-history/session-history.component';
 
 @Component({
   selector: 'app-session-overview',
@@ -21,18 +24,20 @@ export class SessionOverviewComponent implements OnInit {
   individualSessionId: number | undefined;
   displayForm: boolean | undefined = false;
   savedDoc: SessionDocumentation | undefined;
+  currentIndex = 0;
 
   documentationForm = new FormGroup({
-    topicSummary: new FormControl('', [Validators.required]),
-    emotionalReactions: new FormControl('', [Validators.required]),
-    plans: new FormControl('', [Validators.required]),
+    topicSummary: new FormControl(''),
+    emotionalReactions: new FormControl(''),
+    plans: new FormControl(''),
   });
 
   constructor(
     private sessionService: SessionServiceService,
     private authService: AuthServiceService,
     private userService: UserProfileService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +48,11 @@ export class SessionOverviewComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.Sessions = result;
+          result.forEach((session) => {
+            console.log(
+              `Start Time: ${session.startTime}, End Time: ${session.endTime}`
+            );
+          });
           console.log(result);
         },
       });
@@ -95,5 +105,19 @@ export class SessionOverviewComponent implements OnInit {
 
   viewJournal() {
     this.router.navigate(['/documentation-journal']);
+  }
+
+  getNextName(): string {
+    const names = ['Mila Maksimovic', 'Ana Boskovic'];
+    if (this.currentIndex >= names.length) {
+      this.currentIndex = 0;
+    }
+    return names[this.currentIndex++];
+  }
+
+  sessionHistory() {
+    this.dialog.open(SessionHistoryComponent, {
+      width: '900px',
+    });
   }
 }

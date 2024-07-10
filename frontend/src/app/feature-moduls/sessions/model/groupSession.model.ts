@@ -8,5 +8,6 @@ export interface GroupSession {
   psychologistId: number;
   participantsNumber: number;
   topic: string;
+  description: string;
   registeredUserIds: number[];
 }

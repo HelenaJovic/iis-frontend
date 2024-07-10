@@ -6,17 +6,19 @@
   />
   <h2 class="nav">EQUILIBRIA</h2>
   <div class="spacer"></div>
-  <a mat-button routerLink="/">Home</a>
+  <a mat-button routerLink="/" style="font-size: 17px">Home</a>
   <a
     mat-button
-    routerLink="/sessions"
+    routerLink="/session-overview"
     *ngIf="userRole == 'ROLE_REGISTERED_USER' || userRole == 'ROLE_PSYCHOLOG'"
+    style="font-size: 17px"
     >| My sessions |</a
   >
   <a
     mat-button
     routerLink="/create-questions"
     *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+    style="font-size: 17px"
   >
     Create Questions
   </a>
@@ -24,6 +26,7 @@
     mat-button
     routerLink="/test-overview"
     *ngIf="userRole == 'ROLE_REGISTERED_USER'"
+    style="font-size: 17px"
   >
     Big 5 test
   </a>
@@ -31,6 +34,7 @@
     mat-button
     routerLink="/schedule-session"
     *ngIf="userRole == 'ROLE_REGISTERED_USER'"
+    style="font-size: 17px"
   >
     | Schedule session
   </a>
@@ -38,18 +42,24 @@
     mat-button
     routerLink="/create-group-session"
     *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+    style="font-size: 17px"
   >
     | Create group session
   </a>
-  <a mat-button routerLink="/test-results" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
-    >| Test Results |</a
-  >
+  <a
+    mat-button
+    routerLink="/test-results"
+    style="font-size: 17px"
+    *ngIf="userRole == 'ROLE_PSYCHOLOG'"
+    >| Test Results
+  </a>
   <a
     mat-button
     routerLink="/workshops"
     *ngIf="userRole == 'ROLE_REGISTERED_USER'"
-    >| My workshops |</a
-  >
+    style="font-size: 17px"
+    >| My workshops
+  </a>
 
   <a mat-button routerLink="/students" *ngIf="userRole == 'ROLE_STUDENT'"
     >| Internship progress |</a
@@ -61,7 +71,6 @@
     >|Register new specialist|</a
   >
 
-  <a mat-button routerLink="/about-us">About us</a>
   <div class="spacer"></div>
   <a mat-button routerLink="/login" *ngIf="userRole == ''">Log in</a>
   <a mat-button routerLink="/register" *ngIf="userRole == ''">Sign up</a>

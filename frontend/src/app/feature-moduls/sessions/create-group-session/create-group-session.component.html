@@ -27,10 +27,31 @@
           <mat-label>Participants number</mat-label>
           <input matInput formControlName="participantsNumber" type="number" />
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" type="text" />
+        </mat-form-field>
+        <div style="display: flex; flex-direction: row; gap: 40px">
+          <mat-checkbox
+            formControlName="isOnline"
+            (change)="onOnlineChange($event)"
+            style="margin-top: 10px"
+            >Online</mat-checkbox
+          >
+          <mat-form-field *ngIf="!online" style="height: 70px">
+            <mat-label>Select room</mat-label>
+            <mat-select formControlName="room">
+              <mat-option *ngFor="let type of rooms" [value]="type">{{
+                type
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <mat-calendar
           [selected]="selectedDate"
           (selectedChange)="onDateSelected($event)"
-          style="width: 80%; height: 80%; align-self: center"
+          style="width: 70%; height: 50%; align-self: center"
         ></mat-calendar>
         <div class="card-wrapper">
           <div

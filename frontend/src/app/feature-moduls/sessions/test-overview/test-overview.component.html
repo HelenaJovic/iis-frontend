@@ -32,23 +32,29 @@
   </div>
   <div class="answers-div">
     <div class="scale">
-      <p class="scale-text">STRONGLY DISAGREE</p>
-      <p class="scale-text">NEUTRAL</p>
       <p class="scale-text">STRONGLY AGREE</p>
+      <p class="scale-text">NEUTRAL</p>
+      <p class="scale-text">STRONGLY DISAGREE</p>
     </div>
 
     <div class="card-wrapper">
       <div class="card" *ngFor="let question of questions">
         <div style="display: flex; flex-direction: row">
-          <p style="justify-content: center">{{ question.id }}.</p>
-          <p style="justify-content: center">{{ question.text }}</p>
+          <p style="justify-content: center; font-size: 26px">
+            {{ question.id }}.
+          </p>
+          <p style="justify-content: center; font-size: 26px">
+            {{ question.text }}
+          </p>
         </div>
         <div
           style="
             display: flex;
             flex-direction: row;
+            gap: 10px;
             margin-top: 1%;
             margin-bottom: 1%;
+            margin-left: 3%;
           "
         >
           <mat-icon
@@ -56,18 +62,23 @@
             *ngFor="let circle of [1, 2, 3, 4, 5]; let i = index"
             (click)="createAnswer(question.id, circle, $event)"
             [style.transform]="
-              i === 2
-                ? 'scale(1.7)'
-                : i === 1 || i === 3
-                ? 'scale(2.4)'
-                : 'scale(3.4)'
+              i === 0
+                ? 'scale(3.7)'
+                : i === 1
+                ? 'scale(3.1)'
+                : i === 2
+                ? 'scale(2.5)'
+                : i === 3
+                ? 'scale(1.9)'
+                : 'scale(1.5)'
             "
             style="
               color: rgb(170, 204, 243);
-              margin-right: 45px;
+              margin-right: 50px;
               margin-left: 0.6%;
             "
-            >lens
+          >
+            lens
           </mat-icon>
         </div>
       </div>

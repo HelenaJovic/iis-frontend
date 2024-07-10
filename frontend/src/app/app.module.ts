@@ -34,6 +34,8 @@ import { CreateGroupSessionComponent } from './feature-moduls/sessions/create-gr
 import { ScheduleSessionComponent } from './feature-moduls/sessions/schedule-session/schedule-session.component';
 import { SessionOverviewComponent } from './feature-moduls/sessions/session-overview/session-overview.component';
 import { DocumentationJournalComponent } from './feature-moduls/sessions/documentation-journal/documentation-journal.component';
+import { SessionDescriptionDialogComponent } from './feature-moduls/sessions/session-description-dialog/session-description-dialog.component';
+import { SessionHistoryComponent } from './feature-moduls/sessions/session-history/session-history.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { DocumentationJournalComponent } from './feature-moduls/sessions/documen
     ScheduleSessionComponent,
     SessionOverviewComponent,
     DocumentationJournalComponent,
+    SessionDescriptionDialogComponent,
+    SessionHistoryComponent,
   ],
 
   imports: [

@@ -17,6 +17,8 @@ export class CreateGroupSessionComponent {
   timeSlots: TimeSlot[] | undefined;
   loggedInUserId: number | undefined;
   selectedSlot: TimeSlot | undefined;
+  rooms: string[] = ['Velika sala C', 'Mala sala A', 'Mala sala B'];
+  online: boolean = false;
 
   constructor(
     private authService: AuthServiceService,
@@ -25,6 +27,9 @@ export class CreateGroupSessionComponent {
   sessionForm = new FormGroup({
     topic: new FormControl('', [Validators.required]),
     participantsNumber: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
+    isOnline: new FormControl(false),
+    room: new FormControl(''),
   });
 
   onDateSelected(event: Date) {
@@ -53,6 +58,10 @@ export class CreateGroupSessionComponent {
     this.timeSlots = [];
   }
 
+  onOnlineChange(event: any): void {
+    this.online = true;
+  }
+
   finish() {
     var numOfParticipants = parseInt(
       this.sessionForm.value.participantsNumber!
@@ -64,6 +73,7 @@ export class CreateGroupSessionComponent {
       endTime: this.selectedSlot?.endTime!,
       psychologistId: this.loggedInUserId!,
       topic: this.sessionForm.value.topic!,
+      description: this.sessionForm.value.description!,
       participantsNumber: numOfParticipants,
       registeredUserIds: [],
     };

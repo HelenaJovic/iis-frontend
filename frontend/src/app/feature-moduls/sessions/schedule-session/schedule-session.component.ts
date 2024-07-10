@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { GroupSession } from '../model/groupSession.model';
 import { SessionServiceService } from '../service/session-service.service';
 import { AuthServiceService } from 'src/app/infrastructure/auth/register/auth-service.service';
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TimeSlot } from '../model/timeSlot.model';
 import Swal from 'sweetalert2';
 import { IndividualSession } from '../model/individualSession.model';
+import { SessionDescriptionDialogComponent } from '../session-description-dialog/session-description-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-schedule-session',
@@ -15,25 +17,31 @@ import { IndividualSession } from '../model/individualSession.model';
 })
 export class ScheduleSessionComponent implements OnInit {
   groupSessions: GroupSession[] | undefined;
+  filteredSessions: GroupSession[] | undefined;
   loggedInUserId: number | undefined;
   psychologists: Psychologist[] | undefined;
   selectedDate: Date | undefined;
   timeSlots: TimeSlot[] | undefined;
   selectedSlot: TimeSlot | undefined;
+  searchTerm: string = '';
+  firstAvailableDate: boolean = false;
 
   constructor(
     private groupSessionService: SessionServiceService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private dialog: MatDialog,
+    private elementRef: ElementRef
   ) {}
 
   sessionForm = new FormGroup({
-    sessionGoal: new FormControl('', [Validators.required]),
+    sessionGoal: new FormControl(''),
     Psychologist: new FormControl('', [Validators.required]),
   });
   ngOnInit(): void {
     this.groupSessionService.getAll().subscribe({
       next: (result) => {
         this.groupSessions = result;
+        this.filteredSessions = result;
       },
     });
 
@@ -60,6 +68,7 @@ export class ScheduleSessionComponent implements OnInit {
   }
 
   onDateSelected(event: Date) {
+    this.firstAvailableDate = true;
     this.selectedDate = event;
     this.loggedInUserId = parseInt(this.authService.getUserId());
     var psychologId = parseInt(this.sessionForm.value.Psychologist!);
@@ -108,5 +117,51 @@ export class ScheduleSessionComponent implements OnInit {
           });
         },
       });
+  }
+
+  viewMore(desc: string): void {
+    this.dialog.open(SessionDescriptionDialogComponent, {
+      width: '400px',
+      data: { description: desc },
+    });
+  }
+
+  reserveIndividualSession() {
+    const element = this.elementRef.nativeElement.querySelector(
+      '#add-new-session-form'
+    );
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  search(): void {
+    if (!this.searchTerm) {
+      this.filteredSessions = this.groupSessions;
+    } else {
+      this.filteredSessions = this.groupSessions!.filter((session) => {
+        const searchTermLower = this.searchTerm.toLowerCase();
+
+        const formattedDate = this.formatDate(session.date);
+
+        const dateMatch = formattedDate.toLowerCase().includes(searchTermLower);
+        const topicMatch = session.topic
+          .toLowerCase()
+          .includes(searchTermLower);
+        return dateMatch || topicMatch;
+      });
+    }
+  }
+
+  formatDate(date: Date): string {
+    const d = new Date(date);
+    let day = '' + d.getDate();
+    let month = '' + (d.getMonth() + 1);
+    const year = d.getFullYear();
+
+    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) month = '0' + month;
+
+    return [day, month, year].join('.');
   }
 }

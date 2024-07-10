@@ -28,7 +28,7 @@
 }
 
 .card1 {
-  background-color: rgb(86, 146, 214);
+  background-color: rgb(86, 146, 214, 0.8);
   /* padding-top: 3%;
   padding-bottom: 3%;
   padding-left: 2%;
@@ -38,7 +38,7 @@
   padding-bottom: 2%;
 
   border-radius: 17px;
-  width: 350px;
+  width: 500px;
 }
 
 .firstName {
@@ -60,7 +60,7 @@
   color: white;
   padding-bottom: 2%;
   width: 50%;
-  align-self: center;
+  margin-left: 40px;
   width: 300px;
   margin-top: 10px;
 }
@@ -103,5 +103,29 @@
 }
 
 .button-style-2:hover {
+  transform: scale(1.1);
+}
+
+.card1:hover {
+  transform: scale(1.1);
+}
+
+.second-button {
+  margin-right: 30px;
+  border: 2px solid rgb(42, 90, 146);
+  border-radius: 5px;
+}
+
+.second-button:hover {
+  transform: scale(1.1);
+}
+
+.first-button {
+  margin-left: 30px;
+  border: 2px solid rgb(42, 90, 146);
+  border-radius: 5px;
+}
+
+.first-button:hover {
   transform: scale(1.1);
 }

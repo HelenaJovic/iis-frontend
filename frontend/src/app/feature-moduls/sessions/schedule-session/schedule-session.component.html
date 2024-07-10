@@ -3,7 +3,33 @@
     <img src="assets/naslovna.png" style="width: 100%; height: 300px" />
   </div>
   <div class="second-inner">
-    <p class="title">Available group sessions</p>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 2%;
+        padding-right: 2%;
+      "
+    >
+      <a href="#" (click)="reserveIndividualSession()" class="reserve-link"
+        >Reserve individual session</a
+      >
+      <p class="title">Available group sessions</p>
+      <div style="display: flex; align-items: center">
+        <input
+          style="height: 35px; border-radius: 5px"
+          type="text"
+          placeholder="Search by date or topic"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="search()"
+          class="search-input"
+        />
+        <button (click)="search()" style="border-radius: 5px">
+          <img style="width: 25px; height: 30px" src="assets/search.png" />
+        </button>
+      </div>
+    </div>
     <div
       style="
         display: flex;
@@ -13,17 +39,49 @@
         justify-content: center;
       "
     >
-      <div class="card" *ngFor="let session of groupSessions">
-        <div style="width: 22rem">
+      <button style="border: none; background-color: transparent">
+        <img
+          style="width: 30px; height: 30px"
+          src="assets/left-arrow.png"
+          alt="Left Arrow"
+        />
+      </button>
+      <div class="card" *ngFor="let session of filteredSessions; let i = index">
+        <div style="width: 25rem">
           <img
             class="card-img-top"
-            src="assets/conversation1.png"
+            [src]="'assets/conversation' + (i + 1) + '.jpg'"
             alt="Card image cap"
           />
           <div class="body-card">
-            <p class="text-card">{{ session.topic }}</p>
-            <div style="display: flex; flex-direction: row; gap: 20px">
-              <p class="text1-card">📆 {{ session.date }}</p>
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 10px;
+              "
+            >
+              <p class="text-card">{{ session.topic }}</p>
+              <button
+                mat-button
+                style="
+                  color: rgb(3, 19, 37);
+                  font-size: 16px;
+                  margin-bottom: 5px;
+                  margin-right: 5px;
+                  background-color: #f0f0f0;
+                "
+                (click)="viewMore(session.description)"
+              >
+                View More
+              </button>
+            </div>
+
+            <div style="display: flex; flex-direction: row; gap: 30px">
+              <p class="text1-card">
+                📆 {{ session.date | date : "dd.MM.yyyy" }}
+              </p>
               <div style="display: flex; flex-direction: row; gap: 10px">
                 <p class="text1-card">{{ session.startTime }}</p>
                 <p>-</p>
@@ -36,10 +94,20 @@
           </div>
         </div>
       </div>
+      <button style="border: none; background-color: transparent">
+        <img
+          style="width: 30px; height: 30px"
+          src="assets/right-arrow.png"
+          alt="Right Arrow"
+        />
+      </button>
     </div>
   </div>
-  <div style="display: flex; flex-direction: column; gap: 30px">
-    <p class="title">Create individual session</p>
+  <div
+    id="add-new-session-form"
+    style="display: flex; flex-direction: column; gap: 30px"
+  >
+    <p class="title">Reserve individual session</p>
     <div class="third-inner">
       <div class="form-wrapper">
         <form [formGroup]="sessionForm">
@@ -88,6 +156,11 @@
                   <p>{{ slot.endTime }}</p>
                 </div>
               </div>
+              <a
+                *ngIf="firstAvailableDate"
+                style="color: rgb(40, 63, 210); font-size: 14px"
+                >First available date?</a
+              >
             </div>
           </div>
         </form>

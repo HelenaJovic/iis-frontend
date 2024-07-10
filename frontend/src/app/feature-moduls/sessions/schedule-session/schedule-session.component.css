@@ -17,7 +17,7 @@
     Geneva, Verdana, sans-serif;
   font-size: 30px;
   font-weight: 500;
-  padding-top: 2%;
+  padding-top: 1%;
   color: rgb(42, 90, 146);
   line-height: 1.2;
   text-align: center;
@@ -61,7 +61,8 @@
   padding-bottom: 2%;
   width: 50%;
   align-self: center;
-  width: 300px;
+  width: 270px;
+  margin-bottom: 10px;
 }
 
 .third-inner {
@@ -88,13 +89,39 @@
 
 .card1 {
   text-align: center;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10%;
   cursor: pointer;
-
-  background-color: rgb(232, 226, 226);
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(153, 192, 237);
+  border: 1px solid rgb(24, 24, 23);
 }
 
 .card1:hover {
   transform: scale(1.2);
+}
+
+.card-img-top {
+  height: 220px;
+}
+
+.navigation-arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.reserve-link {
+  text-decoration: none;
+  color: rgb(42, 90, 146);
+  font-weight: 500;
+  padding-top: 1%;
+  font-size: 19px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.reserve-link:hover {
+  color: #0056b3;
 }
