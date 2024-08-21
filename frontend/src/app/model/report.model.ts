@@ -9,4 +9,5 @@ export interface ReportDto {
     internshipTitle: string;
     endDate: Date;
     tasks: Task[]; 
+    studentInternshipComments: string[];
 }

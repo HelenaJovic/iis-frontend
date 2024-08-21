@@ -1,0 +1,28 @@
+<div id="chat">
+    <div class="chat-header">
+        <mat-icon class="person-icon">person</mat-icon>
+        <p>{{otherName}}</p>
+    </div>
+    
+    <div id="problem-details">
+        <div>
+            <ng-container>
+                <div *ngFor="let m of messages" class="chat-bubble-container"
+                    [ngClass]="{ 'sender': (userRole == 'ROLE_STUDENT' && m.sender == 'student') || (userRole == 'ROLE_PSYCHOLOG' && m.sender == 'psychologist')}">
+                    <div class="chat-bubble">
+                        {{m.content}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div id="chat-input-container">
+        <mat-form-field appearance="outline">
+            <input [formControl]="messageControl" matInput placeholder="Enter your message..." (keyup.enter)="sendMessage()" />
+        </mat-form-field>
+        <button class="icon-button" mat-icon-button (click)="sendMessage()">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+    
+</div>

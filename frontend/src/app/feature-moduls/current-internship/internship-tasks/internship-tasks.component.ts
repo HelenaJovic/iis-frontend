@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentInternshipService } from '../current-internship.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/infrastructure/auth/register/auth-service.service';
 import { UserProfileService } from '../../user-profile/user-profile.service';
 import { User } from 'src/app/model/User';
-import { Student } from 'src/app/model/student.model';
 import { StudentInternship, StudentInternshipPriority, StudentInternshipStatus, Task } from 'src/app/model/studentInternship.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { JournalingTasks } from 'src/app/model/journalingTasks.model';
 import { MatDialog } from '@angular/material/dialog';
 import { JournalingComponent } from '../journaling/journaling.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { NewTaskFormComponent } from '../new-task-form/new-task-form.component';
+import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
 
 @Component({
   selector: 'app-internship-tasks',
@@ -24,6 +26,31 @@ export class InternshipTasksComponent implements OnInit {
   showNewTaskForm: boolean = false;
   pdfUrl: SafeResourceUrl | null = null;
   journaling: JournalingTasks | undefined;
+  mentorComment: string = '';
+  messageCount: number = 0; 
+  showChat: boolean = false;
+
+  studentName: String = '';
+  studentLastName: String = '';
+  studentImage: String = '';
+  internshipId: number = 0;
+  notShow: boolean = false;
+
+
+  taskStatuses = [
+    StudentInternshipStatus.STUCK,
+    StudentInternshipStatus.IN_PROGRESS,
+    StudentInternshipStatus.NOT_REVIEWED,
+    StudentInternshipStatus.DONE
+  ];
+
+  priorities = [
+    StudentInternshipPriority.LOW,
+    StudentInternshipPriority.MEDIUM,
+    StudentInternshipPriority.HIGH
+  ]
+
+  
 
   constructor(
     private service: CurrentInternshipService, 
@@ -31,9 +58,17 @@ export class InternshipTasksComponent implements OnInit {
     private authService: AuthServiceService,
     private userService: UserProfileService,
     private sanitizer: DomSanitizer,
-    public dialog: MatDialog){}
+    public dialog: MatDialog,
+    private route: ActivatedRoute){}
 
     ngOnInit(): void {
+      this.route.paramMap.subscribe((params) => {
+        const idString = params.get('id');
+        if (idString !== null) {
+          this.internshipId = parseInt(idString);
+        }
+      });
+
       this.authService.loginStatus$.subscribe(loggedIn => {
         if (loggedIn) {
           const token = localStorage.getItem('token');
@@ -46,27 +81,142 @@ export class InternshipTasksComponent implements OnInit {
     
       const email = this.userClaims.sub;
       console.log(email);
-    
+      
       this.userService.getUserByEmail(email).subscribe({
         next: (user: User) => {
           if (this.userRole == 'ROLE_PSYCHOLOG') {
-            this.service.getByPsychologistId(1).subscribe({
-              next: (studentInternship: StudentInternship) => {
-                this.studentInternship = studentInternship;
-              }
-            });
+            if(this.internshipId == 1){  
+              this.service.getByPsychologistId(1).subscribe({
+                next: (studentInternship: StudentInternship) => {
+                  this.studentInternship = studentInternship;
+                  this.loadStudentInfo("zarkokn@gmail.com");
+                }
+              });
+            }
+            else{
+              this.service.getByPsychologist2Id(2).subscribe({
+                next: (studentInternship: StudentInternship) => {
+                  this.studentInternship = studentInternship;
+                  this.notShow = true;
+                  this.loadStudentInfo("zarkokn@gmail.com");
+                }
+              });
+            }
+            this.getMessageCount();
           } else if (this.userRole == 'ROLE_STUDENT') {
             this.service.getByStudentId(2).subscribe({
               next: (studentInternship: StudentInternship) => {
                 this.studentInternship = studentInternship;
+                this.loadStudentInfo("psiholog@gmail.com");
               }
+              
             });
+            this.getMessageCount();
           }
         }
       });
     }
-    
 
+
+  getMessageCount(){
+    if (this.userRole == 'ROLE_PSYCHOLOG') {
+      this.service.getNumOfUnreadPsychologistMessages(1, 1).subscribe({
+        next: (num: number) => {
+          this.messageCount = num;
+        }
+      })
+    }
+    else{
+      this.service.getNumOfUnreadStudentMessages(2, 1).subscribe({
+        next: (num: number) => {
+          this.messageCount = num;
+        }
+      })
+    }
+
+  }
+
+  getTasksByStatus(status: string): Task[] {
+    return this.studentInternship?.tasks.filter(task => task.status === status) || [];
+  }
+
+  loadStudentInfo(email: string): void {
+    this.userService.getUserByEmail(email).subscribe({
+      next: (user: User) => {
+        this.studentName = user.name;
+        this.studentLastName = user.lastName;
+        this.studentImage = user.imageUrl || '';
+      }
+    });
+  }
+
+  getConnectedLists(status: StudentInternshipStatus): string[] {
+    if (this.userRole === 'ROLE_STUDENT') {
+      if (status === StudentInternshipStatus.DONE) {
+        return [];
+      } else {
+        return this.taskStatuses.filter(s => s !== StudentInternshipStatus.DONE);
+      }
+    } else if (this.userRole === 'ROLE_PSYCHOLOG') {
+      if (status === StudentInternshipStatus.NOT_REVIEWED) {
+        return [StudentInternshipStatus.DONE];
+      } else {
+        return [StudentInternshipStatus.NOT_REVIEWED];
+      }
+    }
+    return this.taskStatuses;
+  }
+  
+  isDraggable(task: Task, status: StudentInternshipStatus): boolean {
+    if (this.userRole === 'ROLE_STUDENT' && status === StudentInternshipStatus.DONE) {
+      return false;
+    }
+    if (this.userRole === 'ROLE_PSYCHOLOG' && status !== StudentInternshipStatus.NOT_REVIEWED) {
+      return false;
+    }
+    return true;
+  }
+  
+  drop(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      const task = event.previousContainer.data[event.previousIndex];
+      const targetStatus = event.container.id as StudentInternshipStatus;
+  
+      if (this.userRole === 'ROLE_STUDENT') {
+        if ([StudentInternshipStatus.IN_PROGRESS, StudentInternshipStatus.STUCK, StudentInternshipStatus.NOT_REVIEWED].includes(targetStatus)) {
+          task.status = targetStatus;
+          transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+  
+          if (targetStatus === StudentInternshipStatus.NOT_REVIEWED) {
+            this.openFilePicker(task);
+          } else {
+            this.service.updateTask(task).subscribe({
+              next: () => {
+                console.log('Task status updated successfully');
+              }
+            });
+          }
+        }
+      }
+  
+      if (this.userRole === 'ROLE_PSYCHOLOG') {
+        if (event.previousContainer.id === StudentInternshipStatus.NOT_REVIEWED && targetStatus === StudentInternshipStatus.DONE) {
+          task.status = targetStatus;
+          transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+  
+          this.service.updateTask(task).subscribe({
+            next: () => {
+              console.log('Task status updated successfully');
+            }
+          });
+        }
+      }
+    }
+  }
+  
+  
 
   getStatusColor(status: StudentInternshipStatus): string {
     switch (status) {
@@ -96,13 +246,30 @@ getPriorityColor(priority: StudentInternshipPriority): string {
   }
 }
 
-newTask() : void {
-  this.showNewTaskForm = true;
+newTask(): void {
+  const dialogRef = this.dialog.open(NewTaskFormComponent, {
+    width: '400px',
+    data: {}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.handleTaskCreated(result);
+    }
+  });
+}
+
+openChat(): void {
+  this.showChat = !this.showChat;
+ // this.router.navigate(['/chat/']);
+}
+
+closeChat() {
+  this.showChat = false; // Close the chat
 }
 
 handleTaskCreated(task: any) {
   console.log('New Task Created:', task);
-  this.showNewTaskForm = false; 
 
   const newTask: Task = {
     title: task.title,
@@ -116,29 +283,29 @@ handleTaskCreated(task: any) {
   this.service.createNewTask(newTask).subscribe({
     next: () => {
       this.service.getJournaling(1).subscribe({
-          next: (jour: JournalingTasks) => {
-            this.journaling = jour;
-            this.openDialog(this.journaling);
-          }
-      })
+        next: (jour: JournalingTasks) => {
+          this.journaling = jour;
+          this.openDialog(this.journaling);
+        }
+      });
 
-      if(this.userRole ==  'ROLE_PSYCHOLOG'){
+      if (this.userRole == 'ROLE_PSYCHOLOG') {
         this.service.getByPsychologistId(1).subscribe({
-            next: (studentInternship : StudentInternship) => {
-                this.studentInternship = studentInternship;
-            }
-        })
-      }
-      else if (this.userRole == 'ROLE_STUDENT'){
-        this.service.getByStudentId(2).subscribe({
-          next: (studentInternship : StudentInternship) => {
+          next: (studentInternship: StudentInternship) => {
             this.studentInternship = studentInternship;
           }
-        })
+        });
+      } else if (this.userRole == 'ROLE_STUDENT') {
+        this.service.getByStudentId(2).subscribe({
+          next: (studentInternship: StudentInternship) => {
+            this.studentInternship = studentInternship;
+          }
+        });
       }
     }
   });
 }
+
 
 openDialog(journaling: JournalingTasks): void {
   this.dialog.open(JournalingComponent, {
@@ -147,43 +314,16 @@ openDialog(journaling: JournalingTasks): void {
   });
 }
 
-handleCheckboxChange(event: any, task: any) {
-  if (event.target.checked) {
-    console.log('Checkbox checked for task:', task);
-    this.openFilePicker(task);
-  } else {
-    console.log('Checkbox unchecked for task:', task);
-    task.pdfUrl = null; 
-  }
-}
-
-confirmReview(event: Event, task: any) {
-  const isConfirmed = confirm('Are you sure you want to review this task?');
-  if (isConfirmed) {
-    this.review(event, task);
-  } else {
-    (event.target as HTMLInputElement).checked = false;
-  }
-}
-
-review(event: any, task: any) {
-  task.status = StudentInternshipStatus.DONE;
-  this.service.updateTask(task).subscribe({
+submitComment(): void {
+  this.service.submitComment(this.mentorComment, this.studentInternship?.id || 0).subscribe({
     next: () => {
-      if(this.userRole ==  'ROLE_PSYCHOLOG'){
-        this.service.getByPsychologistId(1).subscribe({
-            next: (studentInternship : StudentInternship) => {
-                this.studentInternship = studentInternship;
-            }
-        })
-      }
-      else if (this.userRole == 'ROLE_STUDENT'){
-        this.service.getByStudentId(2).subscribe({
-          next: (studentInternship : StudentInternship) => {
-            this.studentInternship = studentInternship;
-          }
-        })
-      }
+      this.dialog.open(NotificationDialogComponent, {
+        data: {
+          title: 'Success',
+          message: 'Comment submitted successfully'
+        }
+      });
+      this.mentorComment = '';
     }
   });
 }
@@ -209,25 +349,20 @@ readPdf(file: File, task: any) {
   reader.onload = (e) => {
     const fileUrl = e.target?.result as string;
     task.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fileUrl);
+    this.service.updateTask(task).subscribe({
+      next: () => {
+        console.log('Task status updated and PDF uploaded successfully');
+      }
+    });
   };
   reader.readAsDataURL(file);
 }
 
 uploadPdf(task: any): void {
- // const blob = this.dataURLtoBlob(task.pdfUrl);
-    //const fileName = `${task.title}.pdf`;
-
-    //this.service.uploadPdf(blob, fileName).subscribe({
-    //next: () => {
-      window.alert('PDF successfully uploaded');
-      task.status = StudentInternshipStatus.NOT_REVIEWED;
-      task.pdfUrl = null;
-    //},
-    //error: () => {
-    //  console.error('Error uploading PDF');
-    //}
- // })
-}
+       window.alert('PDF successfully uploaded');
+       task.status = StudentInternshipStatus.NOT_REVIEWED;
+       task.pdfUrl = null;
+ }
 
 dataURLtoBlob(dataURL: any): Blob {
   const byteString = atob(dataURL.split(',')[1]);
@@ -239,5 +374,14 @@ dataURLtoBlob(dataURL: any): Blob {
   }
   return new Blob([ab], { type: mimeString });
 }
+
+editTask(task: Task): void {
+  task.editable = true;
+}
+
+saveTask(task: Task): void {
+  task.editable = false;
+}
+
 
 }

@@ -1,13 +1,27 @@
 <div class="column">
-<img class="full" src="../../../../assets/psihic.webp" alt="Image description">
-<div><h1>Tests history</h1>
-<hr>
-<div class="card-container">
-    <div *ngFor="let test of tests" class="card" [ngClass]="{'grey-background': test.testReviewed, 'red-background': !test.testReviewed}" (click)="handleClick(test)">
-      <h1 *ngIf="!test.testReviewed">NOT REVIEWED!!!</h1>
-      <h1 *ngIf="test.testReviewed">REVIEWED 🙂</h1>
-      <h2>{{ test.internshipTitle }}</h2>
+  <img class="full" src="../../../../assets/psihic.webp" alt="Image description">
+  <div class="right">
+    <h1>Tests history</h1>
+    <div class="sort-buttons">
+      <button (click)="sortTestsByDate('asc')">Sort by Oldest</button>
+      <button (click)="sortTestsByDate('desc')">Sort by Newest</button>
+      <button (click)="sortTestsByPopularity()">Sort by Popularity</button>
+    </div>
+    <hr>
+    <div class="card-container">
+      <div *ngFor="let test of pagedTests" class="card" [ngClass]="{'grey-background': test.testReviewed, 'red-background': !test.testReviewed}" (click)="handleClick(test)">
+        <h1 *ngIf="!test.testReviewed">NOT REVIEWED!!!</h1>
+        <h1 *ngIf="test.testReviewed">REVIEWED</h1>
+        <h2>{{ test.internshipTitle }}</h2>
+        <p>Date: {{ test.date | date:'shortDate' }}</p>
+        <p>Number of Students: {{ test.numOfStudents }}</p>
+        <p>Average Points: {{ test.avaragePointsNum }}</p>
+      </div>
+    </div>
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
     </div>
   </div>
 </div>
-</div> 

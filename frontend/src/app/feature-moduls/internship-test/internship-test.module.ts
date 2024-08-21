@@ -8,7 +8,13 @@ import { TestHistoryComponent } from './test-history/test-history.component';
 import { TestResultsComponent } from './test-results/test-results.component';
 import { InfoDialogComponent } from './info-dialog/busy-hall-dialog.component';
 import { BestStudentsDialogComponent } from './best-students-dialog/best-students-dialog.component';
-import { MatCardModule } from '@angular/material/card';
+ import { MatCardModule } from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { RequestDialogComponent } from './request-dialog/request-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -17,13 +23,18 @@ import { MatCardModule } from '@angular/material/card';
     InfoDialogComponent,
     TestHistoryComponent,
     TestResultsComponent,
-    BestStudentsDialogComponent
+    BestStudentsDialogComponent,
+    RequestDialogComponent
   ],
   imports: [
     MatCardModule,
     CommonModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+ 
   ]
 })
 export class InternshipTestModule { }

@@ -15,6 +15,8 @@ import { IntershipsOverviewComponent } from 'src/app/feature-moduls/internship-t
 import { TestHistoryComponent } from 'src/app/feature-moduls/internship-test/test-history/test-history.component';
 import { TestResultsComponent } from 'src/app/feature-moduls/internship-test/test-results/test-results.component';
 import { InternshipTasksComponent } from 'src/app/feature-moduls/current-internship/internship-tasks/internship-tasks.component';
+import { ChatComponent } from 'src/app/feature-moduls/current-internship/chat/chat.component';
+import { MentorInternshipsComponent } from 'src/app/feature-moduls/current-internship/mentor-internships/mentor-internships.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'internship-details/:id', component: StudentsOverviewComponent},
   { path: 'test-history', component: TestHistoryComponent},
   { path: 'test-results/:id', component: TestResultsComponent},
-  { path: 'internship-tasks', component: InternshipTasksComponent},
+  { path: 'one-internship-tasks/:id', component: InternshipTasksComponent},
+  { path: 'internship-tasks', component: MentorInternshipsComponent},
   {
     path: 'successfullyRegistration',
     component: SuccessfullRegistrationComponent,
@@ -36,6 +39,9 @@ const routes: Routes = [
   {
     path: 'register-psychologist',
     component: RegisterPsychologistComponent
+  },
+  {
+    path: 'chat', component: ChatComponent
   }
 ];
 

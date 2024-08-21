@@ -1,0 +1,28 @@
+<div class="flex-container">
+  <div *ngFor="let internship of mentorStudentInternships" class="card" [ngClass]="{'highlight-red': isHighlightRed(internship)}">
+    <div class="card-content">
+      <h3>{{ internship.studentName }} {{ internship.studentLastName }}</h3>
+      <h4>Student ID: {{ internship.studentId }}</h4>
+      <div class="inside-row">
+        <p>Number of tasks: {{ internship.tasks.length }}</p>
+        <p>End Date: {{ internship.endDate | date:'medium' }}</p>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="additional-info">
+        <p class="left">NOT REVIEWED TASKS: {{ getInProgressTasks(internship) }}</p>
+        <p class="right" [ngStyle]="{'color': getDaysLeft(internship.endDate) === 'ENDED' ? 'red' : 'white'}">
+          Days Left: {{ getDaysLeft(internship.endDate) }}
+        </p>
+      </div>
+      <div>
+        <button class="trans" (click)="seeInfo(internship.id)">
+          <img class="click" width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/OOjs_UI_icon_information-yellow.svg/800px-OOjs_UI_icon_information-yellow.svg.png" alt="yellow">
+        </button>
+      </div>
+      <div *ngIf="shouldShowReportButton(internship)">
+        <button class="report-butt" (click)="generateReport(internship)">Generate Report for Student</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,40 +1,72 @@
 <div class="student-internship">
-    <div class="task-cards">
-        <div *ngFor="let task of studentInternship?.tasks" class="task-card">
-            <div class="task-content">
-                <div class="task-header">{{ task.title }}</div>
-            </div>
-                <div class="task-body">Description:{{ task.description }}</div>
-            
-            <hr>
-            <div class="line">
-            <p>Status:</p>
-            <div class="task-status" [ngStyle]="{ 'background-color': getStatusColor(task.status) }">{{ task.status }}</div>
-            </div>
-            <div class="line">
-                <p>Priority:</p>
-                <div class="task-status" [ngStyle]="{ 'background-color': getPriorityColor(task.priority) }">{{ task.priority }}</div>
-                </div>
-
-                <div *ngIf="userRole === 'ROLE_STUDENT' && task.status === 'IN_PROGRESS'" class="checkbox-container">
-                    <input type="checkbox" class="big-checkbox" (change)="handleCheckboxChange($event, task)">
-                </div>
-
-                <div *ngIf="userRole === 'ROLE_PSYCHOLOG' && task.status === 'NOT_REVIEWED'" class="checkbox-container">
-                    <input type="checkbox" class="big-checkbox" (change)="confirmReview($event, task)">
-                </div>
     
-                <div *ngIf="task.pdfUrl">
-                    <iframe [src]="task.pdfUrl" width="100%" height="500px"></iframe>
-                    <button (click)="uploadPdf(task)">Send PDF</button>
-                </div>
-                
+    <div class="left-panel">
+        <img [src]="studentImage" alt="Student Image" width="80px" class="student-image">
+        <h2>{{ studentName }}</h2>
+        <h2>{{ studentLastName }}</h2>
+        <button class="butt" (click)="openChat()">
+          <mat-icon *ngIf="messageCount>0" matBadge="{{ messageCount }}"  matBadgeColor="warn" >message</mat-icon>
+          <mat-icon *ngIf="messageCount==0">message</mat-icon>
+          SEE CHAT
+        </button>
+        <div class="horiz">
+          <button *ngIf="userRole == 'ROLE_PSYCHOLOG'" class="butt" (click)="newTask()">
+            <mat-icon>add</mat-icon>
+            NEW TASK
+          </button>
+        </div>
+        <hr>
+        <textarea  *ngIf="userRole == 'ROLE_PSYCHOLOG'"  [(ngModel)]="mentorComment" class="mentor-comment" placeholder="Enter your comment"></textarea>
+        <button *ngIf="userRole == 'ROLE_PSYCHOLOG'" class="butt" (click)="submitComment()">Submit Comment</button>
         
-    </div>
-    <div class="centering">
-    <button *ngIf="userRole == 'ROLE_PSYCHOLOG'" class="butt" (click)="newTask()">NEW TASK</button>
-    </div>
-
+      </div>
+  
+      
+    
     <app-new-task-form *ngIf="showNewTaskForm" (taskCreated)="handleTaskCreated($event)"></app-new-task-form>
+    
+    <div class="task-board">
+        <div class="task-column" *ngFor="let status of taskStatuses">
+            <div class="column-header">{{ status }}</div>
+            <div cdkDropList [id]="status" [cdkDropListData]="getTasksByStatus(status)" 
+                 [cdkDropListConnectedTo]="getConnectedLists(status)" 
+                 class="task-list" (cdkDropListDropped)="drop($event)">
+                 <div *ngFor="let task of getTasksByStatus(status)" cdkDrag [cdkDragDisabled]="!isDraggable(task, status)" class="task-card">
+                    <div class="task-content">
+                      <div class="task-header" *ngIf="!task.editable">{{ task.title }}</div>
+                      <input *ngIf="task.editable" type="text" [(ngModel)]="task.title" class="editable-field">
+                    </div>
+                    <mat-icon *ngIf="task.status === 'STUCK' && userRole === 'ROLE_PSYCHOLOG'" class="edit-icon right" (click)="editTask(task)">edit</mat-icon>
+                    <div class="task-body">
+                      <div *ngIf="!task.editable">Description: {{ task.description }}</div>
+                      <textarea *ngIf="task.editable" [(ngModel)]="task.description" class="editable-field2"></textarea>
+                    </div>
+                    <hr>
+                    <div class="line">
+                      <p>Status:</p>
+                      <div class="task-status" [ngStyle]="{ 'background-color': getStatusColor(task.status) }">{{ task.status }}</div>
+                    </div>
+                    <div class="line">
+                        <p>Priority:</p>
+                        <div *ngIf="!task.editable" class="task-status" [ngStyle]="{ 'background-color': getPriorityColor(task.priority) }">{{ task.priority }}</div>
+                        <select *ngIf="task.editable" [(ngModel)]="task.priority" class="custom-select">
+                          <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+                        </select>
+                     </div>
+                    <mat-icon *ngIf="task.editable" class="save-icon" (click)="saveTask(task)">save</mat-icon>
+                    <div *ngIf="task.pdfUrl">
+                      <iframe [src]="task.pdfUrl" width="100%" height="500px"></iframe>
+                      <button class="right" (click)="uploadPdf(task)">Send PDF</button>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+    </div>
+   
+    <div class="chat-overlay" *ngIf="showChat" (click)="closeChat()">
+        <div class="chat-container" (click)="$event.stopPropagation()">
+          <app-chat (messageSent)="getMessageCount()"></app-chat>
+        </div>
+      </div>
 </div>
-

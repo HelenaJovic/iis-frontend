@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
         this.userRole = '';
       }
     });
-      
     this.isThereFinishedInternship();
 
     this.profileForm = this.fb.group({ // Inicijalizacija profileForm
@@ -99,6 +98,8 @@ export class UserProfileComponent implements OnInit {
         next: (report: ReportDto) =>{
           this.isThereFinishedIntern = true;
           this.studentInternship = report;
+          
+          console.log(report);
         },
         error: (err: any) => {
             this.isThereFinishedIntern = false;
@@ -188,9 +189,25 @@ export class UserProfileComponent implements OnInit {
       doc.text(`${status}: ${statusPercentages[status as StudentInternshipStatus].toFixed(2)}%`, 20, yOffset + (index * 10));
     });
 
+    yOffset += 50;
     doc.setTextColor(150, 150, 150);
     doc.setFontSize(10);
-    doc.text('This report was generated automatically.', 105, 285, { align: 'center' });
+
+    doc.setFontSize(14);
+    doc.setTextColor(40, 64, 94);
+    doc.text('Mentor Comments during Internship:', 20, yOffset);
+  
+  
+    if (this.studentInternship.studentInternshipComments && this.studentInternship.studentInternshipComments.length > 0) {
+      this.studentInternship.studentInternshipComments.forEach((comment, index) => {
+        yOffset += 7;
+        doc.setFontSize(11);
+        doc.setTextColor(70, 70, 70);
+        const splitComment = doc.splitTextToSize(comment, 170); // Prebacivanje teksta u niz kako bi se uklopio u zadatu širinu
+        doc.text(splitComment, 20, yOffset);
+        yOffset += splitComment.length * 6.5 + 2; // Pomeramo Y koordinatu za visinu teksta komentara
+      });
+    } 
 
     doc.save('Student_Internship_Report.pdf');
   }

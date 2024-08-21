@@ -1,31 +1,49 @@
-<div class="reviewed-student-tests">
-    <h2>Reviewed Student Tests</h2>
-    <div class="card-row">
-      <div *ngFor="let test of reviewedStudentTests" class="card">
-        <p>{{ test.studentName }} {{ test.studentLastName }}</p>
-        <hr>
-        <div class="inside-row">
-        <img [src]="test.studentImageUrl" alt="user" width="90px">
-        <p>Points: {{ test.points }} / 100</p>
+<div class="outer-container">
+  <div class="side-strip left-strip" (click)="previousNotReviewedPage()"></div>
+  <div class="container">
+    <div class="not-reviewed-student-tests">
+      <div class="button-flex">
+        <h2 class="center">IN PROGRESS</h2>
+        <button *ngIf="anyChanges" class="done" (click)="done()">Done filling</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search not reviewed students..." [(ngModel)]="notReviewedSearchTerm" (input)="searchNotReviewedStudents()">
+      </div>
+      <div class="card-column">
+        <div *ngFor="let test of pagedNotReviewedStudentTests" class="card">
+          <div class="inside-row">
+            <img [src]="test.studentImageUrl" alt="user" class="student-image">
+            <p class="student-name">{{ test.studentName }} {{ test.studentLastName }}</p>
+            <button class="button fill-points" *ngIf="!test.showInput" (click)="showInputPoints(test.id)">Fill points</button>
+            <input class="input" type="number" min="1" max="100" *ngIf="test.showInput" placeholder="Enter student points" [(ngModel)]="test.points">
+          </div>
         </div>
+      </div>
+      <div class="pagination-controls">
+        <button (click)="previousNotReviewedPage()"  class="pag-butt" [disabled]="currentNotReviewedPage === 0">Previous</button>
+        <button (click)="nextNotReviewedPage()"  class="pag-butt" [disabled]="currentNotReviewedPage >= (notReviewedStudentTests.length / notReviewedPageSize) - 1">Next</button>
+      </div>
+    </div>
+    <div class="reviewed-student-tests">
+      <h2>REVIEWED STUDENT TESTS</h2>
+      <div class="search-bar">
+        <input type="text" placeholder="Search reviewed students..." [(ngModel)]="reviewedSearchTerm" (input)="searchReviewedStudents()">
+      </div>
+      <div class="card-row">
+        <div *ngFor="let test of pagedReviewedStudentTests" class="card">
+          <p class="student-name">{{ test.studentName }} {{ test.studentLastName }}</p>
+          <hr>
+          <div class="inside-row">
+            <img [src]="test.studentImageUrl" alt="user" class="student-image">
+            <p class="points">Points: {{ test.points }} / 100</p>
+          </div>
+        </div>
+      </div>
+      <div class="pagination-controls">
+        <button (click)="previousReviewedPage()" class="pag-butt" [disabled]="currentReviewedPage === 0">Previous</button>
+        <button (click)="nextReviewedPage()"  class="pag-butt" [disabled]="currentReviewedPage >= (reviewedStudentTests.length / reviewedPageSize) - 1">Next</button>
       </div>
     </div>
   </div>
-  
-  <div class="not-reviewed-student-tests">
-    <div class="button-flex">
-    <h2>In progress</h2>
-    <button *ngIf="anyChanges" class="done" (click)="done()">Done filling</button>
-    </div>
-    <div class="card-column">
-      <div *ngFor="let test of notReviewedStudentTests" class="card">
-        <div class="inside-row">
-        <img [src]="test.studentImageUrl" alt="user" width="90px">
-        <p>{{ test.studentName }} {{ test.studentLastName }}</p>
-        <button class="button" *ngIf="!test.showInput" (click)="showInputPoints(test.id)">Fill points</button>
-        <input class="input" type="number" min="1" max="100" *ngIf="test.showInput" placeholder="Enter student points" [(ngModel)]="test.points">
-        </div>
-      </div>
-    </div>
-  </div>
-  
+  <div class="side-strip right-strip" (click)="nextNotReviewedPage()"></div>
+</div>

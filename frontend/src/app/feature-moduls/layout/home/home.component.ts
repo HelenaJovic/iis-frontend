@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
         console.log("is there: ", isThere)
         if (isThere) {
           const toast = this.notifications.info(
-            'Ima nepregledanih testova!',
-            'Udjite da biste uneli rezultate!',
+            'There are unchecked tests!',
+            'Enter to input results!',
             {
               timeOut: 2500,
               showProgressBar: true,

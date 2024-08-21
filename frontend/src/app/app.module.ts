@@ -27,6 +27,7 @@ import { UserProfileComponent } from './feature-moduls/user-profile/user-profile
 import { InternshipTestModule } from './feature-moduls/internship-test/internship-test.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { CurrentInternshipModule } from './feature-moduls/current-internship/current-internship.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,6 @@ import { CurrentInternshipModule } from './feature-moduls/current-internship/cur
 
   imports: [
     BrowserModule,
-    InternshipTestModule,
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
@@ -57,6 +57,7 @@ import { CurrentInternshipModule } from './feature-moduls/current-internship/cur
     HttpClientModule,
     CommonModule,
     CurrentInternshipModule,
+    DragDropModule,
 
     JwtModule.forRoot({
       config: {

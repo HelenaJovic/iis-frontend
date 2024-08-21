@@ -1,16 +1,40 @@
 <div class="container">
-    <h1>Incoming Testings for Internships</h1>
-    <div class="card-container">
-      <div *ngFor="let internship of internships" class="card" (click)="onCardClicked(internship.id)">
-        <img [src]="internship.imageUrl" alt="center">
-        <div class="card-header">
-          {{ internship.title }}
-        </div>
-        <div class="card-body">
-          <p><strong>Date:</strong> {{ internship.date }}</p>
-          <p><strong>Category:</strong> {{ internship.category }}</p>
-        </div>
+  <h1>Incoming Testings for Internships</h1>
+  <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Search by name..." 
+      [(ngModel)]="searchQuery" 
+      (input)="filterInternships()" 
+      class="search-input"
+    />
+  </div>
+  <div class="sort-container">
+    <div class="sort-group">
+      <button (click)="setSortCriteria('dateAsc')">Sort by date ⬆️</button>
+      <button (click)="setSortCriteria('dateDesc')">Sort by date ⬇️</button>
+    </div>
+    <div class="sort-group">
+      <button (click)="setSortCriteria('timeDefined')">Sort by defined</button>
+      <button (click)="setSortCriteria('timeNotDefined')">Sort by not defined</button>
+    </div>
+  </div>
+  <div class="card-container">
+    <div 
+      *ngFor="let internship of filteredInternships" 
+      class="card" 
+      [ngClass]="{'card-undefined': !internship.time, 'card-defined': internship.time}" 
+      (click)="onCardClicked(internship.id)"
+    >
+      <img [src]="internship.imageUrl" alt="center">
+      <div class="card-header">
+        {{ internship.title }}
+      </div>
+      <div class="card-body">
+        <p><strong>Date:</strong> {{ internship.date }}</p>
+        <p><strong>Category:</strong> {{ internship.category }}</p>
+        <p *ngIf="internship.time"><strong>Time:</strong> {{ internship.time }}</p>
       </div>
     </div>
   </div>
-  
+</div>

@@ -6,28 +6,23 @@
   />
   <h2 class="nav">EQUILIBRIA</h2>
   <div class="spacer"></div>
-  <a mat-button routerLink="/">Home</a>
-  <a
-    mat-button
-    routerLink="/sessions"
-    *ngIf="userRole == 'ROLE_REGISTERED_USER' || userRole == 'ROLE_PSYCHOLOG'"
-    >| My sessions |</a
-  >
-  <a
-    mat-button
-    routerLink="/workshops"
-    *ngIf="userRole == 'ROLE_REGISTERED_USER'"
-    >| My workshops |</a
-  >
+  <a mat-button routerLink="/">| Home |</a>
   <a mat-button routerLink="/test-history" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
     > Intrenship Tests </a
   >
 
-  <a mat-button routerLink="/internship-tasks" *ngIf="userRole == 'ROLE_PSYCHOLOG' || userRole == 'ROLE_STUDENT'"
+  <a mat-button routerLink="/internship-tasks" *ngIf="userRole == 'ROLE_PSYCHOLOG'"
     > | My Intrenships |</a
+    
 >
+
+<a mat-button routerLink="/one-internship-tasks/1" *ngIf="userRole == 'ROLE_STUDENT'"
+> My Intrenship |</a
+
+>
+  
   <a mat-button routerLink="/internship-overview" *ngIf="userRole == 'ROLE_MANAGER'"
-    >| Organize tests |</a
+    >Organize tests |</a
   >
   <a
     mat-button
@@ -36,7 +31,6 @@
     >|Register new specialist|</a
   >
 
-  <a mat-button routerLink="/about-us">About us</a>
   <div class="spacer"></div>
   <a mat-button routerLink="/login" *ngIf="userRole == ''">Log in</a>
   <a mat-button routerLink="/register" *ngIf="userRole == ''">Sign up</a>

@@ -1,79 +1,171 @@
-.card-row {
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .outer-container {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .side-strip {
+    background-size: cover;
+    background-position: center;
+    width: 400px; 
+    height: 150vh;
   }
 
-.inside-row{
+  .pag-butt{
+    height: 40px;
+    border: transparent;
+    background-color: #0b7dda;
+    color: white;    
+  }
+
+  .pag-butt:disabled {
+    background-color:  #7d909f;
+    cursor: not-allowed;
+  }
+  
+  .search-bar {
+    margin: auto;
+    width: 620px;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .left-strip {
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/023/252/145/small/blue-gradient-element-free-png.png'); 
+  }
+  
+  .right-strip {
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/021/104/584/small_2x/blue-corner-gradient-free-png.png');
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .card-row, .card-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    margin-bottom: 20px;
+  }
+  
+  .student-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .inside-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .student-image {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .points {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .button-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-h2{
-    text-align: center;
-}
-  
-  .card-column {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 20px;
   }
   
-
-  .card {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    width: calc(33.333% - 20px); /* Adjust based on your layout */
-    max-width: 300px; /* Adjust based on your layout */
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card p {
-    margin: 0;
-    font-size: 16px;
-    color: #333333;
-}
-
-.card h2 {
-    font-size: 20px;
-    color: #333333;
-    margin-top: 0;
-}
-
-.reviewed-student-tests{
-    background-color: #c2e0eb;
-}
-
-.button{
-    background-color: rgb(60, 89, 143);
+  .button-flex .center {
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .done {
+    background-color: #4CAF50;
     color: white;
-}
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .done:hover {
+    background-color: #45a049;
+  }
+  
+  .input {
+    max-width: 80px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .fill-points {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .fill-points:hover {
+    background-color: #0b7dda;
+  }
 
-.button:hover{
-    background-color:  rgb(40, 59, 94);
-}
-
-.input{
-    margin-left: 150px;
-}
-
-.button-flex{
-    margin-top: 4px;
+  .pagination-controls{
     display: flex;
-    justify-content: space-around;
-}
-.done{
-    background-color: rgb(110, 168, 22);
-    border: transparent;
-    color: white;
-    font-size: large;
-    height: 50px;
-    border-radius: 8%;
-}
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  

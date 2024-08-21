@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-task-form',
@@ -10,13 +11,16 @@ export class NewTaskFormComponent {
   priority: string = 'medium';
   description: string = '';
 
-  @Output() taskCreated = new EventEmitter<any>();
-
   priorities = [
     { value: 'high', display: 'High' },
     { value: 'medium', display: 'Medium' },
     { value: 'low', display: 'Low' }
   ];
+
+  constructor(
+    public dialogRef: MatDialogRef<NewTaskFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   submitForm() {
     const newTask = {
@@ -24,13 +28,16 @@ export class NewTaskFormComponent {
       priority: this.priority,
       description: this.description
     };
-    this.taskCreated.emit(newTask);
-    this.clearForm();
+    this.dialogRef.close(newTask);
   }
 
   clearForm() {
     this.title = '';
     this.priority = 'medium';
     this.description = '';
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

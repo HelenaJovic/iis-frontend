@@ -4,6 +4,7 @@ export interface StudentInternship {
     psychologistId?: number;
     studentInternshipPoints?: number;
     tasks: Task[];
+    comments: string[];
 }
 
 export interface Task {
@@ -14,6 +15,7 @@ export interface Task {
     priority: StudentInternshipPriority;
     studentInternshipId: number;
     pdfUrl: string;
+    editable?: boolean;
 }
 
 export enum StudentInternshipStatus {
